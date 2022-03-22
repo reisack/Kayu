@@ -4,7 +4,7 @@ import ScannedProduct from './scanned-product';
 
 const Home = ({ navigation }) => {
 
-    const EANCode = '7622210449283';
+    const EANCode = '3228857000166';
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">

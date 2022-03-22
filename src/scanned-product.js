@@ -3,13 +3,6 @@ import { View, Text, Image, ActivityIndicator, StyleSheet } from 'react-native'
 
 const ScannedProduct = ( {EANCode} ) => {
 
-    const styles = StyleSheet.create({
-        pictureProduct: {
-            width: 200,
-            height: 200
-        }
-    });
-
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState({});
 
@@ -18,12 +11,26 @@ const ScannedProduct = ( {EANCode} ) => {
             const productDetailsUrl = 'https://fr.openfoodfacts.org/api/v0/product/';
             const response = await fetch(`${productDetailsUrl}${EANCode}.json`);
             const json = await response.json();
-            setData(json);
+            setData(getSimplifiedObject(json));
         } catch(error) {
             console.error(error);
         } finally {
             setLoading(false);
         }
+    }
+
+    const getSimplifiedObject = (jsonFromAPI) => {
+        const product = jsonFromAPI.product;
+
+        return {
+            frName: product.product_name_fr,
+            brands: product.brands,
+            genericFrName: product.generic_name_fr,
+            nutriscoreGrade: product.nutriscore_grade,
+            imageHeight: product.images.front_fr.sizes["200"].h,
+            imageWidth: product.images.front_fr.sizes["200"].w,
+            imageUrl: product.image_front_url,
+        };
     }
 
     useEffect(() => {
@@ -34,10 +41,13 @@ const ScannedProduct = ( {EANCode} ) => {
         <View>
             {isLoading ? <ActivityIndicator /> : (
                 <>
-                    <Text>{data.product.product_name_fr} - {data.product.brands}</Text>
-                    <Text>{data.product.generic_name_fr}</Text>
-                    <Text>Nutriscore : {data.product.nutriscore_grade}</Text>
-                    <Image style={styles.pictureProduct} source={{uri: data.product.image_front_url}} />
+                    <Text>{data.frName} - {data.brands}</Text>
+                    <Text>{data.genericFrName}</Text>
+                    <Text>Nutriscore : {data.nutriscoreGrade}</Text>
+                    <Image 
+                        style={{width: data.imageWidth,height: data.imageHeight}}
+                        source={{uri: data.imageUrl}}
+                    />
                 </>
             )}
         </View>
