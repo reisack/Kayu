@@ -1,19 +1,27 @@
 import React from 'react';
-import { View, Text, Button, ScrollView } from 'react-native'
-import ScannedProduct from './scanned-product';
+import { View, Text, Button, ScrollView, StyleSheet } from 'react-native'
 
 const Home = ({ navigation }) => {
 
-    const EANCode = '3228857000166';
+    const styles = StyleSheet.create({
+        buttonContainer: {
+            marginTop: 32,
+            marginBottom: 32,
+            paddingHorizontal: 8
+        }
+    });
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
             <View>
                 <Text>Hello World !</Text>
-                <Button title='Tutorial' onPress={() => navigation.navigate('Tutorial')} />
-                <Button title='BarcodeScanner' onPress={() => navigation.navigate('BarcodeScanner')} />
+                <View styles={styles.buttonContainer}>
+                    <Button title='Tutorial' onPress={() => navigation.navigate('Tutorial')} />
+                </View>
+                <View styles={styles.buttonContainer}>
+                    <Button title='Scan product' onPress={() => navigation.navigate('BarcodeScanner')} />
+                </View>
             </View>
-            <ScannedProduct EANCode={EANCode} />
         </ScrollView>
     );
 }

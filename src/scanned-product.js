@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, ActivityIndicator, StyleSheet } from 'react-native'
+import { View, Text, Image, ActivityIndicator } from 'react-native'
 
-const ScannedProduct = ( {EANCode} ) => {
+const ScannedProduct = ( {eanCode} ) => {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState({});
 
-    const getProductByEANCode = async (EANCode) => {
+    const getProductByEanCode = async (eanCode) => {
         try {
             const productDetailsUrl = 'https://fr.openfoodfacts.org/api/v0/product/';
-            const response = await fetch(`${productDetailsUrl}${EANCode}.json`);
+            const response = await fetch(`${productDetailsUrl}${eanCode}.json`);
             const json = await response.json();
             setData(getSimplifiedObject(json));
         } catch(error) {
@@ -34,8 +34,8 @@ const ScannedProduct = ( {EANCode} ) => {
     }
 
     useEffect(() => {
-        getProductByEANCode(EANCode);
-    }, [EANCode]);
+        getProductByEanCode(eanCode);
+    }, [eanCode]);
 
     return (
         <View>
@@ -45,7 +45,7 @@ const ScannedProduct = ( {EANCode} ) => {
                     <Text>{data.genericFrName}</Text>
                     <Text>Nutriscore : {data.nutriscoreGrade}</Text>
                     <Image 
-                        style={{width: data.imageWidth,height: data.imageHeight}}
+                        style={{width: data.imageWidth, height: data.imageHeight}}
                         source={{uri: data.imageUrl}}
                     />
                 </>

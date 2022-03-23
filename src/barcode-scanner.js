@@ -36,12 +36,21 @@ const BarcodeScanner = ({ navigation }) => {
         }
     };
 
+    const onBarcodeRead = (scanResult) => {
+      if (scanResult && scanResult.data) {
+        navigation.navigate('ScannedProductScreen', {
+          eanCode: scanResult.data
+        });
+      }
+    }
+
     return (
         <View style={styles.container}>
             <RNCamera
                 captureAudio={false}
                 type={RNCamera.Constants.Type.back}
                 style={styles.preview}
+                onBarCodeRead={onBarcodeRead.bind(this)}
             />
             <View style={[styles.overlay, styles.topOverlay]}>
                 <Text style={styles.scanScreenMessage}>Please scan the barcode.</Text>
