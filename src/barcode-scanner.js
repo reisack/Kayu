@@ -1,0 +1,53 @@
+import React from 'react';
+import { RNCamera } from 'react-native-camera';
+import { View, Text } from 'react-native'
+
+const BarcodeScanner = ({ navigation }) => {
+
+    const styles = {
+        container: {
+          flex: 1
+        },
+        preview: {
+          flex: 1,
+          justifyContent: 'flex-end',
+          alignItems: 'center'
+        },
+        overlay: {
+          position: 'absolute',
+          padding: 16,
+          right: 0,
+          left: 0,
+          alignItems: 'center'
+        },
+        topOverlay: {
+          top: 0,
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        },
+        scanScreenMessage: {
+          fontSize: 14,
+          color: 'white',
+          textAlign: 'center',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }
+    };
+
+    return (
+        <View style={styles.container}>
+            <RNCamera
+                captureAudio={false}
+                type={RNCamera.Constants.Type.back}
+                style={styles.preview}
+            />
+            <View style={[styles.overlay, styles.topOverlay]}>
+                <Text style={styles.scanScreenMessage}>Please scan the barcode.</Text>
+            </View>
+        </View>
+    );
+}
+
+export default BarcodeScanner;

@@ -11,6 +11,7 @@ const Home = ({ navigation }) => {
             <View>
                 <Text>Hello World !</Text>
                 <Button title='Tutorial' onPress={() => navigation.navigate('Tutorial')} />
+                <Button title='BarcodeScanner' onPress={() => navigation.navigate('BarcodeScanner')} />
             </View>
             <ScannedProduct EANCode={EANCode} />
         </ScrollView>
