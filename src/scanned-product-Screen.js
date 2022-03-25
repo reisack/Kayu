@@ -7,8 +7,8 @@ const ScannedProductScreen = ({ route, navigation }) => {
 
     const styles = StyleSheet.create({
         buttonContainer: {
-            marginTop: 32,
-            paddingHorizontal: 8
+            paddingHorizontal:24,
+            paddingTop: 32
         }
     });
 
@@ -16,11 +16,13 @@ const ScannedProductScreen = ({ route, navigation }) => {
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <View>
-                <Button styles={styles.buttonContainer} title='Home' onPress={() => navigation.navigate('Home')} />
-                <Button title='Scan other product' onPress={() => navigation.navigate('BarcodeScanner')} />
-            </View>
             <ScannedProduct eanCode={JSON.stringify(eanCode)} />
+            <View style={styles.buttonContainer}>
+                <Button styles={styles.buttonContainer} title='Accueil' onPress={() => navigation.navigate('Home')} />
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button title='Scanner un autre code-barres' onPress={() => navigation.navigate('BarcodeScanner')} />
+            </View>
         </ScrollView>
     );
 }
