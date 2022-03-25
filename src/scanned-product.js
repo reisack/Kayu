@@ -1,3 +1,4 @@
+'use strict';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator } from 'react-native'
 

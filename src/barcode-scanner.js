@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 import { RNCamera } from 'react-native-camera';
 import BarcodeMask from 'react-native-barcode-mask';
