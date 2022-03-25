@@ -1,5 +1,6 @@
 import React from 'react';
 import { RNCamera } from 'react-native-camera';
+import BarcodeMask from 'react-native-barcode-mask';
 import { View, Text } from 'react-native'
 
 const BarcodeScanner = ({ navigation }) => {
@@ -28,7 +29,7 @@ const BarcodeScanner = ({ navigation }) => {
           alignItems: 'center'
         },
         scanScreenMessage: {
-          fontSize: 14,
+          fontSize: 16,
           color: 'white',
           textAlign: 'center',
           alignItems: 'center',
@@ -47,13 +48,15 @@ const BarcodeScanner = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <RNCamera
-                captureAudio={false}
-                type={RNCamera.Constants.Type.back}
-                style={styles.preview}
-                onBarCodeRead={onBarcodeRead.bind(this)}
-            />
+              captureAudio={false}
+              type={RNCamera.Constants.Type.back}
+              style={styles.preview}
+              onBarCodeRead={onBarcodeRead.bind(this)}
+            >
+              <BarcodeMask showAnimatedLine={false} width={300} height={300} />
+            </RNCamera>
             <View style={[styles.overlay, styles.topOverlay]}>
-                <Text style={styles.scanScreenMessage}>Please scan the barcode.</Text>
+                <Text style={styles.scanScreenMessage}>Scanne un code-barres stp.</Text>
             </View>
         </View>
     );
