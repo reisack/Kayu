@@ -1,6 +1,7 @@
 'use strict';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator } from 'react-native'
+import getScoresFromProduct from './score-calculation';
 
 const ScannedProduct = ( {eanCode} ) => {
 
@@ -30,54 +31,6 @@ const ScannedProduct = ( {eanCode} ) => {
             imageWidth: product.images.front_fr.sizes["200"].w,
             imageUrl: product.image_front_url,
             scores: getScoresFromProduct(product)
-        };
-    }
-
-    const getScoresFromProduct = (product) => {
-        // Fat
-        const fat = product.nutriments["fat_100g"] ?? null;
-        const saturatedFat = product.nutriments["saturated-fat_100g"] ?? null;
-
-        let fatScore = null;
-        if (fat !== null) {
-            fatScore = fat * 0.75;
-        }
-        if (saturatedFat !== null) {
-            fatScore += saturatedFat * 0.25;
-        }
-        if (fatScore !== null) {
-            fatScore = fatScore.toFixed(2);
-        }
-
-        const sugarScore = product.nutriments["sugars_100g"] ?? null;
-        const saltScore = product.nutriments["salt_100g"] ?? null;
-
-        const novaGroup = product.nova_group ?? null;
-        let novaGroupScore = null;
-        if (novaGroup !== null) {
-            novaGroupScore = novaGroup * 25;
-        }
-
-        const eco = product.ecoscore_score ?? null;
-        let ecoScore;
-        if (eco) {
-            ecoScore = 100 - eco;
-        }
-        
-        const additives = product.additives_tags || null;
-        let additivesScore;
-        if (additives) {
-            // Todo : Get additives Informations
-            const additivesInformations = [];
-        }
-
-        return {
-            fat: fatScore,
-            sugar: sugarScore,
-            salt: saltScore,
-            novaGroup: novaGroupScore,
-            eco: ecoScore,
-            additives: additivesScore
         };
     }
 
