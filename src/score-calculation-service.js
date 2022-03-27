@@ -12,19 +12,27 @@ const getScoresFromProduct = (product) => {
 export default getScoresFromProduct;
 
 function getAdditivesScore(product) {
-    const additives = product.additives_tags || null;
-    let additivesScore;
-    if (additives) {
-        // Todo : Get additives Informations
-        const additivesInformations = [];
+    const additives = product.additives_tags ?? null;
+    let additivesScore = null;
+    if (additives !== null) {
+        additivesScore = 0;
+        if (global.additiveScoreInformations) {
+            for (const additive in additives) {
+                const additiveCode = additives[additive];
+                const additiveScore = global.additiveScoreInformations[additiveCode];
+                if (additiveScore) {
+                    additivesScore += additiveScore;
+                }
+            }
+        }
     }
     return additivesScore;
 }
 
 function getEcoScore(product) {
     const eco = product.ecoscore_score ?? null;
-    let ecoScore;
-    if (eco) {
+    let ecoScore = null;
+    if (eco !== null) {
         ecoScore = 100 - eco;
     }
     return ecoScore;
