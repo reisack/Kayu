@@ -1,7 +1,7 @@
 'use strict';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator } from 'react-native'
-import getScoresFromProduct from './score-calculation';
+import getScoresFromProduct from './score-calculation-service';
 
 const ScannedProduct = ( {eanCode} ) => {
 
