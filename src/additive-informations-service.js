@@ -1,20 +1,18 @@
-const initAdditiveInformations = async () => {
+const initAdditiveScoreInformations = async () => {
     try {
-        const productDetailsUrl = 'https://fr.openfoodfacts.org/data/taxonomies/additives.json';
-        const response = await fetch(productDetailsUrl);
+        const additivesUrl = 'https://fr.openfoodfacts.org/data/taxonomies/additives.json';
+        const response = await fetch(additivesUrl);
         const json = await response.json();
         setSimplifiedObject(json);
     } catch(error) {
         console.error(error);
-    } finally {
-        setLoading(false);
     }
 }
 
-export default initAdditiveInformations;
+export default initAdditiveScoreInformations;
 
-const setSimplifiedObject = (jsonFromAPI) => {
-    global.additiveInformations = {};
+const setSimplifiedObject = async (jsonFromAPI) => {
+    global.additiveScoreInformations = {};
     for (const property in jsonFromAPI) {
         if (jsonFromAPI[property].efsa_evaluation_overexposure_risk
             && jsonFromAPI[property].efsa_evaluation_overexposure_risk.en) {
@@ -22,13 +20,13 @@ const setSimplifiedObject = (jsonFromAPI) => {
 
             switch (risk) {
                 case 'en:high' :
-                    global.additiveInformations[property] = 30;
+                    global.additiveScoreInformations[property] = 30;
                 break;
                 case 'en:moderate' :
-                    global.additiveInformations[property] = 15;
+                    global.additiveScoreInformations[property] = 15;
                 break;
                 case 'en:no' :
-                    global.additiveInformations[property] = 5;
+                    global.additiveScoreInformations[property] = 5;
                 break;
             }
         }

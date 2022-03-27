@@ -1,21 +1,21 @@
 'use strict';
 import * as React from 'react';
+import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/home';
 import Tutorial from './src/tutorial';
 import BarcodeScanner from './src/barcode-scanner';
 import ScannedProductScreen from './src/scanned-product-Screen';
-import initAdditiveInformations from './src/additive-informations-service'
+import initAdditiveScoreInformations from './src/additive-informations-service'
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
 
   useEffect(() => {
-    initAdditiveInformations();
+    initAdditiveScoreInformations();
   }, [])
-  
 
   return (
     <NavigationContainer>
