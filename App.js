@@ -6,10 +6,17 @@ import Home from './src/home';
 import Tutorial from './src/tutorial';
 import BarcodeScanner from './src/barcode-scanner';
 import ScannedProductScreen from './src/scanned-product-Screen';
+import initAdditiveInformations from './src/additive-informations-service'
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+
+  useEffect(() => {
+    initAdditiveInformations();
+  }, [])
+  
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
