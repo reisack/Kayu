@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator } from 'react-native'
 import getScoresFromProduct from '../services/score-calculation-service';
+import ProgressBar from 'react-native-progress/Bar';
 
 const ScannedProduct = ( {eanCode} ) => {
+
+    const progressBarWidth = 300;
+    const progressBarHeight = 20;
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState({});
@@ -33,6 +37,10 @@ const ScannedProduct = ( {eanCode} ) => {
         };
     }
 
+    const setScoreForProgressBar = (score) => {
+        return score / 100.0;
+    }
+
     useEffect(() => {
         getProductByEanCode(eanCode);
     }, [eanCode]);
@@ -42,12 +50,18 @@ const ScannedProduct = ( {eanCode} ) => {
             {isLoading ? <ActivityIndicator /> : (
                 <>
                     <Text>{data.frName} - {data.brands}</Text>
-                    {data.scores.fat !== null && <Text>Gras : {data.scores.fat} g</Text>}
-                    {data.scores.sugar !== null && <Text>Sucre : {data.scores.sugar} g</Text>}
-                    {data.scores.salt !== null && <Text>Sel : {data.scores.salt} g</Text>}
+                    <ProgressBar progress={setScoreForProgressBar(data.scores.fat)} width={progressBarWidth} height={progressBarHeight} />
+                    {data.scores.fat !== null && <Text>Gras : {data.scores.fat.toFixed(2)}</Text>}
+                    <ProgressBar progress={setScoreForProgressBar(data.scores.sugar)} width={progressBarWidth} height={progressBarHeight} />
+                    {data.scores.sugar !== null && <Text>Sucre : {data.scores.sugar.toFixed(2)}</Text>}
+                    <ProgressBar progress={setScoreForProgressBar(data.scores.salt)} width={progressBarWidth} height={progressBarHeight} />
+                    {data.scores.salt !== null && <Text>Sel : {data.scores.salt.toFixed(2)}</Text>}
+                    <ProgressBar progress={setScoreForProgressBar(data.scores.novaGroup)} width={progressBarWidth} height={progressBarHeight} />
                     {data.scores.novaGroup !== null && <Text>NOVA : {data.scores.novaGroup}</Text>}
+                    <ProgressBar progress={setScoreForProgressBar(data.scores.eco)} width={progressBarWidth} height={progressBarHeight} />
                     {data.scores.eco !== null && <Text>Ecoscore : {data.scores.eco}</Text>}
-                    {data.scores.additives !== null && <Text>Addictifs : {data.scores.additives}</Text>}
+                    <ProgressBar progress={setScoreForProgressBar(data.scores.additives)} width={progressBarWidth} height={progressBarHeight} />
+                    {data.scores.additives !== null && <Text>Addictifs : {data.scores.additives.toFixed(2)}</Text>}
                     <Image 
                         style={{width: data.imageWidth, height: data.imageHeight}}
                         source={{uri: data.imageUrl}}
