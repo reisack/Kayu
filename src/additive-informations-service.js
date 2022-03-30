@@ -7,28 +7,28 @@ const initAdditiveScoreInformations = async () => {
     } catch(error) {
         console.error(error);
     }
-}
 
-export default initAdditiveScoreInformations;
-
-const setSimplifiedObject = async (jsonFromAPI) => {
-    global.additiveScoreInformations = {};
-    for (const property in jsonFromAPI) {
-        if (jsonFromAPI[property].efsa_evaluation_overexposure_risk
-            && jsonFromAPI[property].efsa_evaluation_overexposure_risk.en) {
-            const risk = jsonFromAPI[property].efsa_evaluation_overexposure_risk.en;
-
-            switch (risk) {
-                case 'en:high' :
-                    global.additiveScoreInformations[property] = 30;
-                break;
-                case 'en:moderate' :
-                    global.additiveScoreInformations[property] = 15;
-                break;
-                case 'en:no' :
-                    global.additiveScoreInformations[property] = 5;
-                break;
+    function setSimplifiedObject(jsonFromAPI) {
+        global.additiveScoreInformations = {};
+        for (const property in jsonFromAPI) {
+            if (jsonFromAPI[property].efsa_evaluation_overexposure_risk
+                && jsonFromAPI[property].efsa_evaluation_overexposure_risk.en) {
+                const risk = jsonFromAPI[property].efsa_evaluation_overexposure_risk.en;
+    
+                switch (risk) {
+                    case 'en:high' :
+                        global.additiveScoreInformations[property] = 30;
+                    break;
+                    case 'en:moderate' :
+                        global.additiveScoreInformations[property] = 15;
+                    break;
+                    case 'en:no' :
+                        global.additiveScoreInformations[property] = 5;
+                    break;
+                }
             }
         }
     }
 }
+
+export default initAdditiveScoreInformations;
