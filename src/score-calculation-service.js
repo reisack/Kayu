@@ -22,6 +22,11 @@ const getScoresFromProduct = (product) => {
                         additivesScore += additiveScore;
                     }
                 }
+
+                // Score is limited to 100
+                if (additivesScore > 100) {
+                    additivesScore = 100;
+                }
             }
         }
 
