@@ -1,7 +1,6 @@
-'use strict';
 import React from 'react';
 import { View, Button, ScrollView, StyleSheet } from 'react-native'
-import ScannedProduct from './scanned-product'
+import ScannedProduct from '../components/scanned-product'
 
 const ScannedProductScreen = ({ route, navigation }) => {
 

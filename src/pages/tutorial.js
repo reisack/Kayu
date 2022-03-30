@@ -5,7 +5,6 @@
  * @format
  * @flow strict-local
  */
- 'use strict';
  import React from 'react';
  import {
    SafeAreaView,
