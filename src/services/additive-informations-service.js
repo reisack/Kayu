@@ -14,18 +14,14 @@ const initAdditiveScoreInformations = async () => {
             if (jsonFromAPI[property].efsa_evaluation_overexposure_risk
                 && jsonFromAPI[property].efsa_evaluation_overexposure_risk.en) {
                 const risk = jsonFromAPI[property].efsa_evaluation_overexposure_risk.en;
-    
-                switch (risk) {
-                    case 'en:high' :
-                        global.additiveScoreInformations[property] = 30;
-                    break;
-                    case 'en:moderate' :
-                        global.additiveScoreInformations[property] = 15;
-                    break;
-                    case 'en:no' :
-                        global.additiveScoreInformations[property] = 5;
-                    break;
-                }
+
+                const riskScores = {
+                    'en:high': 30,
+                    'en:moderate': 15,
+                    'en:no': 5
+                };
+
+                global.additiveScoreInformations[property] = riskScores[risk];
             }
         }
     }
