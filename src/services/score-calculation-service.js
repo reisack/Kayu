@@ -12,7 +12,7 @@ const getScoresFromProduct = (nutritionValues) => {
     };
 
     function getScore(nutritionValues, productInformation) {
-        const productInformationValue = getProductInformation(nutritionValues, productInformation);
+        const productInformationValue = getNutritionValue(nutritionValues, productInformation);
         let score = null;
         if (productInformationValue !== null) {
             score = calculateScore(productInformationValue, productInformation);
@@ -22,55 +22,30 @@ const getScoresFromProduct = (nutritionValues) => {
         return score;
     }
 
-    function getProductInformation(nutritionValues, productInformation) {
-        let information;
+    function getNutritionValue(nutritionValues, productInformation) {
+        const nutritionInformations = {
+            [productInformationEnum.fat]: nutritionValues.fat,
+            [productInformationEnum.sugar]: nutritionValues.sugar,
+            [productInformationEnum.salt]: nutritionValues.salt,
+            [productInformationEnum.additives]: nutritionValues.additives,
+            [productInformationEnum.novaGroup]: nutritionValues.novaGroup,
+            [productInformationEnum.eco]: nutritionValues.eco,
+        };
 
-        switch (productInformation) {
-            case productInformationEnum.fat :
-                information = nutritionValues.fat;
-            break;
-            case productInformationEnum.sugar :
-                information = nutritionValues.sugar;
-            break;
-            case productInformationEnum.salt :
-                information = nutritionValues.salt;
-            break;
-            case productInformationEnum.additives :
-                information = nutritionValues.additives;
-            break;
-            case productInformationEnum.novaGroup :
-                information = nutritionValues.novaGroup;
-            break;
-            case productInformationEnum.eco :
-                information = nutritionValues.eco;
-            break;
-        }
-
-        return information;
+        return nutritionInformations[productInformation];
     }
 
     function calculateScore(productInformationValue, productInformation) {
-        switch (productInformation) {
-            case productInformationEnum.fat :
-                productInformationValue *= 10;
-            break;
-            case productInformationEnum.sugar :
-                productInformationValue *= 2.22;
-            break;
-            case productInformationEnum.salt :
-                productInformationValue *= 40;
-            break;
-            case productInformationEnum.additives :
-                productInformationValue = getAdditivesScore(productInformationValue);
-            break;
-            case productInformationEnum.eco :
-                productInformationValue = 100 - productInformationValue;
-            break;
-            case productInformationEnum.novaGroup :
-                productInformationValue *= 25;
-            break;
-        }
-        return productInformationValue;
+        const productScoresCalculations = {
+            [productInformationEnum.fat]: productInformationValue * 10,
+            [productInformationEnum.sugar]: productInformationValue * 2.22,
+            [productInformationEnum.salt]: productInformationValue * 40,
+            [productInformationEnum.additives]: getAdditivesScore(productInformationValue),
+            [productInformationEnum.novaGroup]: productInformationValue * 25,
+            [productInformationEnum.eco]: 100 - productInformationValue
+        };
+
+        return productScoresCalculations[productInformation];
     }
 
     function getAdditivesScore(productInformationValue) {
