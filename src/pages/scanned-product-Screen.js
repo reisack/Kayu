@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Button, ScrollView, StyleSheet } from 'react-native'
 import ScannedProduct from '../components/scanned-product'
+import NotFoundProduct from '../components/not-found-product';
 
 const ScannedProductScreen = ({ route, navigation }) => {
 
@@ -13,9 +14,13 @@ const ScannedProductScreen = ({ route, navigation }) => {
 
     const { eanCode } = route.params;
 
+    const [productCouldBeFound, setProductCouldBeFound] = useState(true);
+
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <ScannedProduct eanCode={JSON.stringify(eanCode)} onNotFoundProduct={() => navigation.navigate('NotFoundProduct')} />
+            {productCouldBeFound 
+                ? <ScannedProduct eanCode={JSON.stringify(eanCode)} onNotFoundProduct={() => setProductCouldBeFound(false)} />
+                : <NotFoundProduct />}
             <View style={styles.buttonContainer}>
                 <Button styles={styles.buttonContainer} title='Accueil' onPress={() => navigation.navigate('Home')} />
             </View>
