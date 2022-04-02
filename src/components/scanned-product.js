@@ -56,32 +56,32 @@ const ScannedProduct = ( {eanCode} ) => {
                     <Text>{data.frName} - {data.brands}</Text>
                     <ScoreProduct
                         score={data.scores.fat}
-                        dataFromAPI={data.nutritionValues.fat}
+                        nutritionValue={data.nutritionValues.fat}
                         productInfoEnum={productInformationEnum.fat}
                     />
                     <ScoreProduct
                         score={data.scores.salt}
-                        dataFromAPI={data.nutritionValues.salt}
+                        nutritionValue={data.nutritionValues.salt}
                         productInfoEnum={productInformationEnum.salt}
                     />
                     <ScoreProduct
                         score={data.scores.sugar}
-                        dataFromAPI={data.nutritionValues.sugar}
+                        nutritionValue={data.nutritionValues.sugar}
                         productInfoEnum={productInformationEnum.sugar}
                     />
                     <ScoreProduct
                         score={data.scores.novaGroup}
-                        dataFromAPI={data.nutritionValues.novaGroup}
+                        nutritionValue={data.nutritionValues.novaGroup}
                         productInfoEnum={productInformationEnum.novaGroup}
                     />
                     <ScoreProduct
                         score={data.scores.eco}
-                        dataFromAPI={data.nutritionValues.eco}
+                        nutritionValue={data.nutritionValues.eco}
                         productInfoEnum={productInformationEnum.eco}
                     />
                     <ScoreProduct 
                         score={data.scores.additives} 
-                        dataFromAPI={data.nutritionValues.additives}
+                        nutritionValue={data.nutritionValues.additives}
                         productInfoEnum={productInformationEnum.additives}
                     />
                     <Image 

@@ -31,6 +31,18 @@ const scoreProductService = {
 
         const productExpressions = expressions[productInfoEnum];
         return (score >= 50) ? productExpressions.high : productExpressions.low;
+    },
+    getHelpMessage: (nutritionValue, productInfoEnum) => {
+        const expressions = {
+            [productInformationEnum.fat]: `${nutritionValue}g de gras pour 100g de produit`,
+            [productInformationEnum.sugar]: `${nutritionValue}g de sucre pour 100g de produit`,
+            [productInformationEnum.salt]: `${nutritionValue}g de sel pour 100g de produit`,
+            [productInformationEnum.additives]: `${nutritionValue.length ?? 0} addictifs`,
+            [productInformationEnum.novaGroup]: `Score NOVA : ${nutritionValue} (Transformation des aliments)`,
+            [productInformationEnum.eco]: `Eco score : ${nutritionValue} (Empreinte carbone)`
+        };
+
+        return expressions[productInfoEnum];
     }
 };
 
