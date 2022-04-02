@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RNCamera } from 'react-native-camera';
 import BarcodeMask from 'react-native-barcode-mask';
 import { StyleSheet, View, Text } from 'react-native'
+import { useIsFocused } from "@react-navigation/native";
 
 const BarcodeScanner = ({ navigation }) => {
 
@@ -37,13 +38,21 @@ const BarcodeScanner = ({ navigation }) => {
         }
     });
 
+    const isFocused = useIsFocused();
+    const [productHasBeenScanned, setProductHasBeenScanned] = useState(false);
+
     const onBarcodeRead = (scanResult) => {
-      if (scanResult && scanResult.data) {
+      if (!productHasBeenScanned && scanResult && scanResult.data) {
+        setProductHasBeenScanned(true);
         navigation.navigate('ScannedProductScreen', {
           eanCode: scanResult.data
         });
       }
     }
+
+    useEffect(() => {
+      setProductHasBeenScanned(false);
+    }, [isFocused]);
 
     return (
         <View style={styles.container}>

@@ -6,6 +6,7 @@ import Home from './src/pages/home';
 import Tutorial from './src/pages/tutorial';
 import BarcodeScanner from './src/pages/barcode-scanner';
 import ScannedProductScreen from './src/pages/scanned-product-Screen';
+import NotFoundProduct from './src/pages/not-found-product';
 import initAdditiveScoreInformations from './src/services/additive-informations-service'
 
 const Stack = createNativeStackNavigator();
@@ -37,6 +38,11 @@ const App = () => {
         <Stack.Screen
           name="ScannedProductScreen"
           component={ScannedProductScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="NotFoundProduct"
+          component={NotFoundProduct}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

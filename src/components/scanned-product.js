@@ -4,7 +4,7 @@ import getScoresFromProduct from '../services/score-calculation-service';
 import ScoreProduct from './score-product';
 import productInformationEnum from '../enums/product-information';
 
-const ScannedProduct = ( {eanCode} ) => {
+const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState({});
@@ -14,11 +14,16 @@ const ScannedProduct = ( {eanCode} ) => {
             const productDetailsUrl = 'https://fr.openfoodfacts.org/api/v0/product/';
             const response = await fetch(`${productDetailsUrl}${eanCode}.json`);
             const json = await response.json();
-            setData(getSimplifiedObject(json));
+            if (json && json.status && json.status === 1) {
+                setData(getSimplifiedObject(json));
+                setLoading(false);
+            }
+            else {
+                onNotFoundProduct();
+            }
         } catch(error) {
             console.error(error);
-        } finally {
-            setLoading(false);
+            onNotFoundProduct();
         }
     }
 

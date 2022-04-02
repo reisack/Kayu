@@ -15,7 +15,7 @@ const ScannedProductScreen = ({ route, navigation }) => {
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <ScannedProduct eanCode={JSON.stringify(eanCode)} />
+            <ScannedProduct eanCode={JSON.stringify(eanCode)} onNotFoundProduct={() => navigation.navigate('NotFoundProduct')} />
             <View style={styles.buttonContainer}>
                 <Button styles={styles.buttonContainer} title='Accueil' onPress={() => navigation.navigate('Home')} />
             </View>
