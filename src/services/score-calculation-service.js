@@ -1,25 +1,18 @@
-const getScoresFromProduct = (product) => {
+import productInformationEnum from '../enums/product-information';
 
-    const productInformationEnum = {
-        fat: 0,
-        sugar: 1,
-        salt: 2,
-        novaGroup: 3,
-        eco: 4,
-        additives: 5
-    };
+const getScoresFromProduct = (nutritionValues) => {
 
     return {
-        fat: getScore(product, productInformationEnum.fat),
-        sugar: getScore(product, productInformationEnum.sugar),
-        salt: getScore(product, productInformationEnum.salt),
-        novaGroup: getScore(product, productInformationEnum.novaGroup),
-        eco: getScore(product, productInformationEnum.eco),
-        additives: getScore(product, productInformationEnum.additives)
+        fat: getScore(nutritionValues, productInformationEnum.fat),
+        sugar: getScore(nutritionValues, productInformationEnum.sugar),
+        salt: getScore(nutritionValues, productInformationEnum.salt),
+        novaGroup: getScore(nutritionValues, productInformationEnum.novaGroup),
+        eco: getScore(nutritionValues, productInformationEnum.eco),
+        additives: getScore(nutritionValues, productInformationEnum.additives)
     };
 
-    function getScore(product, productInformation) {
-        const productInformationValue = getProductInformation(product, productInformation);
+    function getScore(nutritionValues, productInformation) {
+        const productInformationValue = getProductInformation(nutritionValues, productInformation);
         let score = null;
         if (productInformationValue !== null) {
             score = calculateScore(productInformationValue, productInformation);
@@ -29,27 +22,27 @@ const getScoresFromProduct = (product) => {
         return score;
     }
 
-    function getProductInformation(product, productInformation) {
+    function getProductInformation(nutritionValues, productInformation) {
         let information;
 
         switch (productInformation) {
             case productInformationEnum.fat :
-                information = product.nutriments["saturated-fat_100g"] ?? null;
+                information = nutritionValues.fat;
             break;
             case productInformationEnum.sugar :
-                information = product.nutriments["sugars_100g"] ?? null;
+                information = nutritionValues.sugar;
             break;
             case productInformationEnum.salt :
-                information = product.nutriments["salt_100g"] ?? null;
+                information = nutritionValues.salt;
             break;
             case productInformationEnum.additives :
-                information = product.additives_tags ?? null;
+                information = nutritionValues.additives;
             break;
             case productInformationEnum.novaGroup :
-                information = product.nova_group ?? null;
+                information = nutritionValues.novaGroup;
             break;
             case productInformationEnum.eco :
-                information = product.ecoscore_score ?? null;
+                information = nutritionValues.eco;
             break;
         }
 

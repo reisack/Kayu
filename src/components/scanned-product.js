@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator } from 'react-native'
 import getScoresFromProduct from '../services/score-calculation-service';
-import ProgressBar from 'react-native-progress/Bar';
+import ScoreProduct from './score-product';
+import productInformationEnum from '../enums/product-information';
 
 const ScannedProduct = ( {eanCode} ) => {
-
-    const progressBarWidth = 300;
-    const progressBarHeight = 20;
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState({});
@@ -27,18 +25,24 @@ const ScannedProduct = ( {eanCode} ) => {
     const getSimplifiedObject = (jsonFromAPI) => {
         const product = jsonFromAPI.product;
 
+        const nutritionValues = {
+            fat: product.nutriments["saturated-fat_100g"] ?? null,
+            sugar: product.nutriments["sugars_100g"] ?? null,
+            salt: product.nutriments["salt_100g"] ?? null,
+            additives: product.additives_tags ?? null,
+            novaGroup: product.nova_group ?? null,
+            eco: product.ecoscore_score ?? null,
+        };
+
         return {
             frName: product.product_name_fr,
             brands: product.brands,
             imageHeight: product.images.front_fr.sizes["200"].h,
             imageWidth: product.images.front_fr.sizes["200"].w,
             imageUrl: product.image_front_url,
-            scores: getScoresFromProduct(product)
+            nutritionValues: nutritionValues,
+            scores: getScoresFromProduct(nutritionValues)
         };
-    }
-
-    const setScoreForProgressBar = (score) => {
-        return score / 100.0;
     }
 
     useEffect(() => {
@@ -50,48 +54,36 @@ const ScannedProduct = ( {eanCode} ) => {
             {isLoading ? <ActivityIndicator /> : (
                 <>
                     <Text>{data.frName} - {data.brands}</Text>
-                    {
-                        data.scores.fat !== null && 
-                        <>
-                        <Text>Gras : {data.scores.fat.toFixed(2)}</Text>
-                        <ProgressBar progress={setScoreForProgressBar(data.scores.fat)} width={progressBarWidth} height={progressBarHeight} />
-                        </>
-                    }
-                    {
-                        data.scores.salt !== null && 
-                        <>
-                        <Text>Sel : {data.scores.salt.toFixed(2)}</Text>
-                        <ProgressBar progress={setScoreForProgressBar(data.scores.salt)} width={progressBarWidth} height={progressBarHeight} />
-                        </>
-                    }
-                    {
-                        data.scores.sugar !== null && 
-                        <>
-                        <Text>Sucre : {data.scores.sugar.toFixed(2)}</Text>
-                        <ProgressBar progress={setScoreForProgressBar(data.scores.sugar)} width={progressBarWidth} height={progressBarHeight} />
-                        </>
-                    }
-                    {
-                        data.scores.novaGroup !== null && 
-                        <>
-                        <Text>NOVA : {data.scores.novaGroup.toFixed(2)}</Text>
-                        <ProgressBar progress={setScoreForProgressBar(data.scores.novaGroup)} width={progressBarWidth} height={progressBarHeight} />
-                        </>
-                    }
-                    {
-                        data.scores.eco !== null && 
-                        <>
-                        <Text>Eco-score : {data.scores.eco.toFixed(2)}</Text>
-                        <ProgressBar progress={setScoreForProgressBar(data.scores.eco)} width={progressBarWidth} height={progressBarHeight} />
-                        </>
-                    }
-                    {
-                        data.scores.additives !== null && 
-                        <>
-                        <Text>Addictifs : {data.scores.additives.toFixed(2)}</Text>
-                        <ProgressBar progress={setScoreForProgressBar(data.scores.additives)} width={progressBarWidth} height={progressBarHeight} />
-                        </>
-                    }
+                    <ScoreProduct
+                        score={data.scores.fat}
+                        dataFromAPI={data.nutritionValues.fat}
+                        productInfoEnum={productInformationEnum.fat}
+                    />
+                    <ScoreProduct
+                        score={data.scores.salt}
+                        dataFromAPI={data.nutritionValues.salt}
+                        productInfoEnum={productInformationEnum.salt}
+                    />
+                    <ScoreProduct
+                        score={data.scores.sugar}
+                        dataFromAPI={data.nutritionValues.sugar}
+                        productInfoEnum={productInformationEnum.sugar}
+                    />
+                    <ScoreProduct
+                        score={data.scores.novaGroup}
+                        dataFromAPI={data.nutritionValues.novaGroup}
+                        productInfoEnum={productInformationEnum.novaGroup}
+                    />
+                    <ScoreProduct
+                        score={data.scores.eco}
+                        dataFromAPI={data.nutritionValues.eco}
+                        productInfoEnum={productInformationEnum.eco}
+                    />
+                    <ScoreProduct 
+                        score={data.scores.additives} 
+                        dataFromAPI={data.nutritionValues.additives}
+                        productInfoEnum={productInformationEnum.additives}
+                    />
                     <Image 
                         style={{width: data.imageWidth, height: data.imageHeight}}
                         source={{uri: data.imageUrl}}
