@@ -12,7 +12,7 @@ const ScoreProduct = ( {score, nutritionValue, productInfoEnum} ) => {
             padding: 8,
             paddingHorizontal: 24,
             marginHorizontal: 24,
-            backgroundColor: '#9FA8DA',
+            backgroundColor: score >= 50 ? '#14c258' : '#c72400',
             marginTop: 8
         },
         section: {
