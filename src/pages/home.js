@@ -1,7 +1,10 @@
 import React from 'react';
 import { View, Text, Button, ScrollView, StyleSheet } from 'react-native'
+import { useTranslation } from "react-i18next";
 
 const Home = ({ navigation }) => {
+
+    const { t } = useTranslation();
 
     const styles = StyleSheet.create({
         container: {
@@ -16,7 +19,7 @@ const Home = ({ navigation }) => {
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
             <View style={styles.container}>
-                <Text>Hello World !</Text>
+                <Text>{t('welcomeTitle')}</Text>
                 <View style={styles.buttonContainer}>
                     <Button title='Infos React Native' onPress={() => navigation.navigate('Tutorial')} />
                 </View>
