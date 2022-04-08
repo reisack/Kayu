@@ -3,8 +3,11 @@ import { RNCamera } from 'react-native-camera';
 import BarcodeMask from 'react-native-barcode-mask';
 import { StyleSheet, View, Text } from 'react-native'
 import { useIsFocused } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
 const BarcodeScanner = ({ navigation }) => {
+
+    const { t } = useTranslation();
 
     const styles = StyleSheet.create({
         container: {
@@ -65,7 +68,7 @@ const BarcodeScanner = ({ navigation }) => {
               <BarcodeMask showAnimatedLine={false} width={300} height={300} />
             </RNCamera>
             <View style={[styles.overlay, styles.topOverlay]}>
-                <Text style={styles.scanScreenMessage}>Scanne un code-barres stp.</Text>
+                <Text style={styles.scanScreenMessage}>{t('scanBarcodePlease')}</Text>
             </View>
         </View>
     );

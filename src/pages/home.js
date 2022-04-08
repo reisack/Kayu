@@ -21,10 +21,10 @@ const Home = ({ navigation }) => {
             <View style={styles.container}>
                 <Text>{t('welcomeTitle')}</Text>
                 <View style={styles.buttonContainer}>
-                    <Button title='Infos React Native' onPress={() => navigation.navigate('Tutorial')} />
+                    <Button title={t('reactNativeTutorial')} onPress={() => navigation.navigate('Tutorial')} />
                 </View>
                 <View style={styles.buttonContainer}>
-                    <Button title='Scanner un code-barres' onPress={() => navigation.navigate('BarcodeScanner')} />
+                    <Button title={t('scanBarcode')} onPress={() => navigation.navigate('BarcodeScanner')} />
                 </View>
             </View>
         </ScrollView>

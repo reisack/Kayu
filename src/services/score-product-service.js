@@ -4,42 +4,42 @@ const scoreProductService = {
     getExpression: (score, productInfoEnum) => {
         const expressions = {
             [productInformationEnum.fat]: {
-                low: 'Tout sec',
-                high: 'Le gras c\'est la vie'
+                low: 'score.expression.fatLow',
+                high: 'score.expression.fatHigh'
             },
             [productInformationEnum.sugar]: {
-                low: 'Radin',
-                high: 'Sugar Daddy'
+                low: 'score.expression.sugarLow',
+                high: 'score.expression.sugarHigh'
             },
             [productInformationEnum.salt]: {
-                low: 'Rabat-joie',
-                high: 'Le sel, c\'est aussi la vie'
+                low: 'score.expression.saltLow',
+                high: 'score.expression.saltHigh'
             },
             [productInformationEnum.additives]: {
-                low: 'On se fait chier...',
-                high: 'Plein d\'additifs, plein de fun !'
+                low: 'score.expression.additivesLow',
+                high: 'score.expression.additivesHigh'
             },
             [productInformationEnum.novaGroup]: {
-                low: 'Aucune originalité',
-                high: 'Super-héros'
+                low: 'score.expression.novaGroupLow',
+                high: 'score.expression.novaGroupHigh'
             },
             [productInformationEnum.eco]: {
-                low: 'Casanier',
-                high: 'Globe-trotteur'
+                low: 'score.expression.ecoLow',
+                high: 'score.expression.ecoHigh'
             },
         };
 
         const productExpressions = expressions[productInfoEnum];
         return (score >= 50) ? productExpressions.high : productExpressions.low;
     },
-    getHelpMessage: (nutritionValue, productInfoEnum) => {
+    getHelpMessage: (productInfoEnum) => {
         const expressions = {
-            [productInformationEnum.fat]: `${nutritionValue}g de gras pour 100g de produit`,
-            [productInformationEnum.sugar]: `${nutritionValue}g de sucre pour 100g de produit`,
-            [productInformationEnum.salt]: `${nutritionValue}g de sel pour 100g de produit`,
-            [productInformationEnum.additives]: `${nutritionValue.length ?? 0} addictifs`,
-            [productInformationEnum.novaGroup]: `Score NOVA : ${nutritionValue} (Transformation des aliments)`,
-            [productInformationEnum.eco]: `Eco score : ${nutritionValue} (Empreinte carbone)`
+            [productInformationEnum.fat]: 'score.help.fat',
+            [productInformationEnum.sugar]: 'score.help.sugar',
+            [productInformationEnum.salt]: 'score.help.salt',
+            [productInformationEnum.additives]: 'score.help.additives',
+            [productInformationEnum.novaGroup]: 'score.help.novaGroup',
+            [productInformationEnum.eco]: 'score.help.eco'
         };
 
         return expressions[productInfoEnum];

@@ -1,3 +1,34 @@
 {
-    "welcomeTitle": "Hello world!"
+    "welcomeTitle": "Hello world!",
+    "reactNativeTutorial":"Infos React Native",
+    "scanBarcode":"Scanner un code-barres",
+    "scanBarcodePlease":"Scanne un code-barres stp.",
+    "home":"Accueil",
+    "scanAnotherBarcode":"Scanner un autre code-barres",
+    "notFoundProduct":"Le produit n'a pas été trouvé",
+    "informations":"Informations",
+    "score": {
+        "expression": {
+            "fatLow":"Tout sec",
+            "fatHigh":"Le gras c'est la vie",
+            "sugarLow":"Radin",
+            "sugarHigh":"Sugar Daddy",
+            "saltLow":"Rabat-joie",
+            "saltHigh":"Le sel, c'est aussi la vie",
+            "additivesLow":"On se fait chier...",
+            "additivesHigh":"Plein d'additifs, plein de fun !",
+            "novaGroupLow":"Aucune originalité",
+            "novaGroupHigh":"Super-héros",
+            "ecoLow":"Casanier",
+            "ecoHigh":"Globe-trotteur"
+        },
+        "help": {
+            "fat":"{{nutritionValue}} de gras pour 100g de produit",
+            "sugar":"{{nutritionValue}} de sucre pour 100g de produit",
+            "salt":"{{nutritionValue}} de sel pour 100g de produit",
+            "additives":"{{nutritionValue}} additifs",
+            "novaGroup":"Score NOVA : {{nutritionValue}} (Transformation des aliments)",
+            "eco":"Eco score : {{nutritionValue}} (Empreinte carbone)"
+        }
+    }
 }
