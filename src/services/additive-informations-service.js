@@ -1,6 +1,8 @@
+import consts from '../consts';
+
 const initAdditiveScoreInformations = async () => {
     try {
-        const additivesUrl = 'https://fr.openfoodfacts.org/data/taxonomies/additives.json';
+        const additivesUrl = `${consts.openFoodFactAPIBaseUrl}data/taxonomies/additives.json`;
         const response = await fetch(additivesUrl);
         const json = await response.json();
         setSimplifiedObject(json);

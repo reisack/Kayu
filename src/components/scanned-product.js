@@ -3,6 +3,7 @@ import { View, Text, Image, ActivityIndicator } from 'react-native'
 import getScoresFromProduct from '../services/score-calculation-service';
 import ScoreProduct from './score-product';
 import productInformationEnum from '../enums/product-information';
+import consts from '../consts';
 
 const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
 
@@ -10,9 +11,12 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
     const [data, setData] = useState({});
 
     const getProductByEanCode = async (eanCode) => {
+
         try {
-            const productDetailsUrl = 'https://fr.openfoodfacts.org/api/v0/product/';
-            const response = await fetch(`${productDetailsUrl}${eanCode}.json`);
+            const productDetailsUrl = `${consts.openFoodFactAPIBaseUrl}api/v0/product/`;
+            const paramFields = 'product_name_fr,brands,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score,image_front_url';
+
+            const response = await fetch(`${productDetailsUrl}${eanCode}.json?fields=${paramFields}`);
             const json = await response.json();
             if (json && json.status && json.status === 1) {
                 setData(getSimplifiedObject(json));
@@ -31,9 +35,9 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
         const product = jsonFromAPI.product;
 
         const nutritionValues = {
-            fat: product.nutriments["saturated-fat_100g"] ?? null,
-            sugar: product.nutriments["sugars_100g"] ?? null,
-            salt: product.nutriments["salt_100g"] ?? null,
+            fat: product["saturated-fat_100g"] ?? null,
+            sugar: product["sugars_100g"] ?? null,
+            salt: product["salt_100g"] ?? null,
             additives: product.additives_tags ?? null,
             novaGroup: product.nova_group ?? null,
             eco: product.ecoscore_score ?? null,
@@ -42,8 +46,6 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
         return {
             frName: product.product_name_fr,
             brands: product.brands,
-            imageHeight: product.images.front_fr.sizes["200"].h,
-            imageWidth: product.images.front_fr.sizes["200"].w,
             imageUrl: product.image_front_url,
             nutritionValues: nutritionValues,
             scores: getScoresFromProduct(nutritionValues)
@@ -90,7 +92,7 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
                         productInfoEnum={productInformationEnum.additives}
                     />
                     <Image 
-                        style={{width: data.imageWidth, height: data.imageHeight}}
+                        style={{width: 200, height: 200, resizeMode: 'contain'}}
                         source={{uri: data.imageUrl}}
                     />
                 </>
