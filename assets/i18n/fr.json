@@ -23,9 +23,9 @@
             "ecoHigh":"Globe-trotteur"
         },
         "help": {
-            "fat":"{{nutritionValue}} de gras pour 100g de produit",
-            "sugar":"{{nutritionValue}} de sucre pour 100g de produit",
-            "salt":"{{nutritionValue}} de sel pour 100g de produit",
+            "fat":"{{nutritionValue}}g de gras pour 100g de produit",
+            "sugar":"{{nutritionValue}}g de sucre pour 100g de produit",
+            "salt":"{{nutritionValue}}g de sel pour 100g de produit",
             "additives":"{{nutritionValue}} additifs",
             "novaGroup":"Score NOVA : {{nutritionValue}} (Transformation des aliments)",
             "eco":"Eco score : {{nutritionValue}} (Empreinte carbone)"
