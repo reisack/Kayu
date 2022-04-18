@@ -3,7 +3,7 @@ import consts from '../consts';
 const initAdditiveScoreInformations = async () => {
     try {
         const additivesUrl = `${consts.openFoodFactAPIBaseUrl}data/taxonomies/additives.json`;
-        const response = await fetch(additivesUrl);
+        const response = await fetch(additivesUrl, consts.httpHeaderGetRequest);
         const json = await response.json();
         setSimplifiedObject(json);
     } catch(error) {

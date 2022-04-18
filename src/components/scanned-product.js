@@ -16,7 +16,7 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
             const productDetailsUrl = `${consts.openFoodFactAPIBaseUrl}api/v0/product/`;
             const paramFields = 'product_name_fr,brands,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score,image_front_url';
 
-            const response = await fetch(`${productDetailsUrl}${eanCode}.json?fields=${paramFields}`);
+            const response = await fetch(`${productDetailsUrl}${eanCode}.json?fields=${paramFields}`, consts.httpHeaderGetRequest);
             const json = await response.json();
             if (json && json.status && json.status === 1) {
                 setData(getSimplifiedObject(json));

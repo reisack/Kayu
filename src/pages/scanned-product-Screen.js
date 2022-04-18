@@ -22,7 +22,7 @@ const ScannedProductScreen = ({ route, navigation }) => {
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
             {productCouldBeFound 
-                ? <ScannedProduct eanCode={JSON.stringify(eanCode)} onNotFoundProduct={() => setProductCouldBeFound(false)} />
+                ? <ScannedProduct eanCode={eanCode} onNotFoundProduct={() => setProductCouldBeFound(false)} />
                 : <NotFoundProduct />}
             <View style={styles.buttonContainer}>
                 <Button styles={styles.buttonContainer} title={t('home')} onPress={() => navigation.navigate('Home')} />
