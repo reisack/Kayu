@@ -14,7 +14,7 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
 
         try {
             const productDetailsUrl = `${consts.openFoodFactAPIBaseUrl}api/v0/product/`;
-            const paramFields = 'product_name_fr,brands,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score,image_front_url';
+            const paramFields = 'product_name_fr,brands,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score,image_front_url,compared_to_category,categories_hierarchy';
 
             const response = await fetch(`${productDetailsUrl}${eanCode}.json?fields=${paramFields}`, consts.httpHeaderGetRequest);
             const json = await response.json();
@@ -47,6 +47,8 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
             frName: product.product_name_fr,
             brands: product.brands,
             imageUrl: product.image_front_url,
+            mainCategory: product.compared_to_category,
+            categories: product.categories_hierarchy,
             nutritionValues: nutritionValues,
             scores: getScoresFromProduct(nutritionValues)
         };
@@ -60,7 +62,13 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
         <View>
             {isLoading ? <ActivityIndicator /> : (
                 <>
+                    <Image 
+                        style={{width: 200, height: 200, resizeMode: 'contain'}}
+                        source={{uri: data.imageUrl}}
+                    />
                     <Text>{data.frName} - {data.brands}</Text>
+                    <Text>Catégorie principale : {data.mainCategory}</Text>
+                    <Text>Catégories : {data.categories.join(' | ')}</Text>
                     <ScoreProduct
                         score={data.scores.fat}
                         nutritionValue={data.nutritionValues.fat}
@@ -90,10 +98,6 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
                         score={data.scores.additives} 
                         nutritionValue={data.nutritionValues.additives}
                         productInfoEnum={productInformationEnum.additives}
-                    />
-                    <Image 
-                        style={{width: 200, height: 200, resizeMode: 'contain'}}
-                        source={{uri: data.imageUrl}}
                     />
                 </>
             )}
