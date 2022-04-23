@@ -52,9 +52,9 @@ const getScoresFromProduct = (nutritionValues) => {
     function getAdditivesScore(productInformationValue) {
         let additivesScore = null;
         if (productInformationValue !== undefined && productInformationValue !== null && Array.isArray(productInformationValue)) {
-            additivesScore = 0;
             const additiveScoreInformations = getAdditiveScoreInformations();
             if (additiveScoreInformations) {
+                additivesScore = 0;
                 for (const additiveCode of productInformationValue) {
                     const additiveScore = additiveScoreInformations[additiveCode];
                     if (additiveScore) {
