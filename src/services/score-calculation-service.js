@@ -24,34 +24,34 @@ const getScoresFromProduct = (nutritionValues) => {
     }
 
     function getNutritionValue(nutritionValues, productInformation) {
-        const nutritionInformations = {
-            [productInformationEnum.fat]: nutritionValues.fat,
-            [productInformationEnum.sugar]: nutritionValues.sugar,
-            [productInformationEnum.salt]: nutritionValues.salt,
-            [productInformationEnum.additives]: nutritionValues.additives,
-            [productInformationEnum.novaGroup]: nutritionValues.novaGroup,
-            [productInformationEnum.eco]: nutritionValues.eco,
-        };
+        switch (productInformation) {
+            case productInformationEnum.fat : return nutritionValues.fat;
+            case productInformationEnum.sugar : return nutritionValues.sugar;
+            case productInformationEnum.salt : return nutritionValues.salt;
+            case productInformationEnum.additives : return nutritionValues.additives;
+            case productInformationEnum.novaGroup : return nutritionValues.novaGroup;
+            case productInformationEnum.eco : return nutritionValues.eco;
+        }
 
-        return nutritionInformations[productInformation];
+        throw 'getScoresFromProduct.getNutritionValue() - productInformationEnum not found';
     }
 
     function calculateScore(productInformationValue, productInformation) {
-        const productScoresCalculations = {
-            [productInformationEnum.fat]: productInformationValue * 10,
-            [productInformationEnum.sugar]: productInformationValue * 2.22,
-            [productInformationEnum.salt]: productInformationValue * 40,
-            [productInformationEnum.additives]: getAdditivesScore(productInformationValue),
-            [productInformationEnum.novaGroup]: productInformationValue * 25,
-            [productInformationEnum.eco]: 100 - productInformationValue
-        };
+        switch (productInformation) {
+            case productInformationEnum.fat : return productInformationValue * 10;
+            case productInformationEnum.sugar : return productInformationValue * 2.22;
+            case productInformationEnum.salt : return productInformationValue * 40;
+            case productInformationEnum.additives : return getAdditivesScore(productInformationValue);
+            case productInformationEnum.novaGroup : return productInformationValue * 25;
+            case productInformationEnum.eco : return 100 - productInformationValue;
+        }
 
-        return productScoresCalculations[productInformation];
+        throw 'getScoresFromProduct.calculateScore() - productInformationEnum not found';
     }
 
     function getAdditivesScore(productInformationValue) {
         let additivesScore = null;
-        if (productInformationValue !== undefined && productInformationValue !== null && Array.isArray(productInformationValue)) {
+        if (Array.isArray(productInformationValue)) {
             const additiveScoreInformations = getAdditiveScoreInformations();
             if (additiveScoreInformations) {
                 additivesScore = 0;
@@ -68,11 +68,7 @@ const getScoresFromProduct = (nutritionValues) => {
     }
 
     function limitTo100(score) {
-        if (score > 100) {
-            score = 100;
-        }
-
-        return score;
+        return (score > 100) ? 100 : score;
     }
 }
 
