@@ -1,4 +1,5 @@
 import productInformationEnum from '../enums/product-information';
+import { getAdditiveScoreInformations } from '../services/additive-informations-service';
 
 const getScoresFromProduct = (nutritionValues) => {
 
@@ -14,7 +15,7 @@ const getScoresFromProduct = (nutritionValues) => {
     function getScore(nutritionValues, productInformation) {
         const productInformationValue = getNutritionValue(nutritionValues, productInformation);
         let score = null;
-        if (productInformationValue !== null) {
+        if (productInformationValue !== undefined && productInformationValue !== null) {
             score = calculateScore(productInformationValue, productInformation);
             score = limitTo100(score);
         }
@@ -50,12 +51,12 @@ const getScoresFromProduct = (nutritionValues) => {
 
     function getAdditivesScore(productInformationValue) {
         let additivesScore = null;
-        if (productInformationValue !== null) {
+        if (productInformationValue !== undefined && productInformationValue !== null && Array.isArray(productInformationValue)) {
             additivesScore = 0;
-            if (global.additiveScoreInformations) {
-                for (const additive in productInformationValue) {
-                    const additiveCode = productInformationValue[additive];
-                    const additiveScore = global.additiveScoreInformations[additiveCode];
+            const additiveScoreInformations = getAdditiveScoreInformations();
+            if (additiveScoreInformations) {
+                for (const additiveCode of productInformationValue) {
+                    const additiveScore = additiveScoreInformations[additiveCode];
                     if (additiveScore) {
                         additivesScore += additiveScore;
                     }

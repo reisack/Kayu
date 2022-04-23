@@ -27,6 +27,10 @@ const initAdditiveScoreInformations = async () => {
             }
         }
     }
-}
+};
 
-export default initAdditiveScoreInformations;
+const getAdditiveScoreInformations = () => {
+    return global.additiveScoreInformations;
+};
+
+export { initAdditiveScoreInformations, getAdditiveScoreInformations };

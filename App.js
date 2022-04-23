@@ -6,7 +6,7 @@ import Home from './src/pages/home';
 import Tutorial from './src/pages/tutorial';
 import BarcodeScanner from './src/pages/barcode-scanner';
 import ScannedProductScreen from './src/pages/scanned-product-Screen';
-import initAdditiveScoreInformations from './src/services/additive-informations-service'
+import { initAdditiveScoreInformations } from './src/services/additive-informations-service'
 
 const Stack = createNativeStackNavigator();
 
