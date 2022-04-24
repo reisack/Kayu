@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "jest && react-native run-android",
+    "android": "eslint . && jest && react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",

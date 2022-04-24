@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, ActivityIndicator} from 'react-native';
+import {View, Text, Image, ActivityIndicator, StyleSheet} from 'react-native';
 import getScoresFromProduct from '../services/score-calculation-service';
 import ScoreProduct from './score-product';
 import productInformationEnum from '../enums/product-information';
@@ -8,6 +8,14 @@ import consts from '../consts';
 const ScannedProduct = ({eanCode, onNotFoundProduct}) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState({});
+
+  const styles = StyleSheet.create({
+    productImage: {
+      width: 200,
+      height: 200,
+      resizeMode: 'contain',
+    },
+  });
 
   const getProductByEanCode = async () => {
     try {
@@ -57,6 +65,7 @@ const ScannedProduct = ({eanCode, onNotFoundProduct}) => {
 
   useEffect(() => {
     getProductByEanCode(eanCode);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eanCode]);
 
   return (
@@ -65,10 +74,7 @@ const ScannedProduct = ({eanCode, onNotFoundProduct}) => {
         <ActivityIndicator />
       ) : (
         <>
-          <Image
-            style={{width: 200, height: 200, resizeMode: 'contain'}}
-            source={{uri: data.imageUrl}}
-          />
+          <Image style={styles.productImage} source={{uri: data.imageUrl}} />
           <Text>
             {data.frName} - {data.brands}
           </Text>

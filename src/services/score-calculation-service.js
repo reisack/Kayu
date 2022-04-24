@@ -3,19 +3,16 @@ import {getAdditiveScoreInformations} from '../services/additive-informations-se
 
 const getScoresFromProduct = nutritionValues => {
   return {
-    fat: getScore(nutritionValues, productInformationEnum.fat),
-    sugar: getScore(nutritionValues, productInformationEnum.sugar),
-    salt: getScore(nutritionValues, productInformationEnum.salt),
-    novaGroup: getScore(nutritionValues, productInformationEnum.novaGroup),
-    eco: getScore(nutritionValues, productInformationEnum.eco),
-    additives: getScore(nutritionValues, productInformationEnum.additives),
+    fat: getScore(productInformationEnum.fat),
+    sugar: getScore(productInformationEnum.sugar),
+    salt: getScore(productInformationEnum.salt),
+    novaGroup: getScore(productInformationEnum.novaGroup),
+    eco: getScore(productInformationEnum.eco),
+    additives: getScore(productInformationEnum.additives),
   };
 
-  function getScore(nutritionValues, productInformation) {
-    const productInformationValue = getNutritionValue(
-      nutritionValues,
-      productInformation,
-    );
+  function getScore(productInformation) {
+    const productInformationValue = getNutritionValue(productInformation);
     let score = null;
     if (
       productInformationValue !== undefined &&
@@ -28,7 +25,7 @@ const getScoresFromProduct = nutritionValues => {
     return score;
   }
 
-  function getNutritionValue(nutritionValues, productInformation) {
+  function getNutritionValue(productInformation) {
     switch (productInformation) {
       case productInformationEnum.fat:
         return nutritionValues.fat;
