@@ -2,7 +2,7 @@ import consts from '../consts';
 
 const initAdditiveScoreInformations = async () => {
     global.additiveScoreInformations = {};
-    
+
     try {
         const additivesUrl = `${consts.openFoodFactAPIBaseUrl}data/taxonomies/additives.json`;
         const response = await fetch(additivesUrl, consts.httpHeaderGetRequest);
@@ -25,6 +25,10 @@ const initAdditiveScoreInformations = async () => {
                 };
 
                 global.additiveScoreInformations[property] = riskScores[risk];
+            }
+            else {
+                // Unknown risk : we assume a score between no and moderate risk
+                global.additiveScoreInformations[property] = 10;
             }
         }
     }

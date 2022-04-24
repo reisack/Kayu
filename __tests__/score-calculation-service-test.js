@@ -5,8 +5,8 @@ describe('Score calculation service', () => {
         const nutritionValues = {
             fat: 8.42,
             sugar: 10,
-            salt: 1.5,
-            additives: ['en:e100','en:e101','en:e102'],
+            salt: 1.2,
+            additives: ['en:e100','en:e101','en:e102','en:e105'],
             novaGroup: 3,
             eco: 10
         };
@@ -15,8 +15,8 @@ describe('Score calculation service', () => {
     
         expect(scores.fat).toBeCloseTo(84.2);
         expect(scores.sugar).toBeCloseTo(22.2);
-        expect(scores.salt).toBeCloseTo(60);
-        expect(scores.additives).toBeCloseTo(50);
+        expect(scores.salt).toBeCloseTo(48);
+        expect(scores.additives).toBeCloseTo(60);
         expect(scores.novaGroup).toBeCloseTo(75);
         expect(scores.eco).toBeCloseTo(90);
     });
@@ -88,7 +88,8 @@ jest.mock('../src/services/additive-informations-service', () => {
             'en:e101': 15,
             'en:e102': 5,
             'en:e103': 30,
-            'en:e104': 30
+            'en:e104': 30,
+            'en:e105': 10
         };
     };
 

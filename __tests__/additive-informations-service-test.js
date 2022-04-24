@@ -9,9 +9,13 @@ describe('Additive informations service', () => {
         const result = getAdditiveScoreInformations();
 
         const expected = {
+            'en:e638': 10,
+            'en:e903': 10,
             'en:e228': 30,
             'en:e433': 15,
-            'en:e951': 5
+            'en:e945': 10,
+            'en:e951': 5,
+            'en:e636': 10
         };
 
         expect(result).toEqual(expected);
@@ -24,7 +28,14 @@ describe('Additive informations service', () => {
         await initAdditiveScoreInformations();
         const result = getAdditiveScoreInformations();
 
-        expect(result).toEqual({});
+        const expected = {
+            'en:e638': 10,
+            'en:e903': 10,
+            'en:e945': 10,
+            'en:e636': 10
+        };
+
+        expect(result).toEqual(expected);
     });
     
     it('should have no additives informations when fetching empty object', async () => {
