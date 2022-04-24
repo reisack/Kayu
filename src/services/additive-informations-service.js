@@ -1,6 +1,8 @@
 import consts from '../consts';
 
 const initAdditiveScoreInformations = async () => {
+    global.additiveScoreInformations = {};
+    
     try {
         const additivesUrl = `${consts.openFoodFactAPIBaseUrl}data/taxonomies/additives.json`;
         const response = await fetch(additivesUrl, consts.httpHeaderGetRequest);
@@ -11,7 +13,6 @@ const initAdditiveScoreInformations = async () => {
     }
 
     function setSimplifiedObject(jsonFromAPI) {
-        global.additiveScoreInformations = {};
         for (const property in jsonFromAPI) {
             if (jsonFromAPI[property].efsa_evaluation_overexposure_risk
                 && jsonFromAPI[property].efsa_evaluation_overexposure_risk.en) {

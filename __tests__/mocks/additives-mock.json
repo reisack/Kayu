@@ -1,0 +1,572 @@
+{
+    "en:e638": {
+        "e_number": {
+            "en": "638"
+        },
+        "name": {
+            "it": "E638 - E638 food additive",
+            "pl": "E638 - E638 food additive",
+            "pt": "E638 - E638 food additive",
+            "ro": "E638 - E638 food additive",
+            "bg": "E638 - E638 food additive",
+            "lt": "E638 - E638 food additive",
+            "sl": "E638 - E638 food additive",
+            "et": "E638 - E638 food additive",
+            "es": "E638 - E638 food additive",
+            "nl": "E638 - E638 food additive",
+            "de": "E638 - E638 food additive",
+            "lv": "E638 - E638 food additive",
+            "fr": "E638 - Aspartame de sodium",
+            "fi": "E638 - Natriumaspartaami",
+            "mt": "E638 - E638 food additive",
+            "cs": "E638 - E638 food additive",
+            "sv": "E638 - E638 food additive",
+            "da": "E638 - E638 food additive",
+            "en": "E638 - E638 food additive",
+            "sk": "E638 - E638 food additive",
+            "el": "E638 - E638 food additive",
+            "hu": "E638 - nátrium-aszpartám"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "vegetarian": {
+            "en": "yes"
+        }
+    },
+    "en:e903": {
+        "additives_classes": {
+            "en": "en:carrier"
+        },
+        "vegetarian": {
+            "en": "yes"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "e_number": {
+            "en": "903"
+        },
+        "efsa_evaluation_date": {
+            "en": "2012-10-04"
+        },
+        "name": {
+            "pl": "E903 - Wosk carnauba",
+            "pt": "E903 - Cera de carnaúba",
+            "lt": "E903 - Karnaubo vaškas",
+            "nn": "E903 - carnauba voks",
+            "es": "E903 - Cera de carnauba",
+            "he": "E903 - ווקס קרנובה",
+            "fi": "E903 - Karnaubavaha",
+            "ar": "شمع الخارنوبا",
+            "sv": "E903 - Karnaubavax",
+            "th": "E903 - ไขคาร์นอบา",
+            "cs": "E903 - Karnaubský vosk",
+            "hu": "E903 - Karnaubaviasz",
+            "el": "E903 - Καρναουβικος κηρος",
+            "uk": "E903 - Карнаубський віск",
+            "en": "E903 - Carnauba wax",
+            "ru": "E903 - Карнаубский воск",
+            "it": "E903 - Cera carnauba",
+            "eo": "Palma vakso",
+            "hi": "E903 - कार्नायूबावैक्स",
+            "ro": "E903 - Ceară de carnauba",
+            "sr": "E903 - карнауба восак",
+            "bg": "E903 - Карнаубов восък",
+            "et": "E903 - Karnaubavaha",
+            "sl": "E903 - Karnauba vosek",
+            "nl": "E903 - Carnaubawas",
+            "de": "E903 - Carnaubawachs",
+            "ca": "E903 - Cera de carnauba",
+            "fa": "E903 - موم نخل",
+            "fr": "E903 - Cire de carnauba",
+            "lv": "E903 - Karnaubvasks",
+            "da": "E903 - Carnaubavoks",
+            "nb": "E903 - Karnaubavoks",
+            "mt": "E903 - Xama' tal-karnawba",
+            "sk": "E903 - Karnaubský vosk"
+        },
+        "efsa_evaluation": {
+            "en": "Scientific Opinion on the re-evaluation of carnauba wax -E 903- as a food additive"
+        },
+        "wikidata": {
+            "en": "Q839494"
+        },
+        "efsa_evaluation_url": {
+            "en": "http://dx.doi.org/10.2903/j.efsa.2012.2880"
+        }
+    },
+    "en:e228": {
+        "efsa_evaluation_exposure_95th_greater_than_adi": {
+            "en": "en:adults, en:elderly, en:adolescents, en:children, en:toddlers, en:infants"
+        },
+        "e_number": {
+            "en": "228"
+        },
+        "efsa_evaluation_exposure_mean_greater_than_adi": {
+            "en": "en:adults, en:elderly, en:adolescents, en:children, en:toddlers, en:infants"
+        },
+        "efsa_evaluation_date": {
+            "en": "2016-04-14"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "vegetarian": {
+            "en": "yes"
+        },
+        "wikidata": {
+            "en": "Q412524"
+        },
+        "efsa_evaluation_adi": {
+            "en": "0.7"
+        },
+        "efsa_evaluation": {
+            "en": "Scientific Opinion on the re-evaluation of sulfur dioxide -E 220-, sodium sulfite -E 221-, sodium bisulfite -E 222-, sodium metabisulfite -E 223-, potassium metabisulfite -E 224-, calcium sulfite -E 226-, calcium bisulfite -E 227- and potassium bisulfite -E 228- as food additives"
+        },
+        "efsa_evaluation_overexposure_risk": {
+            "en": "en:high"
+        },
+        "efsa_evaluation_url": {
+            "en": "http://dx.doi.org/10.2903/j.efsa.2016.4438"
+        },
+        "name": {
+            "sk": "E228",
+            "en": "E228 - Potassium bisulphite",
+            "el": "E228 - Οξινο θειωδες καλιο",
+            "hu": "E228 - Kálium-hidrogén-szulfit",
+            "cs": "E228 - Hydrogensiřičitan draselný",
+            "mt": "E228 - Bisulfit tal-potassju",
+            "sv": "E228 - Kaliumvätesulfit",
+            "da": "E228 - Kaliumhydrogensulfit",
+            "lv": "E228 - Kālija bisulfīts",
+            "fr": "E228 - Sulfite acide de potassium",
+            "fi": "E228 - Kaliumvetysulfiitti",
+            "ca": "E228 - Sulfit àcid de potassi",
+            "nl": "E228 - Kaliumwaterstofsulfiet synoniemen",
+            "de": "E228 - Kaliumhydrogensulfit",
+            "sl": "E228 - Kalijev bisulfit",
+            "es": "E228 - Sulfito ácido de potasio",
+            "et": "E228 - Kaaliumvesiniksulfit",
+            "bg": "E228 - Калиев бисулфит",
+            "lt": "E228 - Kalio bisulfitas",
+            "pt": "E228 - Hidrogenossulfito de potássio",
+            "ro": "E228 - Bisulfit de potasiu",
+            "it": "E228 - Potassio solfito acido",
+            "pl": "E228 - Wodorosiarczyn potasu"
+        }
+    },
+    "en:e452v": {
+        "name": {
+            "pt": "E452v - E452(v) food additive",
+            "ro": "E452v - E452(v) food additive",
+            "it": "E452v - E452(v) food additive",
+            "pl": "E452v - E452(v) food additive",
+            "sl": "E452v - E452(v) food additive",
+            "et": "E452v - E452(v) food additive",
+            "es": "E452v - E452(v) food additive",
+            "bg": "E452v - E452(v) food additive",
+            "lt": "E452v - E452(v) food additive",
+            "lv": "E452v - E452(v) food additive",
+            "fr": "E452v - Polyphosphate d'ammonium",
+            "fi": "E452v - Ammoniumpolyfosfaatti",
+            "nl": "E452v - E452(v) food additive",
+            "de": "E452v - E452(v) food additive",
+            "sk": "E452v - E452(v) food additive",
+            "en": "E452v - Ammonium polyphosphate",
+            "hu": "E452v - Ammónium-polifoszfát",
+            "el": "E452v - E452(v) food additive",
+            "cs": "E452v - E452(v) food additive",
+            "mt": "E452v - E452(v) food additive",
+            "sv": "E452v - E452(v) food additive",
+            "da": "E452v - E452(v) food additive"
+        },
+        "additives_classes": {
+            "en": "en:emulsifier,en:humectant,en:sequestrant,en:stabiliser,en:thickener"
+        },
+        "wikidata": {
+            "en": "Q11867365"
+        },
+        "e_number": {
+            "en": "452"
+        },
+        "parents": [
+            "en:e452"
+        ]
+    },
+    "en:e356": {
+        "vegetarian": {
+            "en": "yes"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "name": {
+            "ro": "E356 - Adipat de sodiu",
+            "pt": "E356 - Adipato de sódio",
+            "it": "E356 - Adipato di sodio",
+            "pl": "E356 - Adypinian sodu",
+            "es": "E356 - Adipato de sodio",
+            "et": "E356 - Naatriumadipaat",
+            "sl": "E356 - Natrijev adipat",
+            "lt": "E356 - Natrio adipatas",
+            "bg": "E356 - Натриев адипат",
+            "fr": "E356 - Adipate de sodium",
+            "fi": "E356 - Natriumadipaatti",
+            "lv": "E356 - Nātrija adipināts",
+            "nl": "E356 - Natriumadipaat",
+            "de": "E356 - Natriumadipat",
+            "ca": "E356 - Adipat de sodi",
+            "el": "E356 - Αδιπικο νατριο",
+            "hu": "E356 - Nátrium-adipát",
+            "sk": "E356 - Adipan sodný",
+            "en": "E356 - Sodium adipate",
+            "da": "E356 - Natriumadipat",
+            "sv": "E356 - Natriumadipat",
+            "mt": "E356 - Adipat tas-sodju",
+            "cs": "E356 - Adipan sodný synonyma"
+        },
+        "e_number": {
+            "en": "356"
+        },
+        "wikidata": {
+            "en": "Q423296"
+        }
+    },
+    "en:e231": {
+        "name": {
+            "en": "E231 - Orthophenyl phenol",
+            "sk": "E231 - E231 food additive",
+            "hu": "E231 - Ortofenil-fenol",
+            "el": "E231 - E231 food additive",
+            "mt": "E231 - E231 food additive",
+            "cs": "E231 - E231 food additive",
+            "da": "E231 - E231 food additive",
+            "sv": "E231 - E231 food additive",
+            "lv": "E231 - E231 food additive",
+            "fi": "E231 - Ortofenyylifenoli",
+            "fr": "E231 - Orthophénylphénol",
+            "de": "E231 - E231 food additive",
+            "nl": "E231 - Fenylfenol",
+            "sl": "E231 - E231 food additive",
+            "et": "E231 - E231 food additive",
+            "es": "E231 - E231 food additive",
+            "bg": "E231 - E231 food additive",
+            "lt": "E231 - E231 food additive",
+            "pt": "E231 - E231 food additive",
+            "ro": "E231 - E231 food additive",
+            "pl": "E231 - E231 food additive",
+            "it": "E231 - E231 food additive"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "vegetarian": {
+            "en": "yes"
+        },
+        "additives_classes": {
+            "en": "en:preservative"
+        },
+        "e_number": {
+            "en": "231"
+        }
+    },
+    "en:e457": {
+        "e_number": {
+            "en": "457"
+        },
+        "name": {
+            "nl": "E457 - E457 food additive",
+            "de": "E457 - E457 food additive",
+            "fr": "E457 - Alpha-Cyclodextrine",
+            "fi": "E457 - Alfa-syklodekstriini",
+            "lv": "E457 - E457 food additive",
+            "da": "E457 - E457 food additive",
+            "sv": "E457 - E457 food additive",
+            "mt": "E457 - E457 food additive",
+            "cs": "E457 - E457 food additive",
+            "el": "E457 - E457 food additive",
+            "hu": "E457 - alfa-ciklodextrin",
+            "sk": "E457 - E457 food additive",
+            "en": "E457 - Alpha-Cyclodextrine",
+            "it": "E457 - E457 food additive",
+            "pl": "E457 - E457 food additive",
+            "ro": "E457 - E457 food additive",
+            "pt": "E457 - E457 food additive",
+            "lt": "E457 - E457 food additive",
+            "bg": "E457 - E457 food additive",
+            "es": "E457 - E457 food additive",
+            "et": "E457 - E457 food additive",
+            "sl": "E457 - E457 food additive"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "vegetarian": {
+            "en": "yes"
+        },
+        "additives_classes": {
+            "en": "en:stabiliser,en:thickener"
+        }
+    },
+    "en:e519": {
+        "name": {
+            "bg": "E519 - Меден сулфат",
+            "lt": "E519 - E519 food additive",
+            "sl": "E519 - BakrovII sulfat",
+            "et": "E519 - Vasksulfaat",
+            "es": "E519 - Sulfato de cobre",
+            "it": "E519 - Solfato rameico",
+            "pl": "E519 - siarczan miedziII",
+            "pt": "E519 - Sulfato de cobre",
+            "ro": "E519 - Sulfat de cupru",
+            "cs": "E519 - Síran měďnatý",
+            "mt": "E519 - E519 food additive",
+            "da": "E519 - KobberIIsulfat",
+            "sv": "E519 - Kopparsulfat",
+            "en": "E519 - Copper sulphate",
+            "sk": "E519 - Síran meďnatý",
+            "hu": "E519 - Réz-szulfát",
+            "el": "E519 - Θειικός χαλκός",
+            "nl": "E519 - KoperIIsulfaat",
+            "de": "E519 - Kupfersulfat",
+            "lv": "E519 - Vara sulfāts",
+            "fr": "E519 - Sulfate de cuivre",
+            "fi": "E519 - Kuparisulfaatti"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "vegetarian": {
+            "en": "yes"
+        },
+        "wikidata": {
+            "en": "Q107184"
+        },
+        "e_number": {
+            "en": "519"
+        },
+        "mandatory_additive_class": {
+            "en": "en:colour-retention-agent, en:preservative"
+        }
+    },
+    "en:e433": {
+        "name": {
+            "pt": "E433 - Mono-oleato de polioxietileno sorbitano",
+            "ro": "E433 - Monooleat de polioxietilenă sorbitan",
+            "pl": "E433 - Monooleinian polioksyetylenosorbitolu",
+            "it": "E433 - Monoleato di poliossietilene sorbitano",
+            "sl": "E433 - Polioksietilen sorbitan monooleat",
+            "es": "E433 - Monooleato de sorbitán polioxietilenado",
+            "et": "E433 - Polüoksüetüleen sorbitaanmonooleaat",
+            "bg": "E433 - Полиоксиетилен сорбитан моноолеат",
+            "lt": "E433 - Polioksietileno sorbitano monooleatas",
+            "lv": "E433 - Polioksietilēna sorbitāna monooleāts",
+            "fi": "E433 - Polyoksyetyleenisorbitaanimono-oleaatti",
+            "fr": "E433 - Monooléate de polyoxyéthylène de sorbitane",
+            "ca": "E433 - Monooleat de sorbitan polioxietilenat",
+            "de": "E433 - Polyoxyethylen-sorbitanmonooleat",
+            "nl": "E433 - Polyoxyethyleensorbitaanmonoöleaat",
+            "sk": "E433 - Polyoxylénsorbitanmonooleát",
+            "en": "E433 - Polyoxyethylene sorbitan monooleate",
+            "el": "E433 - Μονοελαϊκη πολυοξυ-αιθυλενο-σορβιτανη",
+            "hu": "E433 - Polioxietilén-szorbitan-monooleát",
+            "cs": "E433 - Polyoxyethylensorbitanmonooleát",
+            "mt": "E433 - Monooleat tal-poliossietilen sorbitan",
+            "da": "E433 - Polyoxyethylen(20)sorbitanmonooleat",
+            "sv": "E433 - Polyoxietylensorbitanmonooleat"
+        },
+        "efsa_evaluation_overexposure_risk": {
+            "en": "en:moderate"
+        },
+        "from_palm_oil": {
+            "en": "maybe"
+        },
+        "efsa_evaluation_url": {
+            "en": "http://dx.doi.org/10.2903/j.efsa.2015.4152"
+        },
+        "wikidata": {
+            "en": "Q420358"
+        },
+        "efsa_evaluation": {
+            "en": "Scientific Opinion on the re-evaluation of polyoxyethylene sorbitan monolaurate -E 432-, polyoxyethylene sorbitan monooleate -E 433-, polyoxyethylene sorbitan monopalmitate -E 434-, polyoxyethylene sorbitan monostearate -E 435- and polyoxyethylene sorbitan tristearate -E 436- as food additives"
+        },
+        "efsa_evaluation_adi": {
+            "en": "25"
+        },
+        "vegetarian": {
+            "en": "maybe"
+        },
+        "vegan": {
+            "en": "maybe"
+        },
+        "additives_classes": {
+            "en": "en:emulsifier,en:stabiliser"
+        },
+        "e_number": {
+            "en": "433"
+        },
+        "efsa_evaluation_date": {
+            "en": "2015-07-17"
+        },
+        "efsa_evaluation_exposure_mean_greater_than_adi": {
+            "en": "en:no-group"
+        },
+        "efsa_evaluation_exposure_95th_greater_than_adi": {
+            "en": "en:adults, en:elderly, en:children, en:toddlers"
+        }
+    },
+    "en:e945": {
+        "e_number": {
+            "en": "945"
+        },
+        "wikidata": {
+            "en": "Q419702"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "vegetarian": {
+            "en": "yes"
+        },
+        "name": {
+            "bg": "E945 - E945 food additive",
+            "lt": "E945 - E945 food additive",
+            "sl": "E945 - E945 food additive",
+            "et": "E945 - E945 food additive",
+            "es": "E945 - E945 food additive",
+            "pl": "E945 - E945 food additive",
+            "it": "E945 - E945 food additive",
+            "pt": "E945 - E945 food additive",
+            "ro": "E945 - Cloropentafluoro-etan",
+            "mt": "E945 - E945 food additive",
+            "cs": "E945 - E945 food additive",
+            "da": "E945 - E945 food additive",
+            "sv": "E945 - E945 food additive",
+            "en": "E945 - chloropentafluoroethane",
+            "sk": "E945 - E945 food additive",
+            "hu": "E945 - Kloropentafluoretán",
+            "el": "E945 - E945 food additive",
+            "de": "E945 - Chlorpentafluorethan",
+            "nl": "E945 - Chloorpentafluorethaan",
+            "lv": "E945 - E945 food additive",
+            "fi": "E945 - Klooripentafluorietaani",
+            "fr": "E945 - Chloropentafluoroéthane"
+        }
+    },
+    "en:e951": {
+        "efsa_evaluation_url": {
+            "en": "http://dx.doi.org/10.2903/j.efsa.2013.3496"
+        },
+        "efsa_evaluation_overexposure_risk": {
+            "en": "en:no"
+        },
+        "efsa_evaluation": {
+            "en": "Scientific Opinion on the re-evaluation of aspartame -E 951- as a food additive."
+        },
+        "efsa_evaluation_adi": {
+            "en": "40"
+        },
+        "wikidata": {
+            "en": "Q182040"
+        },
+        "name": {
+            "nn": "E951 - aspartam",
+            "zh": "E951 - 阿斯巴甜",
+            "lt": "E951 - Aspartamas",
+            "az": "E951 - Aspartam",
+            "es": "E951 - Aspartamo",
+            "is": "E951 - Aspartam",
+            "pl": "E951 - Aspartam",
+            "hr": "E951 - aspartam",
+            "pt": "E951 - Aspartame",
+            "sv": "E951 - Aspartam",
+            "th": "E951 - แอสปาร์แตม",
+            "cs": "E951 - Aspartam",
+            "ms": "E951 - Aspartam",
+            "hu": "E951 - Aszpartám",
+            "el": "E951 - Ασπαρταμη",
+            "uk": "E951 - Аспартам",
+            "en": "E951 - Aspartame",
+            "he": "E951 - אספרטם",
+            "ko": "E951 - 아스파탐",
+            "fi": "E951 - Aspartaami",
+            "be": "E951 - Аспартам",
+            "id": "E951 - Aspartam",
+            "ar": "E951 - أسبرتام",
+            "vi": "E951 - Aspartame",
+            "sr": "E951 - аспартам",
+            "bg": "E951 - Аспартам",
+            "et": "E951 - Aspartaam",
+            "sl": "E951 - Aspartam",
+            "ru": "E951 - аспартам",
+            "it": "E951 - Aspartame",
+            "ro": "E951 - Aspartam",
+            "tr": "E951 - Aspartam",
+            "ta": "E951 - அஸ்பார்ட்டம்",
+            "da": "E951 - Aspartam",
+            "nb": "E951 - Aspartam",
+            "mt": "E951 - Aspartam",
+            "ja": "E951 - アスパルテーム",
+            "sk": "E951 - Aspartám",
+            "nl": "E951 - Aspartaam",
+            "de": "E951 - Aspartam",
+            "ca": "E951 - Aspartam",
+            "gl": "E951 - Aspartamo",
+            "fa": "E951 - آسپارتام",
+            "fr": "E951 - Aspartame",
+            "sh": "E951 - Aspartam",
+            "lv": "E951 - Aspartāms"
+        },
+        "efsa_evaluation_date": {
+            "en": "2013-12-10"
+        },
+        "e_number": {
+            "en": "951"
+        },
+        "additives_classes": {
+            "en": "en:sweetener"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "vegetarian": {
+            "en": "yes"
+        }
+    },
+    "en:e636": {
+        "e_number": {
+            "en": "636"
+        },
+        "vegetarian": {
+            "en": "yes"
+        },
+        "vegan": {
+            "en": "yes"
+        },
+        "name": {
+            "el": "E636 - E636 food additive",
+            "hu": "E636 - Maltol",
+            "en": "E636 - Maltol",
+            "sk": "E636 - E636 food additive",
+            "sv": "E636 - E636 food additive",
+            "da": "E636 - E636 food additive",
+            "mt": "E636 - E636 food additive",
+            "cs": "E636 - E636 food additive",
+            "fr": "E636 - Maltol",
+            "fi": "E636 - Maltoli",
+            "lv": "E636 - E636 food additive",
+            "nl": "E636 - Maltol",
+            "de": "E636 - E636 food additive",
+            "es": "E636 - E636 food additive",
+            "et": "E636 - E636 food additive",
+            "sl": "E636 - E636 food additive",
+            "lt": "E636 - E636 food additive",
+            "bg": "E636 - E636 food additive",
+            "ro": "E636 - E636 food additive",
+            "pt": "E636 - E636 food additive",
+            "it": "E636 - E636 food additive",
+            "pl": "E636 - E636 food additive"
+        }
+    }
+}
