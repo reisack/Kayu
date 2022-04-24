@@ -1,16 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native'
-import { useTranslation } from "react-i18next";
+import {View, Text} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 const NotFoundProduct = () => {
+  const {t} = useTranslation();
 
-    const { t } = useTranslation();
-
-    return (
-        <View>
-            <Text>{t('notFoundProduct')}</Text>
-        </View>
-    );
+  return (
+    <View>
+      <Text>{t('notFoundProduct')}</Text>
+    </View>
+  );
 };
 
 export default NotFoundProduct;
