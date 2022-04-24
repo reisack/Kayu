@@ -35,12 +35,12 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
         const product = jsonFromAPI.product;
 
         const nutritionValues = {
-            fat: product["saturated-fat_100g"] ?? null,
-            sugar: product["sugars_100g"] ?? null,
-            salt: product["salt_100g"] ?? null,
-            additives: product.additives_tags ?? null,
-            novaGroup: product.nova_group ?? null,
-            eco: product.ecoscore_score ?? null,
+            fat: product["saturated-fat_100g"],
+            sugar: product["sugars_100g"],
+            salt: product["salt_100g"],
+            additives: product.additives_tags,
+            novaGroup: product.nova_group,
+            eco: product.ecoscore_score
         };
 
         return {
