@@ -48,7 +48,7 @@ const ScannedProduct = ( {eanCode, onNotFoundProduct} ) => {
             brands: product.brands,
             imageUrl: product.image_front_url,
             mainCategory: product.compared_to_category,
-            categories: product.categories_hierarchy,
+            categories: product.categories_hierarchy ?? [],
             nutritionValues: nutritionValues,
             scores: getScoresFromProduct(nutritionValues)
         };
