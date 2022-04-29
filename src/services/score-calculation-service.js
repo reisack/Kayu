@@ -9,6 +9,9 @@ const getScoresFromProduct = nutritionValues => {
     novaGroup: getScore(productInformationEnum.novaGroup),
     eco: getScore(productInformationEnum.eco),
     additives: getScore(productInformationEnum.additives),
+    getTotal: function () {
+      return calculateTotal(this);
+    },
   };
 
   function getScore(productInformation) {
@@ -83,6 +86,18 @@ const getScoresFromProduct = nutritionValues => {
 
   function limitTo100(score) {
     return score > 100 ? 100 : score;
+  }
+
+  function calculateTotal(scoresObject) {
+    let total = 0;
+    total += scoresObject.fat ?? 0;
+    total += scoresObject.sugar ?? 0;
+    total += scoresObject.salt ?? 0;
+    total += scoresObject.novaGroup ?? 0;
+    total += scoresObject.eco ?? 0;
+    total += scoresObject.additives ?? 0;
+
+    return total;
   }
 };
 

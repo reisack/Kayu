@@ -19,6 +19,7 @@ describe('Score calculation service', () => {
     expect(scores.additives).toBeCloseTo(60);
     expect(scores.novaGroup).toBeCloseTo(75);
     expect(scores.eco).toBeCloseTo(90);
+    expect(scores.getTotal()).toBeCloseTo(379.4);
   });
 
   it('should limit scores to 100', () => {
@@ -39,6 +40,7 @@ describe('Score calculation service', () => {
     expect(scores.additives).toEqual(100);
     expect(scores.novaGroup).toEqual(100);
     expect(scores.eco).toEqual(100);
+    expect(scores.getTotal()).toEqual(600);
   });
 
   it('should not calculate when scores are null or undefined', () => {
@@ -59,6 +61,7 @@ describe('Score calculation service', () => {
     expect(scores.additives).toBeNull();
     expect(scores.novaGroup).toBeNull();
     expect(scores.eco).toBeNull();
+    expect(scores.getTotal()).toEqual(0);
   });
 
   it('additives score should be 0 when list of additives is empty', () => {
