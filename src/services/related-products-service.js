@@ -2,22 +2,33 @@ import consts from '../consts';
 import getScoresFromProduct from '../services/score-calculation-service';
 
 const getRelatedproducts = async (category, productTotalScore) => {
-  let relatedProducts = await getAllRelatedProducts();
+  let relatedProductsWithNutrition =
+    await getAllRelatedProductsWithNutritionInformations();
+
+  if (relatedProductsWithNutrition.length === 0) {
+    return [];
+  }
 
   // Top 10 products by score
-  filterProductCodesWithBestScores();
+  filterProductCodesWithBestScores(relatedProductsWithNutrition);
 
   // Randomize results
-  shuffleArray(relatedProducts);
+  shuffleArray(relatedProductsWithNutrition);
 
   // We finally keep only the top 5 related products
-  if (relatedProducts.length > 5) {
-    relatedProducts = relatedProducts.slice(0, 5);
+  if (relatedProductsWithNutrition.length > 5) {
+    relatedProductsWithNutrition = relatedProductsWithNutrition.slice(0, 5);
   }
+
+  const relatedProducts = await getRelatedProductsWithAllInformations(
+    relatedProductsWithNutrition,
+  );
 
   return relatedProducts;
 
-  async function getAllRelatedProducts() {
+  // Private methods
+
+  async function getAllRelatedProductsWithNutritionInformations() {
     const allrelatedProducts = [];
 
     const relatedProductsSearchUrl = `${consts.openFoodFactAPIBaseUrl}/api/v2/search`;
@@ -53,17 +64,19 @@ const getRelatedproducts = async (category, productTotalScore) => {
       if (relatedProductTotalScore > productTotalScore) {
         allrelatedProducts.push({
           code: relatedProduct.code,
-          score: relatedProductTotalScore,
+          scores: relatedProductScores,
         });
       }
     }
   }
 
-  function filterProductCodesWithBestScores() {
-    relatedProducts = relatedProducts.sort((a, b) => b.score - a.score);
+  function filterProductCodesWithBestScores(productArray) {
+    productArray = productArray.sort(
+      (a, b) => b.scores.getTotal() - a.scores.getTotal(),
+    );
 
-    if (relatedProducts.length > 10) {
-      relatedProducts = relatedProducts.slice(0, 10);
+    if (productArray.length > 10) {
+      productArray = productArray.slice(0, 10);
     }
   }
 
@@ -73,6 +86,39 @@ const getRelatedproducts = async (category, productTotalScore) => {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+  }
+
+  async function getRelatedProductsWithAllInformations(
+    relatedProductsNutrition,
+  ) {
+    const relatedProductsWithAllInformations = [];
+    const relatedProductsSearchUrl = `${consts.openFoodFactAPIBaseUrl}/api/v2/search`;
+    const fields = 'product_name_fr,brands,image_front_url';
+    const eanCodes = relatedProductsNutrition.map(p => p.code).join(',');
+
+    const response = await fetch(
+      `${relatedProductsSearchUrl}?categories_tags_en=${category}&fields=${fields}&code=${eanCodes}`,
+      consts.httpHeaderGetRequest,
+    );
+
+    const json = await response.json();
+    if (json && json.count && json.count > 0) {
+      for (const relatedProduct of json.products) {
+        const product = relatedProductsNutrition.find(
+          p => p.code === relatedProduct.code,
+        );
+
+        if (product) {
+          delete relatedProduct.code;
+          relatedProductsWithAllInformations.push({
+            ...product,
+            ...relatedProduct,
+          });
+        }
+      }
+    }
+
+    return relatedProductsWithAllInformations;
   }
 };
 
