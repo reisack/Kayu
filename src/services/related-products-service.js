@@ -10,7 +10,9 @@ const getRelatedproducts = async (category, productTotalScore) => {
   }
 
   // Top 10 products by score
-  filterProductCodesWithBestScores(relatedProductsWithNutrition);
+  relatedProductsWithNutrition = filterProductCodesWithBestScores(
+    relatedProductsWithNutrition,
+  );
 
   // Randomize results
   shuffleArray(relatedProductsWithNutrition);
@@ -82,6 +84,8 @@ const getRelatedproducts = async (category, productTotalScore) => {
     if (productArray.length > 10) {
       productArray = productArray.slice(0, 10);
     }
+
+    return productArray;
   }
 
   // Fisher–Yates shuffle algorithm

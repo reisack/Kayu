@@ -1,39 +1,39 @@
 {
-  "count": 5,
-  "page": 1,
-  "page_count": 5,
-  "page_size": 24,
-  "products": [
-      {
-          "brands": "Magnum",
-          "code": "8714100635698",
-          "image_front_url": "https://images.openfoodfacts.org/images/products/871/410/063/5698/front_fr.115.400.jpg",
-          "product_name_fr": "Batonnet Glace Mini Classic Amande Chocolat Blanc x 6 330 ml"
-      },
-      {
-          "brands": "Nestlé,Smarties",
-          "code": "7613034528971",
-          "image_front_url": "https://images.openfoodfacts.org/images/products/761/303/452/8971/front_fr.43.400.jpg",
-          "product_name_fr": "Smarties Pop'up"
-      },
-      {
-          "brands": "L'Angélys",
-          "code": "3760039982056",
-          "image_front_url": "https://images.openfoodfacts.org/images/products/376/003/998/2056/front_fr.79.400.jpg",
-          "product_name_fr": "Crème glacée Vanille"
-      },
-      {
-          "brands": "Carte D'or",
-          "code": "8714100638729",
-          "image_front_url": "https://images.openfoodfacts.org/images/products/871/410/063/8729/front_fr.77.400.jpg",
-          "product_name_fr": "CARTE D'OR Glace Crème Glacée Bio Vanille Douce de Sava 450ml"
-      },
-      {
-          "brands": "Picard",
-          "code": "3270160840205",
-          "image_front_url": "https://images.openfoodfacts.org/images/products/327/016/084/0205/front_fr.13.400.jpg",
-          "product_name_fr": "La vanille de Madagascar - Pure Sélection"
-      }
-  ],
-  "skip": 0
+    "count": 5,
+    "page": 1,
+    "page_count": 5,
+    "page_size": 24,
+    "products": [
+        {
+            "brands": "Magnum",
+            "code": "8714100635698",
+            "image_front_url": "https://images.openfoodfacts.org/images/products/871/410/063/5698/front_fr.115.400.jpg",
+            "product_name_fr": "Batonnet Glace Mini Classic Amande Chocolat Blanc x 6 330 ml"
+        },
+        {
+            "brands": "Nestlé,Smarties",
+            "code": "7613034528971",
+            "image_front_url": "https://images.openfoodfacts.org/images/products/761/303/452/8971/front_fr.43.400.jpg",
+            "product_name_fr": "Smarties Pop'up"
+        },
+        {
+            "brands": "Magnum",
+            "code": "8714100875933",
+            "image_front_url": "https://images.openfoodfacts.org/images/products/871/410/087/5933/front_fr.64.400.jpg",
+            "product_name_fr": "Batonnet Glace Mini Double Caramel"
+        },
+        {
+            "brands": "Gelatelli",
+            "code": "40875125",
+            "image_front_url": "https://images.openfoodfacts.org/images/products/40875125/front_fr.74.400.jpg",
+            "product_name_fr": "Premium Bourbon - Dairy ice cream"
+        },
+        {
+            "brands": "U Bio, U",
+            "code": "3256221116045",
+            "image_front_url": "https://images.openfoodfacts.org/images/products/325/622/111/6045/front_fr.40.400.jpg",
+            "product_name_fr": "Crème glacée à la vanille de Madagascar"
+        }
+    ],
+    "skip": 0
 }
