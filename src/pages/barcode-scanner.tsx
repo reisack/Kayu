@@ -5,7 +5,11 @@ import {StyleSheet, View, Text} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
-const BarcodeScanner = ({navigation}) => {
+interface Props {
+  navigation: any
+}
+
+const BarcodeScanner: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
 
   const styles = StyleSheet.create({
@@ -41,9 +45,9 @@ const BarcodeScanner = ({navigation}) => {
   });
 
   const isFocused = useIsFocused();
-  const [productHasBeenScanned, setProductHasBeenScanned] = useState(false);
+  const [productHasBeenScanned, setProductHasBeenScanned] = useState<boolean>(false);
 
-  const onBarcodeRead = scanResult => {
+  const onBarcodeRead = (scanResult: { data: any; }) => {
     if (!productHasBeenScanned && scanResult && scanResult.data) {
       setProductHasBeenScanned(true);
       navigation.navigate('ScannedProductScreen', {
@@ -66,7 +70,7 @@ const BarcodeScanner = ({navigation}) => {
         <BarcodeMask showAnimatedLine={false} width={300} height={300} />
       </RNCamera>
       <View style={[styles.overlay, styles.topOverlay]}>
-        <Text style={styles.scanScreenMessage}>{t('scanBarcodePlease')}</Text>
+        <Text style={styles.scanScreenMessage}>{t<string>('scanBarcodePlease')}</Text>
       </View>
     </View>
   );

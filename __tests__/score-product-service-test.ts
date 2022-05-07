@@ -1,11 +1,18 @@
-import scoreProductService from '../src/services/score-product-service';
-import productInformationEnum from '../src/enums/product-information';
+import ScoreProductService from '../src/services/score-product-service';
+import {ProductInformationEnum} from '../src/enums';
 
 describe('Score product service', () => {
+
+  let scoreProductService: ScoreProductService;
+
+  beforeEach(() => {
+    scoreProductService = new ScoreProductService();
+  });
+
   it('should return high score expression for fat, when score is equal to 50', () => {
     const result = scoreProductService.getExpression(
       50,
-      productInformationEnum.fat,
+      ProductInformationEnum.fat,
     );
     expect(result).toEqual('score.expression.fatHigh');
   });
@@ -13,7 +20,7 @@ describe('Score product service', () => {
   it('should return high score expression for sugar, when score is strictly higher than 50', () => {
     const result = scoreProductService.getExpression(
       51,
-      productInformationEnum.sugar,
+      ProductInformationEnum.sugar,
     );
     expect(result).toEqual('score.expression.sugarHigh');
   });
@@ -21,21 +28,21 @@ describe('Score product service', () => {
   it('should return high score expression for salt, when score is stricly lower than 50', () => {
     const result = scoreProductService.getExpression(
       49,
-      productInformationEnum.salt,
+      ProductInformationEnum.salt,
     );
     expect(result).toEqual('score.expression.saltLow');
   });
 
   it('should return help message for additives', () => {
     const result = scoreProductService.getHelpMessage(
-      productInformationEnum.additives,
+      ProductInformationEnum.additives,
     );
     expect(result).toEqual('score.help.additives');
   });
 
   it('should return help message for novaGroup', () => {
     const result = scoreProductService.getHelpMessage(
-      productInformationEnum.novaGroup,
+      ProductInformationEnum.novaGroup,
     );
     expect(result).toEqual('score.help.novaGroup');
   });

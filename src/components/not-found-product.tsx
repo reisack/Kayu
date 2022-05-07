@@ -2,12 +2,14 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-const NotFoundProduct = () => {
-  const {t} = useTranslation();
+interface Props {}
 
+const NotFoundProduct: React.FC<Props> = () => {
+  const { t } = useTranslation();
+  
   return (
     <View>
-      <Text>{t('notFoundProduct')}</Text>
+      <Text>{t<string>('notFoundProduct')}</Text>
     </View>
   );
 };

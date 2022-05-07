@@ -4,7 +4,12 @@ import {useTranslation} from 'react-i18next';
 import ScannedProduct from '../components/scanned-product';
 import NotFoundProduct from '../components/not-found-product';
 
-const ScannedProductScreen = ({route, navigation}) => {
+interface Props {
+  route: any,
+  navigation: any
+}
+
+const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
   const {t} = useTranslation();
 
   const styles = StyleSheet.create({
@@ -30,14 +35,13 @@ const ScannedProductScreen = ({route, navigation}) => {
       )}
       <View style={styles.buttonContainer}>
         <Button
-          styles={styles.buttonContainer}
-          title={t('home')}
+          title={t<string>('home')}
           onPress={() => navigation.navigate('Home')}
         />
       </View>
       <View style={styles.buttonContainer}>
         <Button
-          title={t('scanAnotherBarcode')}
+          title={t<string>('scanAnotherBarcode')}
           onPress={() => navigation.navigate('BarcodeScanner')}
         />
       </View>
