@@ -1,4 +1,4 @@
-import AdditiveInformation from '../src/classes/additiveInformation';
+import AdditiveInformation from '../src/classes/additive-information';
 import NutritionValues from '../src/classes/nutrition-values';
 import AdditiveInformationsService from '../src/services/additive-informations-service';
 import ScoreCalculationService from '../src/services/score-calculation-service';

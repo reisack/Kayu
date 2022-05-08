@@ -34,7 +34,7 @@ export default class ScoreProductService {
     return score >= 50 ? productExpressions.high : productExpressions.low;
   }
 
-  public getHelpMessage(productInfo: ProductInformationEnum) {
+  public getHelpMessage(productInfo: ProductInformationEnum): string {
     const expressions = {
       [ProductInformationEnum.fat]: 'score.help.fat',
       [ProductInformationEnum.sugar]: 'score.help.sugar',

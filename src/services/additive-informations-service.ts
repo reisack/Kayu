@@ -1,4 +1,4 @@
-import AdditiveInformation from '../classes/additiveInformation';
+import AdditiveInformation from '../classes/additive-information';
 import Consts from '../consts';
 
 export default class AdditiveInformationsService {

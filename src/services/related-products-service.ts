@@ -3,7 +3,7 @@ import Product from '../classes/product';
 import Score from '../classes/score';
 import consts from '../consts';
 import ScoreCalculationService from './score-calculation-service';
-import '../classes/extensions';
+import '../extensions';
 
 export default class RelatedProductsService {
 

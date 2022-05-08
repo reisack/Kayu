@@ -14,7 +14,7 @@ export default class ScoreCalculationService {
     return new Score(fat, sugar, salt, novaGroup, eco, additives);
   }
 
-  private canBeCalculated(nutritionValue: unknown) {
+  private canBeCalculated(nutritionValue: unknown): boolean {
     return nutritionValue !== undefined && nutritionValue !== null;
   }
 
