@@ -1,5 +1,4 @@
-import { ProductInformationEnum } from "../enums";
-import { Nullable } from "./nullable-type";
+import { Nullable } from "./extensions";
 
 export default class Score {
   fat: Nullable<number>;

@@ -1,4 +1,4 @@
-import { Nullable } from "./nullable-type";
+import { Nullable } from "./extensions";
 
 export default class NutritionValues {
   fat: Nullable<number>;

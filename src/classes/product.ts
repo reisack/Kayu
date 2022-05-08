@@ -2,6 +2,7 @@ import NutritionValues from "./nutrition-values";
 import Score from "./score";
 
 export default class Product {
+  eanCode: string;
   frName: string;
   brands: string;
   imageUrl: string;
@@ -10,17 +11,19 @@ export default class Product {
   nutritionValues: NutritionValues;
   score: Score
 
-  constructor(frName: string, brands: string, imageUrl: string, mainCategory: string, categories: string[], nutritionValues: NutritionValues, score: Score) {
-    this.frName = frName;
-    this.brands = brands;
-    this.imageUrl = imageUrl;
-    this.mainCategory = mainCategory;
-    this.categories = categories;
-    this.nutritionValues = nutritionValues;
+  constructor(eanCode: string, nutritionValues: NutritionValues, score: Score, frName?: string, brands?: string, imageUrl?: string, mainCategory?: string, categories?: string[]) {
+    this.eanCode = eanCode;
+    this.frName = frName ?? '';
+    this.brands = brands ?? '';
+    this.imageUrl = imageUrl ?? '';
+    this.mainCategory = mainCategory ?? '';
+    this.categories = categories ?? [];
+    this.nutritionValues = nutritionValues ?? new NutritionValues();
     this.score = score;
   }
 
-  static empty: Product = {
+  public static empty: Product = {
+    eanCode: '',
     frName: '',
     brands: '',
     imageUrl: '',
