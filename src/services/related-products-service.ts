@@ -6,6 +6,13 @@ import ScoreCalculationService from './score-calculation-service';
 import '../classes/extensions';
 
 export default class RelatedProductsService {
+
+  private scoreCalculationService: ScoreCalculationService;
+
+  constructor() {
+    this.scoreCalculationService = new ScoreCalculationService();
+  }
+
   public async getRelatedproducts(category: string, productTotalScore: number): Promise<Product[]> {
     let relatedProducts: Product[] =
     await this.getAllRelatedProductsWithNutritionInformations(category, productTotalScore);
@@ -69,8 +76,7 @@ export default class RelatedProductsService {
         eco: relatedProduct.ecoscore_score
       };
 
-      const scoreCalculationService = new ScoreCalculationService(nutritionValues);
-      const relatedProductScore: Score = scoreCalculationService.getScore();
+      const relatedProductScore: Score = this.scoreCalculationService.getScore(nutritionValues);
       const relatedProductTotalScore: number = relatedProductScore.getTotal();
       
       if (relatedProductTotalScore > productTotalScore) {

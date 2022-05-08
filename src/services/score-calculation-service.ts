@@ -1,74 +1,21 @@
-import { Nullable } from '../classes/extensions';
 import NutritionValues from '../classes/nutrition-values';
 import Score from '../classes/score';
-import {ProductInformationEnum} from '../enums';
 import AdditiveInformationsService from './additive-informations-service';
 
 export default class ScoreCalculationService {
-  private nutritionValues: NutritionValues;
+  public getScore(nutritionValues: NutritionValues): Score {
+    const fat = (this.canBeCalculated(nutritionValues.fat)) ? nutritionValues.fat! * 10 : null;
+    const sugar = (this.canBeCalculated(nutritionValues.sugar)) ? nutritionValues.sugar! * 2.22 : null;
+    const salt = (this.canBeCalculated(nutritionValues.salt)) ? nutritionValues.salt! * 40 : null;
+    const novaGroup = (this.canBeCalculated(nutritionValues.novaGroup)) ? nutritionValues.novaGroup! * 25 : null;
+    const eco = (this.canBeCalculated(nutritionValues.eco)) ? 100 - nutritionValues.eco! : null;
+    const additives = (this.canBeCalculated(nutritionValues.additives)) ? this.getAdditivesScore(nutritionValues.additives!) : null;
 
-  constructor(nutritionValues: NutritionValues) {
-    this.nutritionValues = nutritionValues;
+    return new Score(fat, sugar, salt, novaGroup, eco, additives);
   }
 
-  public getScore(): Score {
-    const score = new Score(
-      this.getScoreByProductInformation(ProductInformationEnum.fat),
-      this.getScoreByProductInformation(ProductInformationEnum.sugar),
-      this.getScoreByProductInformation(ProductInformationEnum.salt),
-      this.getScoreByProductInformation(ProductInformationEnum.novaGroup),
-      this.getScoreByProductInformation(ProductInformationEnum.eco),
-      this.getScoreByProductInformation(ProductInformationEnum.additives)
-    );
-
-    return score;
-  }
-
-  private getScoreByProductInformation(productInformation: ProductInformationEnum): number | null {
-    const productInformationValue = this.getNutritionValue(productInformation);
-    let score: number | null = null;
-    if (
-      productInformationValue !== undefined &&
-      productInformationValue !== null
-    ) {
-      score = this.calculateScore(productInformationValue, productInformation);
-    }
-
-    return score;
-  }
-
-  private getNutritionValue(productInformation: ProductInformationEnum): Nullable<Number> | Nullable<string[]> {
-    switch (productInformation) {
-      case ProductInformationEnum.fat:
-        return this.nutritionValues.fat;
-      case ProductInformationEnum.sugar:
-        return this.nutritionValues.sugar;
-      case ProductInformationEnum.salt:
-        return this.nutritionValues.salt;
-      case ProductInformationEnum.additives:
-        return this.nutritionValues.additives;
-      case ProductInformationEnum.novaGroup:
-        return this.nutritionValues.novaGroup;
-      case ProductInformationEnum.eco:
-        return this.nutritionValues.eco;
-    }
-  }
-
-  private calculateScore(productInformationValue: Number | string[], productInformation: ProductInformationEnum): number | null {
-    switch (productInformation) {
-      case ProductInformationEnum.fat:
-        return productInformationValue as number * 10;
-      case ProductInformationEnum.sugar:
-        return productInformationValue as number * 2.22;
-      case ProductInformationEnum.salt:
-        return productInformationValue as number * 40;
-      case ProductInformationEnum.additives:
-        return this.getAdditivesScore(productInformationValue as string[]);
-      case ProductInformationEnum.novaGroup:
-        return productInformationValue as number * 25;
-      case ProductInformationEnum.eco:
-        return 100 - (productInformationValue as number);
-    }
+  private canBeCalculated(nutritionValue: any) {
+    return nutritionValue !== undefined && nutritionValue !== null;
   }
 
   private getAdditivesScore(productInformationValue: string[]): number | null {

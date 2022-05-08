@@ -16,6 +16,8 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Product>(Product.empty);
 
+  const scoreCalculationService = new ScoreCalculationService();
+
   const styles = StyleSheet.create({
     productImage: {
       width: 200,
@@ -59,16 +61,15 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
       eco: product.ecoscore_score,
     };
 
-    const scoreCalculationService = new ScoreCalculationService(nutritionValues);
-
     const simplifiedProduct: Product = {
+      eanCode: eanCode,
       frName: product.product_name_fr,
       brands: product.brands,
       imageUrl: product.image_front_url,
       mainCategory: product.compared_to_category,
       categories: product.categories_hierarchy ?? [],
       nutritionValues: nutritionValues,
-      score: scoreCalculationService.getScore(),
+      score: scoreCalculationService.getScore(nutritionValues),
     };
 
     return simplifiedProduct;

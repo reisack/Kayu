@@ -5,7 +5,11 @@ import ScoreCalculationService from '../src/services/score-calculation-service';
 
 describe('Score calculation service', () => {
 
+  let scoreCalculationService: ScoreCalculationService;
+
   beforeEach(() => {
+    scoreCalculationService = new ScoreCalculationService();
+
     // Mock static method call AdditiveInformationsService.getAdditiveScoreInformations()
     AdditiveInformationsService.getAdditiveScoreInformations = getAdditiveScoreInformationsMock;
   });
@@ -25,8 +29,7 @@ describe('Score calculation service', () => {
     const additives = ['en:e100', 'en:e101', 'en:e102', 'en:e105'];
     const nutritionValues = new NutritionValues(8.42, 10, 1.2, 3, 10, additives);
 
-    const service = new ScoreCalculationService(nutritionValues);
-    const score = service.getScore();
+    const score = scoreCalculationService.getScore(nutritionValues);
 
     expect(score.fat).toBeCloseTo(84.2);
     expect(score.sugar).toBeCloseTo(22.2);
@@ -41,8 +44,7 @@ describe('Score calculation service', () => {
     const additives = ['en:e100', 'en:e101', 'en:e102', 'en:e103', 'en:e104'];
     const nutritionValues = new NutritionValues(80, 80, 80, 5, -1, additives);
 
-    const service = new ScoreCalculationService(nutritionValues);
-    const score = service.getScore();
+    const score = scoreCalculationService.getScore(nutritionValues);
 
     expect(score.fat).toEqual(100);
     expect(score.sugar).toEqual(100);
@@ -56,8 +58,7 @@ describe('Score calculation service', () => {
   it('should not calculate when scores are null or undefined', () => {
     const nutritionValues = new NutritionValues(null, undefined, null, null, undefined, undefined);
 
-    const service = new ScoreCalculationService(nutritionValues);
-    const score = service.getScore();
+    const score = scoreCalculationService.getScore(nutritionValues);
 
     expect(score.fat).toBeNull();
     expect(score.sugar).toBeNull();
@@ -71,8 +72,7 @@ describe('Score calculation service', () => {
   it('additives score should be 0 when list of additives is empty', () => {
     const nutritionValues = new NutritionValues(null, null, null, null, null, []);
 
-    const service = new ScoreCalculationService(nutritionValues);
-    const score = service.getScore();
+    const score = scoreCalculationService.getScore(nutritionValues);
 
     expect(score.additives).toEqual(0);
   });
