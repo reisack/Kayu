@@ -1,4 +1,4 @@
-import { Nullable } from "../extensions";
+import {Nullable} from '../extensions';
 
 export default class Score {
   fat: Nullable<number>;
@@ -8,7 +8,14 @@ export default class Score {
   eco: Nullable<number>;
   additives: Nullable<number>;
 
-  constructor(fat: Nullable<number> = null, sugar: Nullable<number> = null, salt: Nullable<number> = null, novaGroup: Nullable<number> = null, eco: Nullable<number> = null, additives: Nullable<number> = null) {
+  constructor(
+    fat: Nullable<number> = null,
+    sugar: Nullable<number> = null,
+    salt: Nullable<number> = null,
+    novaGroup: Nullable<number> = null,
+    eco: Nullable<number> = null,
+    additives: Nullable<number> = null,
+  ) {
     this.fat = this.limitTo100(fat);
     this.sugar = this.limitTo100(sugar);
     this.salt = this.limitTo100(salt);

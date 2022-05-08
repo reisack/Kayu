@@ -1,231 +1,198 @@
 {
-    "count": 263,
-    "page": 1,
-    "page_count": 263,
-    "page_size": 10000,
-    "products": [
-        {
-            "additives_tags": [
-                "en:e160",
-                "en:e412",
-                "en:e471"
-            ],
-            "code": "8711327385603",
-            "ecoscore_score": 70,
-            "nova_group": 4,
-            "salt_100g": 0.06,
-            "saturated-fat_100g": 2.9,
-            "sugars_100g": 9
-        },
-        {
-            "additives_tags": [
-                "en:e160",
-                "en:e407",
-                "en:e412",
-                "en:e471"
-            ],
-            "code": "3013520080435",
-            "ecoscore_score": 79,
-            "nova_group": 4
-        },
-        {
-            "additives_tags": [
-                "en:e160a",
-                "en:e407",
-                "en:e410",
-                "en:e412",
-                "en:e442",
-                "en:e471",
-                "en:e476"
-            ],
-            "code": "8714100635698",
-            "ecoscore_score": 73,
-            "nova_group": 4,
-            "salt_100g": 0.13,
-            "saturated-fat_100g": 11,
-            "sugars_100g": 24
-        },
-        {
-            "additives_tags": [
-                "en:e14xx",
-                "en:e150b",
-                "en:e160a",
-                "en:e407",
-                "en:e410",
-                "en:e412",
-                "en:e442",
-                "en:e471",
-                "en:e476"
-            ],
-            "code": "8712100849084",
-            "ecoscore_score": 70,
-            "nova_group": 4,
-            "salt_100g": 0.17,
-            "saturated-fat_100g": 14,
-            "sugars_100g": 33
-        },
-        {
-            "additives_tags": [
-                "en:e160",
-                "en:e412",
-                "en:e471"
-            ],
-            "code": "8712100882593",
-            "ecoscore_score": 73,
-            "nova_group": 4,
-            "salt_100g": 0.05,
-            "saturated-fat_100g": 2.8,
-            "sugars_100g": 11
-        },
-        {
-            "additives_tags": [
-                "en:e322",
-                "en:e407",
-                "en:e412",
-                "en:e471",
-                "en:e901",
-                "en:e904"
-            ],
-            "code": "7613034528971",
-            "ecoscore_score": 64,
-            "nova_group": 4,
-            "salt_100g": 0.16,
-            "saturated-fat_100g": 5.4,
-            "sugars_100g": 26
-        },
-        {
-            "additives_tags": [
-                "en:e412",
-                "en:e471"
-            ],
-            "code": "8711327385887",
-            "ecoscore_score": 89,
-            "nova_group": 4,
-            "salt_100g": 0.13,
-            "saturated-fat_100g": 5.7,
-            "sugars_100g": 21
-        },
-        {
-            "additives_tags": [
-                "en:e160",
-                "en:e300",
-                "en:e330",
-                "en:e412",
-                "en:e471"
-            ],
-            "code": "3274664109820",
-            "ecoscore_score": 63,
-            "nova_group": 4,
-            "salt_100g": 0.16,
-            "saturated-fat_100g": 4.3,
-            "sugars_100g": 22
-        },
-        {
-            "additives_tags": [
-                "en:e14xx",
-                "en:e150a",
-                "en:e160b",
-                "en:e407",
-                "en:e410",
-                "en:e412",
-                "en:e442",
-                "en:e471",
-                "en:e476"
-            ],
-            "code": "8714100875933",
-            "ecoscore_score": 73,
-            "nova_group": 4,
-            "salt_100g": 0.09,
-            "saturated-fat_100g": 7.3,
-            "sugars_100g": 17
-        },
-        {
-            "additives_tags": [
-                "en:e160",
-                "en:e412"
-            ],
-            "code": "40875125",
-            "ecoscore_score": 73,
-            "nova_group": 4,
-            "salt_100g": 0.07,
-            "saturated-fat_100g": 8.6,
-            "sugars_100g": 21.7
-        },
-        {
-            "additives_tags": [
-                "en:e322",
-                "en:e322i"
-            ],
-            "code": "3560070682027",
-            "ecoscore_score": 80,
-            "nova_group": 4,
-            "salt_100g": 0.18,
-            "saturated-fat_100g": 3.9,
-            "sugars_100g": 21
-        },
-        {
-            "additives_tags": [
-                "en:e150a",
-                "en:e322",
-                "en:e407a",
-                "en:e412",
-                "en:e471"
-            ],
-            "code": "7613034077943",
-            "ecoscore_score": 63,
-            "nova_group": 4,
-            "salt_100g": 0.15,
-            "saturated-fat_100g": 9,
-            "sugars_100g": 27
-        },
-        {
-            "additives_tags": [
-                "en:e412",
-                "en:e414"
-            ],
-            "code": "3256221116045",
-            "ecoscore_score": 79,
-            "nova_group": 4,
-            "salt_100g": 0.13,
-            "saturated-fat_100g": 5,
-            "sugars_100g": 21.7
-        },
-        {
-            "additives_tags": [],
-            "code": "8714100638729",
-            "ecoscore_score": 93,
-            "nova_group": 4,
-            "salt_100g": 0.12,
-            "saturated-fat_100g": 6.9,
-            "sugars_100g": 24
-        },
-        {
-            "additives_tags": [
-                "en:e471"
-            ],
-            "code": "3760039982056",
-            "ecoscore_score": 60,
-            "nova_group": 4,
-            "salt_100g": 0.03,
-            "saturated-fat_100g": 5.9,
-            "sugars_100g": 18
-        },
-        {
-            "additives_tags": [
-                "en:e14xx",
-                "en:e150a",
-                "en:e160",
-                "en:e332",
-                "en:e412",
-                "en:e471"
-            ],
-            "code": "8712100482199",
-            "ecoscore_score": 79,
-            "nova_group": 4,
-            "salt_100g": 0.13,
-            "saturated-fat_100g": 2.7,
-            "sugars_100g": 16
-        }
-    ],
-    "skip": 0
+  "count": 263,
+  "page": 1,
+  "page_count": 263,
+  "page_size": 10000,
+  "products": [
+    {
+      "additives_tags": ["en:e160", "en:e412", "en:e471"],
+      "code": "8711327385603",
+      "ecoscore_score": 70,
+      "nova_group": 4,
+      "salt_100g": 0.06,
+      "saturated-fat_100g": 2.9,
+      "sugars_100g": 9
+    },
+    {
+      "additives_tags": ["en:e160", "en:e407", "en:e412", "en:e471"],
+      "code": "3013520080435",
+      "ecoscore_score": 79,
+      "nova_group": 4
+    },
+    {
+      "additives_tags": [
+        "en:e160a",
+        "en:e407",
+        "en:e410",
+        "en:e412",
+        "en:e442",
+        "en:e471",
+        "en:e476"
+      ],
+      "code": "8714100635698",
+      "ecoscore_score": 73,
+      "nova_group": 4,
+      "salt_100g": 0.13,
+      "saturated-fat_100g": 11,
+      "sugars_100g": 24
+    },
+    {
+      "additives_tags": [
+        "en:e14xx",
+        "en:e150b",
+        "en:e160a",
+        "en:e407",
+        "en:e410",
+        "en:e412",
+        "en:e442",
+        "en:e471",
+        "en:e476"
+      ],
+      "code": "8712100849084",
+      "ecoscore_score": 70,
+      "nova_group": 4,
+      "salt_100g": 0.17,
+      "saturated-fat_100g": 14,
+      "sugars_100g": 33
+    },
+    {
+      "additives_tags": ["en:e160", "en:e412", "en:e471"],
+      "code": "8712100882593",
+      "ecoscore_score": 73,
+      "nova_group": 4,
+      "salt_100g": 0.05,
+      "saturated-fat_100g": 2.8,
+      "sugars_100g": 11
+    },
+    {
+      "additives_tags": [
+        "en:e322",
+        "en:e407",
+        "en:e412",
+        "en:e471",
+        "en:e901",
+        "en:e904"
+      ],
+      "code": "7613034528971",
+      "ecoscore_score": 64,
+      "nova_group": 4,
+      "salt_100g": 0.16,
+      "saturated-fat_100g": 5.4,
+      "sugars_100g": 26
+    },
+    {
+      "additives_tags": ["en:e412", "en:e471"],
+      "code": "8711327385887",
+      "ecoscore_score": 89,
+      "nova_group": 4,
+      "salt_100g": 0.13,
+      "saturated-fat_100g": 5.7,
+      "sugars_100g": 21
+    },
+    {
+      "additives_tags": ["en:e160", "en:e300", "en:e330", "en:e412", "en:e471"],
+      "code": "3274664109820",
+      "ecoscore_score": 63,
+      "nova_group": 4,
+      "salt_100g": 0.16,
+      "saturated-fat_100g": 4.3,
+      "sugars_100g": 22
+    },
+    {
+      "additives_tags": [
+        "en:e14xx",
+        "en:e150a",
+        "en:e160b",
+        "en:e407",
+        "en:e410",
+        "en:e412",
+        "en:e442",
+        "en:e471",
+        "en:e476"
+      ],
+      "code": "8714100875933",
+      "ecoscore_score": 73,
+      "nova_group": 4,
+      "salt_100g": 0.09,
+      "saturated-fat_100g": 7.3,
+      "sugars_100g": 17
+    },
+    {
+      "additives_tags": ["en:e160", "en:e412"],
+      "code": "40875125",
+      "ecoscore_score": 73,
+      "nova_group": 4,
+      "salt_100g": 0.07,
+      "saturated-fat_100g": 8.6,
+      "sugars_100g": 21.7
+    },
+    {
+      "additives_tags": ["en:e322", "en:e322i"],
+      "code": "3560070682027",
+      "ecoscore_score": 80,
+      "nova_group": 4,
+      "salt_100g": 0.18,
+      "saturated-fat_100g": 3.9,
+      "sugars_100g": 21
+    },
+    {
+      "additives_tags": [
+        "en:e150a",
+        "en:e322",
+        "en:e407a",
+        "en:e412",
+        "en:e471"
+      ],
+      "code": "7613034077943",
+      "ecoscore_score": 63,
+      "nova_group": 4,
+      "salt_100g": 0.15,
+      "saturated-fat_100g": 9,
+      "sugars_100g": 27
+    },
+    {
+      "additives_tags": ["en:e412", "en:e414"],
+      "code": "3256221116045",
+      "ecoscore_score": 79,
+      "nova_group": 4,
+      "salt_100g": 0.13,
+      "saturated-fat_100g": 5,
+      "sugars_100g": 21.7
+    },
+    {
+      "additives_tags": [],
+      "code": "8714100638729",
+      "ecoscore_score": 93,
+      "nova_group": 4,
+      "salt_100g": 0.12,
+      "saturated-fat_100g": 6.9,
+      "sugars_100g": 24
+    },
+    {
+      "additives_tags": ["en:e471"],
+      "code": "3760039982056",
+      "ecoscore_score": 60,
+      "nova_group": 4,
+      "salt_100g": 0.03,
+      "saturated-fat_100g": 5.9,
+      "sugars_100g": 18
+    },
+    {
+      "additives_tags": [
+        "en:e14xx",
+        "en:e150a",
+        "en:e160",
+        "en:e332",
+        "en:e412",
+        "en:e471"
+      ],
+      "code": "8712100482199",
+      "ecoscore_score": 79,
+      "nova_group": 4,
+      "salt_100g": 0.13,
+      "saturated-fat_100g": 2.7,
+      "sugars_100g": 16
+    }
+  ],
+  "skip": 0
 }

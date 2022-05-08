@@ -7,7 +7,6 @@ import relatedProductsSelectedMock from './mocks/related-products-selected-mock.
 import relatedProductsScoresEmptyMock from './mocks/related-products-scores-empty-mock.json';
 
 describe('Related products service', () => {
-
   let relatedProductsService: RelatedProductsService;
 
   beforeEach(() => {
@@ -21,7 +20,10 @@ describe('Related products service', () => {
     // Math.Random() will always returns 0.1
     mockRandom([0.1]);
 
-    const results = await relatedProductsService.getRelatedproducts('vanilla-ice-cream-tubs', 30);
+    const results = await relatedProductsService.getRelatedproducts(
+      'vanilla-ice-cream-tubs',
+      30,
+    );
 
     expect(results[0].eanCode).toEqual('3256221116045');
     expect(results[1].eanCode).toEqual('8714100635698');
@@ -41,7 +43,10 @@ describe('Related products service', () => {
     // Math.Random() will always returns 0.1
     mockRandom([0.1]);
 
-    const results = await relatedProductsService.getRelatedproducts('vanilla-ice-cream-tubs', 30);
+    const results = await relatedProductsService.getRelatedproducts(
+      'vanilla-ice-cream-tubs',
+      30,
+    );
 
     expect(results).toEqual([]);
 
@@ -51,7 +56,10 @@ describe('Related products service', () => {
   it('should have empty list when product total score is the highest', async () => {
     fetchMock.mockResponseOnce(JSON.stringify(relatedProductsScoresMock));
 
-    const results = await relatedProductsService.getRelatedproducts('vanilla-ice-cream-tubs', 600);
+    const results = await relatedProductsService.getRelatedproducts(
+      'vanilla-ice-cream-tubs',
+      600,
+    );
 
     expect(results).toEqual([]);
   });
@@ -59,7 +67,10 @@ describe('Related products service', () => {
   it('should have empty list when no related product have been found', async () => {
     fetchMock.mockResponseOnce(JSON.stringify(relatedProductsScoresEmptyMock));
 
-    const results = await relatedProductsService.getRelatedproducts('vanilla-ice-cream-tubs', 222);
+    const results = await relatedProductsService.getRelatedproducts(
+      'vanilla-ice-cream-tubs',
+      222,
+    );
 
     expect(results).toEqual([]);
   });
@@ -67,7 +78,10 @@ describe('Related products service', () => {
   it('should have empty list when API throws an error', async () => {
     fetchMock.mockResponse(() => Promise.reject('error'));
 
-    const results = await relatedProductsService.getRelatedproducts('vanilla-ice-cream-tubs', 333);
+    const results = await relatedProductsService.getRelatedproducts(
+      'vanilla-ice-cream-tubs',
+      333,
+    );
 
     expect(results).toEqual([]);
   });

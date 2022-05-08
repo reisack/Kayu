@@ -4,5 +4,5 @@ export enum ProductInformationEnum {
   salt,
   novaGroup,
   eco,
-  additives
+  additives,
 }

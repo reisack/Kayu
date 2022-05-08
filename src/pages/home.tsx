@@ -3,7 +3,7 @@ import {View, Text, Button, ScrollView, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 interface Props {
-  navigation: any
+  navigation: any;
 }
 
 const Home: React.FC<Props> = ({navigation}) => {

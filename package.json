@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "eslint . && jest && react-native run-android",
+    "android": "prettier --write . && eslint . && jest && react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
+    "prettier": "prettier --write .",
     "test-coverage": "jest --coverage"
   },
   "dependencies": {

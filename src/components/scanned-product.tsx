@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, ActivityIndicator, StyleSheet} from 'react-native';
-import ScoreCalculationService from '../services/score-calculation-service'; '../services/score-calculation-service';
+import ScoreCalculationService from '../services/score-calculation-service';
+('../services/score-calculation-service');
 import ScoreProduct from './score-product';
 import {ProductInformationEnum} from '../enums';
 import consts from '../consts';
@@ -8,8 +9,8 @@ import NutritionValues from '../classes/nutrition-values';
 import Product from '../classes/product';
 
 interface Props {
-  eanCode: string,
-  onNotFoundProduct: () => void
+  eanCode: string;
+  onNotFoundProduct: () => void;
 }
 
 const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
@@ -49,7 +50,7 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
     }
   };
 
-  const getSimplifiedProduct = (jsonFromAPI: { product: any; }): Product => {
+  const getSimplifiedProduct = (jsonFromAPI: {product: any}): Product => {
     const product = jsonFromAPI.product;
 
     const nutritionValues: NutritionValues = {
@@ -76,8 +77,12 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
   };
 
   const canDisplayScore = (nutritionValue: any, score: any): boolean => {
-    return nutritionValue !== undefined && nutritionValue !== null
-        && score !== undefined && score != null;
+    return (
+      nutritionValue !== undefined &&
+      nutritionValue !== null &&
+      score !== undefined &&
+      score != null
+    );
   };
 
   useEffect(() => {
@@ -97,7 +102,7 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
           <Text>Catégorie principale : {data.mainCategory}</Text>
           <Text>Catégories : {data.categories.join(' | ')}</Text>
 
-          { canDisplayScore(data.nutritionValues.fat, data.score.fat) ? (
+          {canDisplayScore(data.nutritionValues.fat, data.score.fat) ? (
             <ScoreProduct
               score={data.score.fat as number}
               nutritionValue={data.nutritionValues.fat as number}
@@ -107,7 +112,7 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
             <View></View>
           )}
 
-          { canDisplayScore(data.nutritionValues.salt, data.score.salt) ? (
+          {canDisplayScore(data.nutritionValues.salt, data.score.salt) ? (
             <ScoreProduct
               score={data.score.salt as number}
               nutritionValue={data.nutritionValues.salt as number}
@@ -116,8 +121,8 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
           ) : (
             <View></View>
           )}
-          
-          { canDisplayScore(data.nutritionValues.sugar, data.score.sugar) ? (
+
+          {canDisplayScore(data.nutritionValues.sugar, data.score.sugar) ? (
             <ScoreProduct
               score={data.score.sugar as number}
               nutritionValue={data.nutritionValues.sugar as number}
@@ -127,7 +132,10 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
             <View></View>
           )}
 
-          { canDisplayScore(data.nutritionValues.novaGroup, data.score.novaGroup) ? (
+          {canDisplayScore(
+            data.nutritionValues.novaGroup,
+            data.score.novaGroup,
+          ) ? (
             <ScoreProduct
               score={data.score.novaGroup as number}
               nutritionValue={data.nutritionValues.novaGroup as number}
@@ -137,7 +145,7 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
             <View></View>
           )}
 
-          { canDisplayScore(data.nutritionValues.eco, data.score.eco) ? (
+          {canDisplayScore(data.nutritionValues.eco, data.score.eco) ? (
             <ScoreProduct
               score={data.score.eco as number}
               nutritionValue={data.nutritionValues.eco as number}
@@ -147,7 +155,10 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
             <View></View>
           )}
 
-          { canDisplayScore(data.nutritionValues.additives, data.score.additives) ? (
+          {canDisplayScore(
+            data.nutritionValues.additives,
+            data.score.additives,
+          ) ? (
             <ScoreProduct
               score={data.score.additives as number}
               nutritionValue={data.nutritionValues.additives as string[]}

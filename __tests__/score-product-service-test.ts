@@ -2,7 +2,6 @@ import ScoreProductService from '../src/services/score-product-service';
 import {ProductInformationEnum} from '../src/enums';
 
 describe('Score product service', () => {
-
   let scoreProductService: ScoreProductService;
 
   beforeEach(() => {

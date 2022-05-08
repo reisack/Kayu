@@ -5,8 +5,8 @@ import ScannedProduct from '../components/scanned-product';
 import NotFoundProduct from '../components/not-found-product';
 
 interface Props {
-  route: any,
-  navigation: any
+  route: any;
+  navigation: any;
 }
 
 const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {

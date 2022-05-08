@@ -1,19 +1,23 @@
 import React from 'react';
 import {View, Text, Button, Alert, StyleSheet} from 'react-native';
-import { useTranslation } from "react-i18next";
+import {useTranslation} from 'react-i18next';
 import ScoreProductService from '../services/score-product-service';
-import { ProductInformationEnum } from '../enums';
+import {ProductInformationEnum} from '../enums';
 // @ts-ignore
 import ProgressBar from 'react-native-progress/Bar';
 
 interface Props {
-  score: number,
-  nutritionValue: number | string[],
-  productInfo: ProductInformationEnum
+  score: number;
+  nutritionValue: number | string[];
+  productInfo: ProductInformationEnum;
 }
 
-const ScoreProduct: React.FC<Props> = ({score, nutritionValue, productInfo: productInfo}) => {
-  const { t } = useTranslation();
+const ScoreProduct: React.FC<Props> = ({
+  score,
+  nutritionValue,
+  productInfo: productInfo,
+}) => {
+  const {t} = useTranslation();
   const scoreProductService = new ScoreProductService();
 
   const progressBarWidth = 200;
@@ -67,9 +71,12 @@ const ScoreProduct: React.FC<Props> = ({score, nutritionValue, productInfo: prod
                   onPress={() =>
                     Alert.alert(
                       t<string>('informations'),
-                      t<string>(scoreProductService.getHelpMessage(productInfo), {
-                        nutritionValue: getNutritionValueForI18n(),
-                      }),
+                      t<string>(
+                        scoreProductService.getHelpMessage(productInfo),
+                        {
+                          nutritionValue: getNutritionValueForI18n(),
+                        },
+                      ),
                     )
                   }
                 />

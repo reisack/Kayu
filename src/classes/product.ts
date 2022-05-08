@@ -1,5 +1,5 @@
-import NutritionValues from "./nutrition-values";
-import Score from "./score";
+import NutritionValues from './nutrition-values';
+import Score from './score';
 
 export default class Product {
   eanCode: string;
@@ -9,9 +9,18 @@ export default class Product {
   mainCategory: string;
   categories: string[];
   nutritionValues: NutritionValues;
-  score: Score
+  score: Score;
 
-  constructor(eanCode: string, nutritionValues: NutritionValues, score: Score, frName?: string, brands?: string, imageUrl?: string, mainCategory?: string, categories?: string[]) {
+  constructor(
+    eanCode: string,
+    nutritionValues: NutritionValues,
+    score: Score,
+    frName?: string,
+    brands?: string,
+    imageUrl?: string,
+    mainCategory?: string,
+    categories?: string[],
+  ) {
     this.eanCode = eanCode;
     this.frName = frName ?? '';
     this.brands = brands ?? '';
@@ -30,6 +39,6 @@ export default class Product {
     mainCategory: '',
     categories: [],
     nutritionValues: new NutritionValues(),
-    score: new Score()
+    score: new Score(),
   };
 }

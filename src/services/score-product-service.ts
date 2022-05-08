@@ -1,8 +1,10 @@
 import {ProductInformationEnum} from '../enums';
 
 export default class ScoreProductService {
-
-  public getExpression(score: number, productInfo: ProductInformationEnum): string {
+  public getExpression(
+    score: number,
+    productInfo: ProductInformationEnum,
+  ): string {
     const expressions = {
       [ProductInformationEnum.fat]: {
         low: 'score.expression.fatLow',

@@ -6,25 +6,28 @@ import ScoreCalculationService from './score-calculation-service';
 import '../extensions';
 
 export default class RelatedProductsService {
-
   private scoreCalculationService: ScoreCalculationService;
 
   constructor() {
     this.scoreCalculationService = new ScoreCalculationService();
   }
 
-  public async getRelatedproducts(category: string, productTotalScore: number): Promise<Product[]> {
+  public async getRelatedproducts(
+    category: string,
+    productTotalScore: number,
+  ): Promise<Product[]> {
     let relatedProducts: Product[] =
-    await this.getAllRelatedProductsWithNutritionInformations(category, productTotalScore);
+      await this.getAllRelatedProductsWithNutritionInformations(
+        category,
+        productTotalScore,
+      );
 
     if (relatedProducts.length === 0) {
       return [];
     }
 
     // Top 10 products by score
-    relatedProducts = this.filterProductCodesWithBestScores(
-      relatedProducts,
-    );
+    relatedProducts = this.filterProductCodesWithBestScores(relatedProducts);
 
     // Randomize results
     this.shuffleArray(relatedProducts);
@@ -35,13 +38,17 @@ export default class RelatedProductsService {
     }
 
     await this.completeRelatedProductsWithAllInformations(
-      relatedProducts, category
+      relatedProducts,
+      category,
     );
 
     return relatedProducts;
   }
 
-  private async getAllRelatedProductsWithNutritionInformations(category: string, productTotalScore: number): Promise<Product[]> {
+  private async getAllRelatedProductsWithNutritionInformations(
+    category: string,
+    productTotalScore: number,
+  ): Promise<Product[]> {
     const relatedProducts: Product[] = [];
 
     try {
@@ -56,7 +63,11 @@ export default class RelatedProductsService {
       const json: any = await response.json();
 
       if (json && json.count && json.count > 0) {
-        this.setRelatedProductsWithTotalScore(relatedProducts, json, productTotalScore);
+        this.setRelatedProductsWithTotalScore(
+          relatedProducts,
+          json,
+          productTotalScore,
+        );
       }
     } catch (error) {
       console.error(error);
@@ -65,7 +76,11 @@ export default class RelatedProductsService {
     return relatedProducts;
   }
 
-  private setRelatedProductsWithTotalScore(relatedProducts: Product[], json: any, productTotalScore: number): void {
+  private setRelatedProductsWithTotalScore(
+    relatedProducts: Product[],
+    json: any,
+    productTotalScore: number,
+  ): void {
     for (const relatedProduct of json.products) {
       const nutritionValues: NutritionValues = {
         fat: relatedProduct['saturated-fat_100g'],
@@ -73,19 +88,28 @@ export default class RelatedProductsService {
         salt: relatedProduct.salt_100g,
         additives: relatedProduct.additives_tags,
         novaGroup: relatedProduct.nova_group,
-        eco: relatedProduct.ecoscore_score
+        eco: relatedProduct.ecoscore_score,
       };
 
-      const relatedProductScore: Score = this.scoreCalculationService.getScore(nutritionValues);
+      const relatedProductScore: Score =
+        this.scoreCalculationService.getScore(nutritionValues);
       const relatedProductTotalScore: number = relatedProductScore.getTotal();
-      
+
       if (relatedProductTotalScore > productTotalScore) {
-        relatedProducts.push(new Product(relatedProduct.code, nutritionValues, relatedProductScore));
+        relatedProducts.push(
+          new Product(
+            relatedProduct.code,
+            nutritionValues,
+            relatedProductScore,
+          ),
+        );
       }
     }
   }
 
-  private filterProductCodesWithBestScores(relatedProducts: Product[]): Product[] {
+  private filterProductCodesWithBestScores(
+    relatedProducts: Product[],
+  ): Product[] {
     relatedProducts = relatedProducts.sort(
       (a, b) => b.score.getTotal() - a.score.getTotal(),
     );
@@ -106,7 +130,8 @@ export default class RelatedProductsService {
   }
 
   private async completeRelatedProductsWithAllInformations(
-    relatedProducts: Product[], category: string
+    relatedProducts: Product[],
+    category: string,
   ): Promise<void> {
     try {
       const relatedProductsSearchUrl = `${consts.openFoodFactAPIBaseUrl}api/v2/search`;

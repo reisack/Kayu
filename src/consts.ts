@@ -3,7 +3,7 @@ export default class Consts {
   static httpHeaderGetRequest: any = {
     method: 'GET',
     headers: {
-      'User-Agent': 'Kayu - Android - Version 1.0'
-    }
+      'User-Agent': 'Kayu - Android - Version 1.0',
+    },
   };
 }

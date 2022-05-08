@@ -6,7 +6,7 @@ import {useIsFocused} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
 interface Props {
-  navigation: any
+  navigation: any;
 }
 
 const BarcodeScanner: React.FC<Props> = ({navigation}) => {
@@ -45,9 +45,10 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
   });
 
   const isFocused = useIsFocused();
-  const [productHasBeenScanned, setProductHasBeenScanned] = useState<boolean>(false);
+  const [productHasBeenScanned, setProductHasBeenScanned] =
+    useState<boolean>(false);
 
-  const onBarcodeRead = (scanResult: { data: any; }) => {
+  const onBarcodeRead = (scanResult: {data: any}) => {
     if (!productHasBeenScanned && scanResult && scanResult.data) {
       setProductHasBeenScanned(true);
       navigation.navigate('ScannedProductScreen', {
@@ -70,7 +71,9 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
         <BarcodeMask showAnimatedLine={false} width={300} height={300} />
       </RNCamera>
       <View style={[styles.overlay, styles.topOverlay]}>
-        <Text style={styles.scanScreenMessage}>{t<string>('scanBarcodePlease')}</Text>
+        <Text style={styles.scanScreenMessage}>
+          {t<string>('scanBarcodePlease')}
+        </Text>
       </View>
     </View>
   );

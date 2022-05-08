@@ -2,7 +2,6 @@ import AdditiveInformation from '../classes/additive-information';
 import Consts from '../consts';
 
 export default class AdditiveInformationsService {
-
   private static _additiveScoreInformations: AdditiveInformation[] = [];
 
   public static async initAdditiveScoreInformations(): Promise<void> {
@@ -31,14 +30,17 @@ export default class AdditiveInformationsService {
           'en:no': 5,
         };
 
-        additiveScoreInformations.push(new AdditiveInformation(property, riskScores[risk]));
+        additiveScoreInformations.push(
+          new AdditiveInformation(property, riskScores[risk]),
+        );
       } else {
         // Unknown risk : we assume a score between no and moderate risk
         additiveScoreInformations.push(new AdditiveInformation(property, 10));
       }
     }
 
-    AdditiveInformationsService._additiveScoreInformations = additiveScoreInformations;
+    AdditiveInformationsService._additiveScoreInformations =
+      additiveScoreInformations;
   }
 
   public static getAdditiveScoreInformations(): AdditiveInformation[] {

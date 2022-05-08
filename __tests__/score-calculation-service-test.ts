@@ -4,14 +4,14 @@ import AdditiveInformationsService from '../src/services/additive-informations-s
 import ScoreCalculationService from '../src/services/score-calculation-service';
 
 describe('Score calculation service', () => {
-
   let scoreCalculationService: ScoreCalculationService;
 
   beforeEach(() => {
     scoreCalculationService = new ScoreCalculationService();
 
     // Mock static method call AdditiveInformationsService.getAdditiveScoreInformations()
-    AdditiveInformationsService.getAdditiveScoreInformations = getAdditiveScoreInformationsMock;
+    AdditiveInformationsService.getAdditiveScoreInformations =
+      getAdditiveScoreInformationsMock;
   });
 
   const getAdditiveScoreInformationsMock = () => {
@@ -21,13 +21,20 @@ describe('Score calculation service', () => {
       new AdditiveInformation('en:e102', 5),
       new AdditiveInformation('en:e103', 30),
       new AdditiveInformation('en:e104', 30),
-      new AdditiveInformation('en:e105', 10)
+      new AdditiveInformation('en:e105', 10),
     ];
   };
 
   it('should calculate expected scores', () => {
     const additives = ['en:e100', 'en:e101', 'en:e102', 'en:e105'];
-    const nutritionValues = new NutritionValues(8.42, 10, 1.2, 3, 10, additives);
+    const nutritionValues = new NutritionValues(
+      8.42,
+      10,
+      1.2,
+      3,
+      10,
+      additives,
+    );
 
     const score = scoreCalculationService.getScore(nutritionValues);
 
@@ -56,7 +63,14 @@ describe('Score calculation service', () => {
   });
 
   it('should not calculate when scores are null or undefined', () => {
-    const nutritionValues = new NutritionValues(null, undefined, null, null, undefined, undefined);
+    const nutritionValues = new NutritionValues(
+      null,
+      undefined,
+      null,
+      null,
+      undefined,
+      undefined,
+    );
 
     const score = scoreCalculationService.getScore(nutritionValues);
 
@@ -70,7 +84,14 @@ describe('Score calculation service', () => {
   });
 
   it('additives score should be 0 when list of additives is empty', () => {
-    const nutritionValues = new NutritionValues(null, null, null, null, null, []);
+    const nutritionValues = new NutritionValues(
+      null,
+      null,
+      null,
+      null,
+      null,
+      [],
+    );
 
     const score = scoreCalculationService.getScore(nutritionValues);
 

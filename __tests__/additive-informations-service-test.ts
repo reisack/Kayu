@@ -19,16 +19,14 @@ describe('Additive informations service', () => {
       new AdditiveInformation('en:e433', 15),
       new AdditiveInformation('en:e945', 10),
       new AdditiveInformation('en:e951', 5),
-      new AdditiveInformation('en:e636', 10)
+      new AdditiveInformation('en:e636', 10),
     ];
 
     expect(result).toEqual(expected);
   });
 
   it('should have no additives informations when fetching no risk informations', async () => {
-    fetchMock.mockResponseOnce(
-      JSON.stringify(additivesWithoutRisksMock),
-    );
+    fetchMock.mockResponseOnce(JSON.stringify(additivesWithoutRisksMock));
 
     await AdditiveInformationsService.initAdditiveScoreInformations();
     const result = AdditiveInformationsService.getAdditiveScoreInformations();
@@ -37,7 +35,7 @@ describe('Additive informations service', () => {
       new AdditiveInformation('en:e638', 10),
       new AdditiveInformation('en:e903', 10),
       new AdditiveInformation('en:e945', 10),
-      new AdditiveInformation('en:e636', 10)
+      new AdditiveInformation('en:e636', 10),
     ];
 
     expect(result).toEqual(expected);
