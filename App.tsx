@@ -8,11 +8,9 @@ import BarcodeScanner from './src/pages/barcode-scanner';
 import ScannedProductScreen from './src/pages/scanned-product-Screen';
 import AdditiveInformationsService from './src/services/additive-informations-service';
 
-interface Props {}
-
 const Stack = createNativeStackNavigator();
 
-const App: React.FC<Props> = () => {
+const App: React.FC = () => {
   useEffect(() => {
     AdditiveInformationsService.initAdditiveScoreInformations();
   }, []);

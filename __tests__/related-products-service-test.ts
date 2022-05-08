@@ -2,6 +2,10 @@ import {mockRandom, resetMockRandom} from 'jest-mock-random';
 import fetchMock from 'jest-fetch-mock';
 import RelatedProductsService from '../src/services/related-products-service';
 
+import relatedProductsScoresMock from './mocks/related-products-scores-mock.json';
+import relatedProductsSelectedMock from './mocks/related-products-selected-mock.json';
+import relatedProductsScoresEmptyMock from './mocks/related-products-scores-empty-mock.json';
+
 describe('Related products service', () => {
 
   let relatedProductsService: RelatedProductsService;
@@ -11,10 +15,8 @@ describe('Related products service', () => {
   });
 
   it('should have list when product total score is not the highest', async () => {
-    const relatedProductsJSON = require('./mocks/related-products-scores-mock.json');
-    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsJSON));
-    const relatedProductsSelectedJSON = require('./mocks/related-products-selected-mock.json');
-    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsSelectedJSON));
+    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsScoresMock));
+    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsSelectedMock));
 
     // Math.Random() will always returns 0.1
     mockRandom([0.1]);
@@ -31,8 +33,7 @@ describe('Related products service', () => {
   });
 
   it('should have empty list when related products does not have all informations', async () => {
-    const relatedProductsJSON = require('./mocks/related-products-scores-mock.json');
-    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsJSON));
+    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsScoresMock));
 
     // Query for all informations about selected related products throws an error
     fetchMock.mockResponseOnce(() => Promise.reject('error'));
@@ -48,8 +49,7 @@ describe('Related products service', () => {
   });
 
   it('should have empty list when product total score is the highest', async () => {
-    const relatedProductsJSON = require('./mocks/related-products-scores-mock.json');
-    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsJSON));
+    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsScoresMock));
 
     const results = await relatedProductsService.getRelatedproducts('vanilla-ice-cream-tubs', 600);
 
@@ -57,8 +57,7 @@ describe('Related products service', () => {
   });
 
   it('should have empty list when no related product have been found', async () => {
-    const relatedProductsJSON = require('./mocks/related-products-scores-empty-mock.json');
-    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsJSON));
+    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsScoresEmptyMock));
 
     const results = await relatedProductsService.getRelatedproducts('vanilla-ice-cream-tubs', 222);
 

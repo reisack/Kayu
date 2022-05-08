@@ -2,10 +2,12 @@ import AdditiveInformationsService from '../src/services/additive-informations-s
 import fetchMock from 'jest-fetch-mock';
 import AdditiveInformation from '../src/classes/additiveInformation';
 
+import additivesMock from './mocks/additives-mock.json';
+import additivesWithoutRisksMock from './mocks/additives-without-risks-mock.json';
+
 describe('Additive informations service', () => {
   it('should have additives informations when fetching risk informations', async () => {
-    const additiveInformationJSON = require('./mocks/additives-mock.json');
-    fetchMock.mockResponseOnce(JSON.stringify(additiveInformationJSON));
+    fetchMock.mockResponseOnce(JSON.stringify(additivesMock));
 
     await AdditiveInformationsService.initAdditiveScoreInformations();
     const result = AdditiveInformationsService.getAdditiveScoreInformations();
@@ -24,9 +26,8 @@ describe('Additive informations service', () => {
   });
 
   it('should have no additives informations when fetching no risk informations', async () => {
-    const additivesInformationsWithoutRisksJSON = require('./mocks/additives-without-risks-mock.json');
     fetchMock.mockResponseOnce(
-      JSON.stringify(additivesInformationsWithoutRisksJSON),
+      JSON.stringify(additivesWithoutRisksMock),
     );
 
     await AdditiveInformationsService.initAdditiveScoreInformations();

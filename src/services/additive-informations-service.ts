@@ -14,7 +14,7 @@ export default class AdditiveInformationsService {
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
   private static setSimplifiedObject(jsonFromAPI: any): void {
     const additiveScoreInformations: AdditiveInformation[] = [];
@@ -43,5 +43,5 @@ export default class AdditiveInformationsService {
 
   public static getAdditiveScoreInformations(): AdditiveInformation[] {
     return AdditiveInformationsService._additiveScoreInformations;
-  };
+  }
 }

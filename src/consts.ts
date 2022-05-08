@@ -1,5 +1,5 @@
 export default class Consts {
-  static openFoodFactAPIBaseUrl: string = 'https://fr.openfoodfacts.org/';
+  static openFoodFactAPIBaseUrl = 'https://fr.openfoodfacts.org/';
   static httpHeaderGetRequest: any = {
     method: 'GET',
     headers: {
