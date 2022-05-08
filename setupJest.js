@@ -1,4 +1,6 @@
-/* global jest */
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 
 // mock API calls
 require('jest-fetch-mock').enableMocks();
@@ -6,8 +8,13 @@ require('jest-fetch-mock').enableMocks();
 // mock console
 global.console = {
   ...console,
-  log: jest.fn(),
-  debug: jest.fn(),
-  info: jest.fn(),
-  error: jest.fn(),
+  log: () => {},
+  debug: () => {},
+  info: () => {},
+  error: () => {},
+};
+
+module.exports = {
+  preset: 'react-native',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 };

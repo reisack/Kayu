@@ -1,11 +1,20 @@
 import React from 'react';
 import {View, Text, Button, Alert, StyleSheet} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import ScoreProductService from '../services/score-product-service';
+import { ProductInformationEnum } from '../enums';
+// @ts-ignore
 import ProgressBar from 'react-native-progress/Bar';
-import scoreProductService from '../services/score-product-service';
 
-const ScoreProduct = ({score, nutritionValue, productInfoEnum}) => {
-  const {t} = useTranslation();
+interface Props {
+  score: number,
+  nutritionValue: number | string[],
+  productInfo: ProductInformationEnum
+}
+
+const ScoreProduct: React.FC<Props> = ({score, nutritionValue, productInfo: productInfo}) => {
+  const { t } = useTranslation();
+  const scoreProductService = new ScoreProductService();
 
   const progressBarWidth = 200;
   const progressBarHeight = 20;
@@ -57,8 +66,8 @@ const ScoreProduct = ({score, nutritionValue, productInfoEnum}) => {
                   title="?"
                   onPress={() =>
                     Alert.alert(
-                      t('informations'),
-                      t(scoreProductService.getHelpMessage(productInfoEnum), {
+                      t<string>('informations'),
+                      t<string>(scoreProductService.getHelpMessage(productInfo), {
                         nutritionValue: getNutritionValueForI18n(),
                       }),
                     )
@@ -69,7 +78,7 @@ const ScoreProduct = ({score, nutritionValue, productInfoEnum}) => {
           </View>
           <View style={styles.section}>
             <Text>
-              {t(scoreProductService.getExpression(score, productInfoEnum))}
+              {t<string>(scoreProductService.getExpression(score, productInfo))}
             </Text>
           </View>
         </View>
