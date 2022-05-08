@@ -6,6 +6,7 @@ import ScoreCalculationService from './score-calculation-service';
 import '../extensions';
 
 export default class RelatedProductsService {
+  private readonly searchProductsUrl = `${consts.openFoodFactAPIBaseUrl}api/v2/search`;
   private scoreCalculationService: ScoreCalculationService;
 
   constructor() {
@@ -52,12 +53,11 @@ export default class RelatedProductsService {
     const relatedProducts: Product[] = [];
 
     try {
-      const relatedProductsSearchUrl = `${consts.openFoodFactAPIBaseUrl}api/v2/search`;
       const fields =
         'code,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score';
 
       const response = await fetch(
-        `${relatedProductsSearchUrl}?categories_tags_en=${category}&fields=${fields}&page_size=10000`,
+        `${this.searchProductsUrl}?categories_tags_en=${category}&fields=${fields}&page_size=10000`,
         consts.httpHeaderGetRequest,
       );
       const json: any = await response.json();
@@ -134,12 +134,11 @@ export default class RelatedProductsService {
     category: string,
   ): Promise<void> {
     try {
-      const relatedProductsSearchUrl = `${consts.openFoodFactAPIBaseUrl}api/v2/search`;
       const fields = 'code,product_name_fr,brands,image_front_url';
       const eanCodes = relatedProducts.map(p => p.eanCode).join(',');
 
       const response = await fetch(
-        `${relatedProductsSearchUrl}?categories_tags_en=${category}&fields=${fields}&code=${eanCodes}`,
+        `${this.searchProductsUrl}?categories_tags_en=${category}&fields=${fields}&code=${eanCodes}`,
         consts.httpHeaderGetRequest,
       );
 
