@@ -1,7 +1,5 @@
-import AdditiveInformation from '../src/classes/additiveInformation';
-import NutritionValues from '../src/classes/nutrition-values';
-import AdditiveInformationsService from '../src/services/additive-informations-service';
-import ScoreCalculationService from '../src/services/score-calculation-service';
+import { AdditiveInformation, NutritionValues } from '../src/classes/module';
+import { AdditiveInformationsService, ScoreCalculationService } from '../src/services/module';
 
 describe('Score calculation service', () => {
 

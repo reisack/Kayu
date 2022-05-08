@@ -1,8 +1,7 @@
 import { Nullable } from '../classes/extensions';
-import NutritionValues from '../classes/nutrition-values';
-import Score from '../classes/score';
 import {ProductInformationEnum} from '../enums';
 import AdditiveInformationsService from './additive-informations-service';
+import { Score, NutritionValues } from '../classes/module';
 
 export default class ScoreCalculationService {
   private nutritionValues: NutritionValues;

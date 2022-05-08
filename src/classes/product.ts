@@ -1,5 +1,4 @@
-import NutritionValues from "./nutrition-values";
-import Score from "./score";
+import { Score, NutritionValues } from './module';
 
 export default class Product {
   eanCode: string;

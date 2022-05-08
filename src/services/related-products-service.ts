@@ -1,9 +1,7 @@
-import NutritionValues from '../classes/nutrition-values';
-import Product from '../classes/product';
-import Score from '../classes/score';
 import consts from '../consts';
-import ScoreCalculationService from './score-calculation-service';
+import { Product, Score, NutritionValues } from '../classes/module';
 import '../classes/extensions';
+import { ScoreCalculationService } from './module';
 
 export default class RelatedProductsService {
   public async getRelatedproducts(category: string, productTotalScore: number): Promise<Product[]> {
