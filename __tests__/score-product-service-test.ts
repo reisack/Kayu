@@ -1,5 +1,5 @@
+import ScoreProductService from '../src/services/score-product-service';
 import {ProductInformationEnum} from '../src/enums';
-import { ScoreProductService } from '../src/services/module';
 
 describe('Score product service', () => {
 

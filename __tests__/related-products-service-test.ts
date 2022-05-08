@@ -1,6 +1,6 @@
 import {mockRandom, resetMockRandom} from 'jest-mock-random';
 import fetchMock from 'jest-fetch-mock';
-import { RelatedProductsService } from '../src/services/module';
+import RelatedProductsService from '../src/services/related-products-service';
 
 describe('Related products service', () => {
 

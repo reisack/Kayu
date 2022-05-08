@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, ActivityIndicator, StyleSheet} from 'react-native';
+import ScoreCalculationService from '../services/score-calculation-service'; '../services/score-calculation-service';
 import ScoreProduct from './score-product';
 import {ProductInformationEnum} from '../enums';
 import consts from '../consts';
-import { Product, NutritionValues } from '../classes/module';
-import { ScoreCalculationService } from '../services/module';
+import NutritionValues from '../classes/nutrition-values';
+import Product from '../classes/product';
 
 interface Props {
   eanCode: string,
@@ -61,7 +62,6 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
     const scoreCalculationService = new ScoreCalculationService(nutritionValues);
 
     const simplifiedProduct: Product = {
-      eanCode: eanCode,
       frName: product.product_name_fr,
       brands: product.brands,
       imageUrl: product.image_front_url,

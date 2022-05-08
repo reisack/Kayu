@@ -1,6 +1,6 @@
+import AdditiveInformationsService from '../src/services/additive-informations-service';
 import fetchMock from 'jest-fetch-mock';
-import { AdditiveInformation } from '../src/classes/module';
-import { AdditiveInformationsService } from '../src/services/module';
+import AdditiveInformation from '../src/classes/additiveInformation';
 
 describe('Additive informations service', () => {
   it('should have additives informations when fetching risk informations', async () => {

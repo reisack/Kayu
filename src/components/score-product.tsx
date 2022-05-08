@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, Button, Alert, StyleSheet} from 'react-native';
 import { useTranslation } from "react-i18next";
+import ScoreProductService from '../services/score-product-service';
 import { ProductInformationEnum } from '../enums';
-import { ScoreProductService } from '../services/module';
 // @ts-ignore
 import ProgressBar from 'react-native-progress/Bar';
 
