@@ -1,0 +1,33 @@
+@baseUrl = https://fr.openfoodfacts.org/
+@eanCodeProduct = 3330720251039
+@categoriesTagsEn = vanilla-ice-cream-tubs
+
+# All informations from a product by EAN barcode
+GET {{baseUrl}}api/v0/product/{{eanCodeProduct}}.json
+
+###
+
+# Specific informations from a product by EAN barcode
+GET {{baseUrl}}api/v0/product/{{eanCodeProduct}}.json
+    ?fields=product_name_fr,brands,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score,image_front_url,compared_to_category,categories_hierarchy
+
+###
+
+# All additives informations
+GET {{baseUrl}}data/taxonomies/additives.json
+
+###
+
+# Related products score informations by category
+GET {{baseUrl}}api/v2/search
+    ?categories_tags_en={{categoriesTagsEn}}
+    &fields=code,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score
+    &page_size=100
+
+###
+
+# Related products by EAN codes list
+GET {{baseUrl}}api/v2/search
+    ?categories_tags_en={{categoriesTagsEn}}
+    &fields=code,product_name_fr,brands,image_front_url
+    &code=3256221116045,8714100635698,40875125,7613034528971,8714100875933
