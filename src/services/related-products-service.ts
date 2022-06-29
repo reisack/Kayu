@@ -57,7 +57,7 @@ export default class RelatedProductsService {
         'code,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score';
 
       const response = await fetch(
-        `${this.searchProductsUrl}?categories_tags_en=${category}&fields=${fields}&page_size=10000`,
+        `${this.searchProductsUrl}?categories_tags_en=${category}&fields=${fields}&page_size=100`,
         consts.httpHeaderGetRequest,
       );
       const json: any = await response.json();
