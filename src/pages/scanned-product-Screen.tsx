@@ -19,7 +19,7 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
     },
   });
 
-  const {eanCode} = route.params;
+  const {eanCode, isRelated} = route.params;
 
   const [productCouldBeFound, setProductCouldBeFound] = useState(true);
 
@@ -28,7 +28,9 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
       {productCouldBeFound ? (
         <ScannedProduct
           eanCode={eanCode}
+          isRelated={isRelated}
           onNotFoundProduct={() => setProductCouldBeFound(false)}
+          navigation={navigation}
         />
       ) : (
         <NotFoundProduct />

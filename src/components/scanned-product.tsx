@@ -10,10 +10,17 @@ import RelatedProductList from './related-product-list';
 
 interface Props {
   eanCode: string;
+  isRelated: boolean;
   onNotFoundProduct: () => void;
+  navigation: any;
 }
 
-const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
+const ScannedProduct: React.FC<Props> = ({
+  eanCode,
+  isRelated,
+  onNotFoundProduct,
+  navigation,
+}) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Product>(Product.empty);
 
@@ -167,12 +174,18 @@ const ScannedProduct: React.FC<Props> = ({eanCode, onNotFoundProduct}) => {
           ) : (
             <View></View>
           )}
-          <View>
-            <RelatedProductList
-              category={data.mainCategory}
-              productTotalScore={data.score.getTotal()}
-            />
-          </View>
+
+          {!isRelated ? (
+            <View>
+              <RelatedProductList
+                navigation={navigation}
+                category={data.mainCategory}
+                productTotalScore={data.score.getTotal()}
+              />
+            </View>
+          ) : (
+            <View></View>
+          )}
         </>
       )}
     </View>

@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import Product from '../classes/product';
 
 interface Props {
   product: Product;
+  navigation: any;
 }
 
-const RelatedProduct: React.FC<Props> = ({product}) => {
+const RelatedProduct: React.FC<Props> = ({product, navigation}) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -28,15 +29,24 @@ const RelatedProduct: React.FC<Props> = ({product}) => {
     },
   });
 
+  const onRelatedProductPress = () => {
+    navigation.navigate('ScannedProductScreen', {
+      eanCode: product.eanCode,
+      isRelated: true,
+    });
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.row}>
-        <Image style={styles.productImage} source={{uri: product.imageUrl}} />
-        <Text>
-          {product.frName} - {product.brands}
-        </Text>
+    <Pressable onPress={() => onRelatedProductPress()}>
+      <View style={styles.container}>
+        <View style={styles.row}>
+          <Image style={styles.productImage} source={{uri: product.imageUrl}} />
+          <Text>
+            {product.frName} - {product.brands}
+          </Text>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

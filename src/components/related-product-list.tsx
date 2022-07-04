@@ -7,9 +7,14 @@ import RelatedProduct from './related-product';
 interface Props {
   category: string;
   productTotalScore: number;
+  navigation: any;
 }
 
-const RelatedProductList: React.FC<Props> = ({category, productTotalScore}) => {
+const RelatedProductList: React.FC<Props> = ({
+  category,
+  productTotalScore,
+  navigation,
+}) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Product[]>([]);
 
@@ -37,7 +42,13 @@ const RelatedProductList: React.FC<Props> = ({category, productTotalScore}) => {
         <ActivityIndicator />
       ) : (
         data.map((product: Product) => {
-          return <RelatedProduct key={product.eanCode} product={product} />;
+          return (
+            <RelatedProduct
+              navigation={navigation}
+              key={product.eanCode}
+              product={product}
+            />
+          );
         })
       )}
     </View>
