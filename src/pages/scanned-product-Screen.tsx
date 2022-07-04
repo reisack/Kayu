@@ -19,9 +19,17 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
     },
   });
 
-  const {eanCode, isRelated} = route.params;
+  const {eanCode, isRelated, originProductEanCode} = route.params;
 
   const [productCouldBeFound, setProductCouldBeFound] = useState(true);
+
+  const redirectToScannedProduct = () => {
+    navigation.navigate('ScannedProductScreen', {
+      eanCode: originProductEanCode,
+      isRelated: false,
+      originProductEanCode: null,
+    });
+  };
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -35,6 +43,18 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
       ) : (
         <NotFoundProduct />
       )}
+
+      {originProductEanCode ? (
+        <View style={styles.buttonContainer}>
+          <Button
+            title={t<string>('backToScannedProduct')}
+            onPress={() => redirectToScannedProduct()}
+          />
+        </View>
+      ) : (
+        <View></View>
+      )}
+
       <View style={styles.buttonContainer}>
         <Button
           title={t<string>('home')}

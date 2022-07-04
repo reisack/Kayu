@@ -178,6 +178,7 @@ const ScannedProduct: React.FC<Props> = ({
           {!isRelated ? (
             <View>
               <RelatedProductList
+                eanCode={data.eanCode}
                 navigation={navigation}
                 category={data.mainCategory}
                 productTotalScore={data.score.getTotal()}

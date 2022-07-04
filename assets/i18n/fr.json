@@ -6,6 +6,7 @@
   "home": "Accueil",
   "scanAnotherBarcode": "Scanner un autre code-barres",
   "notFoundProduct": "Le produit n'a pas été trouvé",
+  "backToScannedProduct": "Retour au produit scanné",
   "informations": "Informations",
   "score": {
     "expression": {

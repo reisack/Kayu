@@ -5,9 +5,14 @@ import Product from '../classes/product';
 interface Props {
   product: Product;
   navigation: any;
+  originProductEanCode: string;
 }
 
-const RelatedProduct: React.FC<Props> = ({product, navigation}) => {
+const RelatedProduct: React.FC<Props> = ({
+  product,
+  navigation,
+  originProductEanCode,
+}) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -33,6 +38,7 @@ const RelatedProduct: React.FC<Props> = ({product, navigation}) => {
     navigation.navigate('ScannedProductScreen', {
       eanCode: product.eanCode,
       isRelated: true,
+      originProductEanCode: originProductEanCode,
     });
   };
 

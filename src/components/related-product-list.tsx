@@ -5,12 +5,14 @@ import RelatedProductsService from '../services/related-products-service';
 import RelatedProduct from './related-product';
 
 interface Props {
+  eanCode: string;
   category: string;
   productTotalScore: number;
   navigation: any;
 }
 
 const RelatedProductList: React.FC<Props> = ({
+  eanCode,
   category,
   productTotalScore,
   navigation,
@@ -44,6 +46,7 @@ const RelatedProductList: React.FC<Props> = ({
         data.map((product: Product) => {
           return (
             <RelatedProduct
+              originProductEanCode={eanCode}
               navigation={navigation}
               key={product.eanCode}
               product={product}
