@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import Product from '../classes/product';
 import RelatedProductsService from '../services/related-products-service';
@@ -21,6 +21,7 @@ const RelatedProductList: React.FC<Props> = ({
   const [data, setData] = useState<Product[]>([]);
 
   const relatedProductsService = new RelatedProductsService();
+  const isMounted = useRef(true);
 
   const getRelatedproducts = async (
     category: string,
@@ -30,13 +31,22 @@ const RelatedProductList: React.FC<Props> = ({
       category,
       productTotalScore,
     );
-    setData(relatedProducts);
-    setLoading(false);
+    if (isMounted.current) {
+      setData(relatedProducts);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    getRelatedproducts(category, productTotalScore);
+    isMounted.current && getRelatedproducts(category, productTotalScore);
   }, [category, productTotalScore]);
+
+  // Cleanup
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   return (
     <View>
