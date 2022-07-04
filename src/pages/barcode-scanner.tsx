@@ -66,6 +66,7 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     <View style={styles.container}>
       <RNCamera
         captureAudio={false}
+        flashMode={'torch'}
         type={RNCamera.Constants.Type.back}
         style={styles.preview}
         onBarCodeRead={onBarcodeRead.bind(this)}>
