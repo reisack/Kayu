@@ -1,18 +1,16 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import Product from '../classes/product';
 
 interface Props {
   product: Product;
-  navigation: any;
   originProductEanCode: string;
 }
 
-const RelatedProduct: React.FC<Props> = ({
-  product,
-  navigation,
-  originProductEanCode,
-}) => {
+const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
+  const navigation: any = useNavigation();
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,

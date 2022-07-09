@@ -38,7 +38,6 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
           eanCode={eanCode}
           isRelated={isRelated}
           onNotFoundProduct={() => setProductCouldBeFound(false)}
-          navigation={navigation}
         />
       ) : (
         <NotFoundProduct />

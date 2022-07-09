@@ -5,17 +5,15 @@ import RelatedProductsService from '../services/related-products-service';
 import RelatedProduct from './related-product';
 
 interface Props {
-  eanCode: string;
+  originProductEanCode: string;
   category: string;
   productTotalScore: number;
-  navigation: any;
 }
 
 const RelatedProductList: React.FC<Props> = ({
-  eanCode,
+  originProductEanCode,
   category,
   productTotalScore,
-  navigation,
 }) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Product[]>([]);
@@ -56,8 +54,7 @@ const RelatedProductList: React.FC<Props> = ({
         data.map((product: Product) => {
           return (
             <RelatedProduct
-              originProductEanCode={eanCode}
-              navigation={navigation}
+              originProductEanCode={originProductEanCode}
               key={product.eanCode}
               product={product}
             />

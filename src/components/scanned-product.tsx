@@ -12,14 +12,12 @@ interface Props {
   eanCode: string;
   isRelated: boolean;
   onNotFoundProduct: () => void;
-  navigation: any;
 }
 
 const ScannedProduct: React.FC<Props> = ({
   eanCode,
   isRelated,
   onNotFoundProduct,
-  navigation,
 }) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Product>(Product.empty);
@@ -178,8 +176,7 @@ const ScannedProduct: React.FC<Props> = ({
           {!isRelated ? (
             <View>
               <RelatedProductList
-                eanCode={data.eanCode}
-                navigation={navigation}
+                originProductEanCode={data.eanCode}
                 category={data.mainCategory}
                 productTotalScore={data.score.getTotal()}
               />
