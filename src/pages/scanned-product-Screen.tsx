@@ -24,11 +24,6 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
   const [productCouldBeFound, setProductCouldBeFound] = useState(true);
 
   const redirectToScannedProduct = () => {
-    // navigation.navigate('ScannedProductScreen', {
-    //   eanCode: originProductEanCode,
-    //   isRelated: false,
-    //   originProductEanCode: null,
-    // });
     navigation.goBack();
   };
 
@@ -52,21 +47,21 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
           />
         </View>
       ) : (
-        <View></View>
+        <View>
+          <View style={styles.buttonContainer}>
+            <Button
+              title={t<string>('home')}
+              onPress={() => navigation.navigate('Home')}
+            />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button
+              title={t<string>('scanAnotherBarcode')}
+              onPress={() => navigation.navigate('BarcodeScanner')}
+            />
+          </View>
+        </View>
       )}
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title={t<string>('home')}
-          onPress={() => navigation.navigate('Home')}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title={t<string>('scanAnotherBarcode')}
-          onPress={() => navigation.navigate('BarcodeScanner')}
-        />
-      </View>
     </ScrollView>
   );
 };

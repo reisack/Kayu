@@ -99,7 +99,7 @@ const ScannedProduct: React.FC<Props> = ({
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <>
+        <View>
           <Image style={styles.productImage} source={{uri: data.imageUrl}} />
           <Text>
             {data.frName} - {data.brands}
@@ -184,7 +184,7 @@ const ScannedProduct: React.FC<Props> = ({
           ) : (
             <View></View>
           )}
-        </>
+        </View>
       )}
     </View>
   );
