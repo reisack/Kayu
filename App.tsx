@@ -5,7 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './src/pages/home';
 import Tutorial from './src/pages/tutorial';
 import BarcodeScanner from './src/pages/barcode-scanner';
-import ScannedProductScreen from './src/pages/scanned-product-Screen';
+import ProductScreen from './src/pages/product-screen';
 import AdditiveInformationsService from './src/services/additive-informations-service';
 
 const Stack = createNativeStackNavigator();
@@ -34,8 +34,8 @@ const App: React.FC = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="ScannedProductScreen"
-          component={ScannedProductScreen}
+          name="ProductScreen"
+          component={ProductScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

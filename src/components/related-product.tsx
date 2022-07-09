@@ -36,9 +36,9 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
     // Use of push method instead of navigate.
     // The purpose is to keep related products data in memory when we go to a related product detail
     // and not reload them when we go back to the scanned product screen.
-    // So we stack a another ScannedProductScreen in the route.
+    // So we stack a another ProductScreen in the route.
     // More information : https://reactnavigation.org/docs/navigating/#navigate-to-a-route-multiple-times
-    navigation.push('ScannedProductScreen', {
+    navigation.push('ProductScreen', {
       eanCode: product.eanCode,
       isRelated: true,
       originProductEanCode: originProductEanCode,

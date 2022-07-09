@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Button, ScrollView, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import ScannedProduct from '../components/scanned-product';
+import ProductDetail from '../components/product-detail';
 import NotFoundProduct from '../components/not-found-product';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   navigation: any;
 }
 
-const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
+const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   const {t} = useTranslation();
 
   const styles = StyleSheet.create({
@@ -30,7 +30,7 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       {productCouldBeFound ? (
-        <ScannedProduct
+        <ProductDetail
           eanCode={eanCode}
           isRelated={isRelated}
           onNotFoundProduct={() => setProductCouldBeFound(false)}
@@ -66,4 +66,4 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
   );
 };
 
-export default ScannedProductScreen;
+export default ProductScreen;

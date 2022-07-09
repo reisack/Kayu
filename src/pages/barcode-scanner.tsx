@@ -51,7 +51,7 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
   const onBarcodeRead = (scanResult: {data: any}) => {
     if (!productHasBeenScanned && scanResult && scanResult.data) {
       setProductHasBeenScanned(true);
-      navigation.navigate('ScannedProductScreen', {
+      navigation.navigate('ProductScreen', {
         eanCode: scanResult.data,
         isRelated: false,
         originProductEanCode: null,

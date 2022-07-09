@@ -14,7 +14,7 @@ interface Props {
   onNotFoundProduct: () => void;
 }
 
-const ScannedProduct: React.FC<Props> = ({
+const ProductDetail: React.FC<Props> = ({
   eanCode,
   isRelated,
   onNotFoundProduct,
@@ -190,4 +190,4 @@ const ScannedProduct: React.FC<Props> = ({
   );
 };
 
-export default ScannedProduct;
+export default ProductDetail;
