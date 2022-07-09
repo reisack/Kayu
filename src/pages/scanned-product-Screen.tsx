@@ -24,11 +24,12 @@ const ScannedProductScreen: React.FC<Props> = ({route, navigation}) => {
   const [productCouldBeFound, setProductCouldBeFound] = useState(true);
 
   const redirectToScannedProduct = () => {
-    navigation.navigate('ScannedProductScreen', {
-      eanCode: originProductEanCode,
-      isRelated: false,
-      originProductEanCode: null,
-    });
+    // navigation.navigate('ScannedProductScreen', {
+    //   eanCode: originProductEanCode,
+    //   isRelated: false,
+    //   originProductEanCode: null,
+    // });
+    navigation.goBack();
   };
 
   return (

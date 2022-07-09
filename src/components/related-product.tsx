@@ -33,7 +33,14 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
   });
 
   const onRelatedProductPress = () => {
-    navigation.navigate('ScannedProductScreen', {
+    // navigation.navigate('ScannedProductScreen', {
+    //   eanCode: product.eanCode,
+    //   isRelated: true,
+    //   originProductEanCode: originProductEanCode,
+    // });
+
+    // https://reactnavigation.org/docs/navigating/#navigate-to-a-route-multiple-times
+    navigation.push('ScannedProductScreen', {
       eanCode: product.eanCode,
       isRelated: true,
       originProductEanCode: originProductEanCode,
