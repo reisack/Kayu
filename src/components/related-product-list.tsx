@@ -5,16 +5,10 @@ import RelatedProductsService from '../services/related-products-service';
 import RelatedProduct from './related-product';
 
 interface Props {
-  originProductEanCode: string;
-  category: string;
-  productTotalScore: number;
+  product: Product;
 }
 
-const RelatedProductList: React.FC<Props> = ({
-  originProductEanCode,
-  category,
-  productTotalScore,
-}) => {
+const RelatedProductList: React.FC<Props> = ({product}) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Product[]>([]);
 
@@ -36,8 +30,9 @@ const RelatedProductList: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    isMounted.current && getRelatedproducts(category, productTotalScore);
-  }, [category, productTotalScore]);
+    isMounted.current &&
+      getRelatedproducts(product.mainCategory, product.score.getTotal());
+  }, [product]);
 
   // Cleanup
   useEffect(() => {
@@ -51,12 +46,12 @@ const RelatedProductList: React.FC<Props> = ({
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        data.map((product: Product) => {
+        data.map((relatedProduct: Product) => {
           return (
             <RelatedProduct
-              originProductEanCode={originProductEanCode}
-              key={product.eanCode}
-              product={product}
+              originProductEanCode={product.eanCode}
+              key={relatedProduct.eanCode}
+              product={relatedProduct}
             />
           );
         })

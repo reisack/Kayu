@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Button, ScrollView, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import ProductDetail from '../components/product-detail';
+import ProductDetails from '../components/product-details';
 import NotFoundProduct from '../components/not-found-product';
 
 interface Props {
@@ -30,7 +30,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       {productCouldBeFound ? (
-        <ProductDetail
+        <ProductDetails
           eanCode={eanCode}
           isRelated={isRelated}
           onNotFoundProduct={() => setProductCouldBeFound(false)}

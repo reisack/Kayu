@@ -1,6 +1,6 @@
 import {ProductInformationEnum} from '../enums';
 
-export default class ScoreProductService {
+export default class ProductScoreService {
   public getExpression(
     score: number,
     productInfo: ProductInformationEnum,

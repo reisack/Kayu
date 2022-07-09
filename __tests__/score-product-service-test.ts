@@ -1,15 +1,15 @@
-import ScoreProductService from '../src/services/score-product-service';
+import ProductScoreService from '../src/services/product-score-service';
 import {ProductInformationEnum} from '../src/enums';
 
 describe('Score product service', () => {
-  let scoreProductService: ScoreProductService;
+  let productScoreService: ProductScoreService;
 
   beforeEach(() => {
-    scoreProductService = new ScoreProductService();
+    productScoreService = new ProductScoreService();
   });
 
   it('should return high score expression for fat, when score is equal to 50', () => {
-    const result = scoreProductService.getExpression(
+    const result = productScoreService.getExpression(
       50,
       ProductInformationEnum.fat,
     );
@@ -17,7 +17,7 @@ describe('Score product service', () => {
   });
 
   it('should return high score expression for sugar, when score is strictly higher than 50', () => {
-    const result = scoreProductService.getExpression(
+    const result = productScoreService.getExpression(
       51,
       ProductInformationEnum.sugar,
     );
@@ -25,7 +25,7 @@ describe('Score product service', () => {
   });
 
   it('should return high score expression for salt, when score is stricly lower than 50', () => {
-    const result = scoreProductService.getExpression(
+    const result = productScoreService.getExpression(
       49,
       ProductInformationEnum.salt,
     );
@@ -33,14 +33,14 @@ describe('Score product service', () => {
   });
 
   it('should return help message for additives', () => {
-    const result = scoreProductService.getHelpMessage(
+    const result = productScoreService.getHelpMessage(
       ProductInformationEnum.additives,
     );
     expect(result).toEqual('score.help.additives');
   });
 
   it('should return help message for novaGroup', () => {
-    const result = scoreProductService.getHelpMessage(
+    const result = productScoreService.getHelpMessage(
       ProductInformationEnum.novaGroup,
     );
     expect(result).toEqual('score.help.novaGroup');

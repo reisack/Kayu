@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, ActivityIndicator, StyleSheet} from 'react-native';
 import ScoreCalculationService from '../services/score-calculation-service';
-import ScoreProduct from './score-product';
-import {ProductInformationEnum} from '../enums';
 import consts from '../consts';
 import NutritionValues from '../classes/nutrition-values';
 import Product from '../classes/product';
 import RelatedProductList from './related-product-list';
+import ProductScoreList from './product-score-list';
 
 interface Props {
   eanCode: string;
@@ -14,7 +13,7 @@ interface Props {
   onNotFoundProduct: () => void;
 }
 
-const ProductDetail: React.FC<Props> = ({
+const ProductDetails: React.FC<Props> = ({
   eanCode,
   isRelated,
   onNotFoundProduct,
@@ -81,15 +80,6 @@ const ProductDetail: React.FC<Props> = ({
     return simplifiedProduct;
   };
 
-  const canDisplayScore = (nutritionValue: any, score: any): boolean => {
-    return (
-      nutritionValue !== undefined &&
-      nutritionValue !== null &&
-      score !== undefined &&
-      score != null
-    );
-  };
-
   useEffect(() => {
     getProductByEanCode(eanCode);
   }, [eanCode]);
@@ -107,79 +97,11 @@ const ProductDetail: React.FC<Props> = ({
           <Text>Catégorie principale : {data.mainCategory}</Text>
           <Text>Catégories : {data.categories.join(' | ')}</Text>
 
-          {canDisplayScore(data.nutritionValues.fat, data.score.fat) ? (
-            <ScoreProduct
-              score={data.score.fat as number}
-              nutritionValue={data.nutritionValues.fat as number}
-              productInfo={ProductInformationEnum.fat}
-            />
-          ) : (
-            <View></View>
-          )}
-
-          {canDisplayScore(data.nutritionValues.salt, data.score.salt) ? (
-            <ScoreProduct
-              score={data.score.salt as number}
-              nutritionValue={data.nutritionValues.salt as number}
-              productInfo={ProductInformationEnum.salt}
-            />
-          ) : (
-            <View></View>
-          )}
-
-          {canDisplayScore(data.nutritionValues.sugar, data.score.sugar) ? (
-            <ScoreProduct
-              score={data.score.sugar as number}
-              nutritionValue={data.nutritionValues.sugar as number}
-              productInfo={ProductInformationEnum.sugar}
-            />
-          ) : (
-            <View></View>
-          )}
-
-          {canDisplayScore(
-            data.nutritionValues.novaGroup,
-            data.score.novaGroup,
-          ) ? (
-            <ScoreProduct
-              score={data.score.novaGroup as number}
-              nutritionValue={data.nutritionValues.novaGroup as number}
-              productInfo={ProductInformationEnum.novaGroup}
-            />
-          ) : (
-            <View></View>
-          )}
-
-          {canDisplayScore(data.nutritionValues.eco, data.score.eco) ? (
-            <ScoreProduct
-              score={data.score.eco as number}
-              nutritionValue={data.nutritionValues.eco as number}
-              productInfo={ProductInformationEnum.eco}
-            />
-          ) : (
-            <View></View>
-          )}
-
-          {canDisplayScore(
-            data.nutritionValues.additives,
-            data.score.additives,
-          ) ? (
-            <ScoreProduct
-              score={data.score.additives as number}
-              nutritionValue={data.nutritionValues.additives as string[]}
-              productInfo={ProductInformationEnum.additives}
-            />
-          ) : (
-            <View></View>
-          )}
+          <ProductScoreList product={data} />
 
           {!isRelated ? (
             <View>
-              <RelatedProductList
-                originProductEanCode={data.eanCode}
-                category={data.mainCategory}
-                productTotalScore={data.score.getTotal()}
-              />
+              <RelatedProductList product={data} />
             </View>
           ) : (
             <View></View>
@@ -190,4 +112,4 @@ const ProductDetail: React.FC<Props> = ({
   );
 };
 
-export default ProductDetail;
+export default ProductDetails;
