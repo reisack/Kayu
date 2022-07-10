@@ -10,7 +10,7 @@ interface Props {
 
 const RelatedProductList: React.FC<Props> = ({product}) => {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState<Product[]>([]);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
 
   const relatedProductsService = new RelatedProductsService();
   const isMounted = useRef(true);
@@ -24,7 +24,7 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
       productTotalScore,
     );
     if (isMounted.current) {
-      setData(relatedProducts);
+      setRelatedProducts(relatedProducts);
       setLoading(false);
     }
   };
@@ -46,7 +46,7 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        data.map((relatedProduct: Product) => {
+        relatedProducts.map((relatedProduct: Product) => {
           return (
             <RelatedProduct
               originProductEanCode={product.eanCode}

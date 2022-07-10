@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, Image, ActivityIndicator, StyleSheet} from 'react-native';
 import ScoreCalculationService from '../services/score-calculation-service';
 import consts from '../consts';
@@ -19,9 +19,10 @@ const ProductDetails: React.FC<Props> = ({
   onNotFoundProduct,
 }) => {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState<Product>(Product.empty);
+  const [product, setProduct] = useState<Product>(Product.empty);
 
   const scoreCalculationService = new ScoreCalculationService();
+  const isMounted = useRef(true);
 
   const styles = StyleSheet.create({
     productImage: {
@@ -41,16 +42,21 @@ const ProductDetails: React.FC<Props> = ({
         `${productDetailsUrl}${eanCode}.json?fields=${paramFields}`,
         consts.httpHeaderGetRequest,
       );
+
       const json: any = await response.json();
-      if (json && json.status && json.status === 1) {
-        setData(getSimplifiedProduct(json));
-        setLoading(false);
-      } else {
-        onNotFoundProduct();
+      if (isMounted.current) {
+        if (json && json.status && json.status === 1) {
+          setProduct(getSimplifiedProduct(json));
+          setLoading(false);
+        } else {
+          onNotFoundProduct();
+        }
       }
     } catch (error) {
       console.error(error);
-      onNotFoundProduct();
+      if (isMounted.current) {
+        onNotFoundProduct();
+      }
     }
   };
 
@@ -81,8 +87,15 @@ const ProductDetails: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    getProductByEanCode(eanCode);
+    isMounted.current && getProductByEanCode(eanCode);
   }, [eanCode]);
+
+  // Cleanup
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   return (
     <View>
@@ -90,18 +103,18 @@ const ProductDetails: React.FC<Props> = ({
         <ActivityIndicator />
       ) : (
         <View>
-          <Image style={styles.productImage} source={{uri: data.imageUrl}} />
+          <Image style={styles.productImage} source={{uri: product.imageUrl}} />
           <Text>
-            {data.frName} - {data.brands}
+            {product.frName} - {product.brands}
           </Text>
-          <Text>Catégorie principale : {data.mainCategory}</Text>
-          <Text>Catégories : {data.categories.join(' | ')}</Text>
+          <Text>Catégorie principale : {product.mainCategory}</Text>
+          <Text>Catégories : {product.categories.join(' | ')}</Text>
 
-          <ProductScoreList product={data} />
+          <ProductScoreList product={product} />
 
           {!isRelated ? (
             <View>
-              <RelatedProductList product={data} />
+              <RelatedProductList product={product} />
             </View>
           ) : (
             <View></View>
