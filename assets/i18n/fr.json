@@ -5,7 +5,7 @@
   "scanBarcodeLightOn": "Et la lumière fut.",
   "home": "Accueil",
   "scanAnotherBarcode": "Scanner un autre code-barres",
-  "notFoundProduct": "Le produit n'a pas été trouvé",
+  "notFoundProduct": "Le produit n'a pas été trouvé, donc :\n- Soit tu as scanné un produit non alimentaire et dans ce cas là, tu es con\n- Soit tu achètes des trucs que personne ne connaît pour faire genre et dans ce cas là, tu es con également",
   "backToScannedProduct": "Retour au produit scanné",
   "informations": "Informations",
   "score": {
