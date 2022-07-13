@@ -1,5 +1,13 @@
 import React from 'react';
-import {View, Text, Button, ScrollView, StyleSheet, Image, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Pressable,
+} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 interface Props {
@@ -25,7 +33,7 @@ const Home: React.FC<Props> = ({navigation}) => {
       padding: 16,
       marginBottom: 16,
       shadowColor: '#303838',
-      shadowOffset: { width: 0, height: 5 },
+      shadowOffset: {width: 0, height: 5},
       shadowRadius: 10,
       shadowOpacity: 0.35,
     },
@@ -38,7 +46,8 @@ const Home: React.FC<Props> = ({navigation}) => {
     textImageBarcode: {
       textAlign: 'center',
       color: '#FFFFFF',
-    }
+      fontSize: 16,
+    },
   });
 
   return (
@@ -51,11 +60,15 @@ const Home: React.FC<Props> = ({navigation}) => {
           />
         </View>
         <View style={styles.buttonBarcode}>
-          <Pressable
-            onPress={() => navigation.navigate('BarcodeScanner')}>
-              <Image style={styles.imageBarcode} source={require('../../assets/images/barcode.png')} />
-              <Text style={styles.textImageBarcode}>{t<string>('scanBarcode')}</Text>
-            </Pressable>
+          <Pressable onPress={() => navigation.navigate('BarcodeScanner')}>
+            <Image
+              style={styles.imageBarcode}
+              source={require('../../assets/images/barcode.png')}
+            />
+            <Text style={styles.textImageBarcode}>
+              {t<string>('scanBarcode')}
+            </Text>
+          </Pressable>
         </View>
       </View>
     </ScrollView>

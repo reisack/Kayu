@@ -1,7 +1,8 @@
 {
   "reactNativeTutorial": "Infos React Native",
-  "scanBarcode": "Appuyer pour scanner \n un code-barres",
-  "scanBarcodePlease": "Scanne un code-barres de bouffe hein, fais pas le con !",
+  "scanBarcode": "Appuyez pour scanner\nun code-barres",
+  "scanBarcodePlease": "Scanne un code-barres de bouffe, hein !\nFais pas le con !",
+  "scanBarcodeLightOn": "Et la lumière fut.",
   "home": "Accueil",
   "scanAnotherBarcode": "Scanner un autre code-barres",
   "notFoundProduct": "Le produit n'a pas été trouvé",

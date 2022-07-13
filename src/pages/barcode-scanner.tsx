@@ -34,9 +34,16 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
       alignItems: 'center',
     },
     topOverlay: {
-      top: 0,
+      top: 16,
       flex: 1,
       flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    bottomOverlay: {
+      bottom: 16,
+      flex: 1,
+      flexDirection: 'column',
       justifyContent: 'space-between',
       alignItems: 'center',
     },
@@ -50,6 +57,9 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     iconButton: {
       width: 32,
       height: 32,
+    },
+    torchButton: {
+      alignSelf: 'flex-end',
     },
   });
 
@@ -92,7 +102,17 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
         <Text style={styles.scanScreenMessage}>
           {t<string>('scanBarcodePlease')}
         </Text>
-        <View>
+      </View>
+      <View style={[styles.overlay, styles.bottomOverlay]}>
+        {torchMode === RNCamera.Constants.FlashMode.torch ? (
+          <Text style={styles.scanScreenMessage}>
+            {t<string>('scanBarcodeLightOn')}
+          </Text>
+        ) : (
+          <View></View>
+        )}
+
+        <View style={styles.torchButton}>
           <Pressable onPress={() => toggleTorch()}>
             {torchMode === RNCamera.Constants.FlashMode.off ? (
               <Image
