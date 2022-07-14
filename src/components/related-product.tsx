@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Text, StyleSheet, Image, Pressable} from 'react-native';
+import {Text, StyleSheet, Image, Pressable, View} from 'react-native';
 import Product from '../classes/product';
 
 interface Props {
@@ -12,6 +12,9 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
   const navigation: any = useNavigation();
 
   const styles = StyleSheet.create({
+    container: {
+      alignItems: 'center',
+    },
     section: {
       marginTop: 8,
     },
@@ -19,8 +22,6 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
       width: 100,
       height: 100,
       resizeMode: 'contain',
-      marginLeft: 'auto',
-      marginRight: 'auto',
     },
   });
 
@@ -39,10 +40,10 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
 
   return (
     <Pressable onPress={() => onRelatedProductPress()}>
-      <Image style={styles.productImage} source={{uri: product.imageUrl}} />
-      <Text>
-        {product.frName} - {product.brands}
-      </Text>
+      <View style={styles.container}>
+        <Image style={styles.productImage} source={{uri: product.imageUrl}} />
+        <Text>{product.frName}</Text>
+      </View>
     </Pressable>
   );
 };
