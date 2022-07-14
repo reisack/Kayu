@@ -25,10 +25,23 @@ const ProductDetails: React.FC<Props> = ({
   const isMounted = useRef(true);
 
   const styles = StyleSheet.create({
+    container: {
+      alignItems: 'center',
+    },
     productImage: {
       width: 200,
       height: 200,
       resizeMode: 'contain',
+      backgroundColor: '#FFFFFF',
+      marginTop: 16,
+    },
+    productTextContainer: {
+      width: 250,
+      paddingVertical: 8,
+    },
+    productText: {
+      textAlign: 'left',
+      fontSize: 16,
     },
   });
 
@@ -102,16 +115,12 @@ const ProductDetails: React.FC<Props> = ({
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <View>
+        <View style={styles.container}>
           <Image style={styles.productImage} source={{uri: product.imageUrl}} />
-          <Text>
-            {product.frName} - {product.brands}
-          </Text>
-          <Text>Catégorie principale : {product.mainCategory}</Text>
-          <Text>Catégories : {product.categories.join(' | ')}</Text>
-
+          <View style={styles.productTextContainer}>
+            <Text style={styles.productText}>{product.frName}</Text>
+          </View>
           <ProductScoreList product={product} />
-
           {!isRelated ? (
             <View>
               <RelatedProductList product={product} />

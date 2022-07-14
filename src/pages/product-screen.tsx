@@ -13,8 +13,11 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   const {t} = useTranslation();
 
   const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+    },
     buttonContainer: {
-      paddingHorizontal: 24,
       paddingTop: 32,
     },
   });
@@ -29,39 +32,41 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      {productCouldBeFound ? (
-        <ProductDetails
-          eanCode={eanCode}
-          isRelated={isRelated}
-          onNotFoundProduct={() => setProductCouldBeFound(false)}
-        />
-      ) : (
-        <NotFoundProduct />
-      )}
-
-      {originProductEanCode ? (
-        <View style={styles.buttonContainer}>
-          <Button
-            title={t<string>('backToScannedProduct')}
-            onPress={() => redirectToScannedProduct()}
+      <View style={styles.container}>
+        {productCouldBeFound ? (
+          <ProductDetails
+            eanCode={eanCode}
+            isRelated={isRelated}
+            onNotFoundProduct={() => setProductCouldBeFound(false)}
           />
-        </View>
-      ) : (
-        <View>
+        ) : (
+          <NotFoundProduct />
+        )}
+
+        {originProductEanCode ? (
           <View style={styles.buttonContainer}>
             <Button
-              title={t<string>('home')}
-              onPress={() => navigation.navigate('Home')}
+              title={t<string>('backToScannedProduct')}
+              onPress={() => redirectToScannedProduct()}
             />
           </View>
-          <View style={styles.buttonContainer}>
-            <Button
-              title={t<string>('scanAnotherBarcode')}
-              onPress={() => navigation.navigate('BarcodeScanner')}
-            />
+        ) : (
+          <View>
+            <View style={styles.buttonContainer}>
+              <Button
+                title={t<string>('home')}
+                onPress={() => navigation.navigate('Home')}
+              />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button
+                title={t<string>('scanAnotherBarcode')}
+                onPress={() => navigation.navigate('BarcodeScanner')}
+              />
+            </View>
           </View>
-        </View>
-      )}
+        )}
+      </View>
     </ScrollView>
   );
 };
