@@ -45,4 +45,18 @@ describe('Score product service', () => {
     );
     expect(result).toEqual('score.help.novaGroup');
   });
+
+  it('should return label for sugar', () => {
+    const result = productScoreService.getNutritionLabel(
+      ProductInformationEnum.sugar,
+    );
+    expect(result).toEqual('nutrition.sugar');
+  });
+
+  it('should return label for sugar', () => {
+    const result = productScoreService.getNutritionLabel(
+      ProductInformationEnum.salt,
+    );
+    expect(result).toEqual('nutrition.salt');
+  });
 });
