@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator, StyleSheet} from 'react-native';
 import Product from '../classes/product';
 import RelatedProductsService from '../services/related-products-service';
 import RelatedProduct from './related-product';
@@ -14,6 +14,13 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
 
   const relatedProductsService = new RelatedProductsService();
   const isMounted = useRef(true);
+
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: '#CDCDCD',
+      paddingVertical: 16,
+    },
+  });
 
   const getRelatedproducts = async (
     category: string,
@@ -42,7 +49,7 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (

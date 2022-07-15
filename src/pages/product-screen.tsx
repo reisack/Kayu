@@ -15,7 +15,6 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: 'center',
     },
     buttonContainer: {
       paddingTop: 32,

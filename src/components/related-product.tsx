@@ -15,13 +15,19 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
     container: {
       alignItems: 'center',
     },
-    section: {
-      marginTop: 8,
-    },
     productImage: {
       width: 100,
       height: 100,
       resizeMode: 'contain',
+      backgroundColor: '#FFFFFF',
+    },
+    productTextContainer: {
+      width: 250,
+      paddingVertical: 8,
+    },
+    productText: {
+      textAlign: 'left',
+      fontSize: 16,
     },
   });
 
@@ -42,7 +48,9 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
     <Pressable onPress={() => onRelatedProductPress()}>
       <View style={styles.container}>
         <Image style={styles.productImage} source={{uri: product.imageUrl}} />
-        <Text>{product.frName}</Text>
+        <View style={styles.productTextContainer}>
+          <Text style={styles.productText}>{product.frName}</Text>
+        </View>
       </View>
     </Pressable>
   );

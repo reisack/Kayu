@@ -25,8 +25,9 @@ const ProductDetails: React.FC<Props> = ({
   const isMounted = useRef(true);
 
   const styles = StyleSheet.create({
-    container: {
+    productHeader: {
       alignItems: 'center',
+      backgroundColor: '#1C7DB7',
     },
     productImage: {
       width: 200,
@@ -37,11 +38,12 @@ const ProductDetails: React.FC<Props> = ({
     },
     productTextContainer: {
       width: 250,
-      paddingVertical: 8,
+      paddingVertical: 16,
     },
     productText: {
       textAlign: 'left',
       fontSize: 16,
+      color: '#FFFFFF',
     },
   });
 
@@ -115,10 +117,12 @@ const ProductDetails: React.FC<Props> = ({
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <View style={styles.container}>
-          <Image style={styles.productImage} source={{uri: product.imageUrl}} />
-          <View style={styles.productTextContainer}>
-            <Text style={styles.productText}>{product.frName}</Text>
+        <View>
+          <View style={styles.productHeader}>
+            <Image style={styles.productImage} source={{uri: product.imageUrl}} />
+            <View style={styles.productTextContainer}>
+              <Text style={styles.productText}>{product.frName}</Text>
+            </View>
           </View>
           <ProductScoreList product={product} />
           {!isRelated ? (

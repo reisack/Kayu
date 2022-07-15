@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import ProductScore from './product-score';
 import {ProductInformationEnum} from '../enums';
 import Product from '../classes/product';
@@ -9,6 +9,14 @@ interface Props {
 }
 
 const ProductScoreList: React.FC<Props> = ({product}) => {
+  
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: '#707070',
+      paddingVertical: 16,
+    },
+  });
+
   const canDisplayScore = (nutritionValue: any, score: any): boolean => {
     return (
       nutritionValue !== undefined &&
@@ -19,7 +27,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       {canDisplayScore(product.nutritionValues.fat, product.score.fat) ? (
         <ProductScore
           score={product.score.fat as number}

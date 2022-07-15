@@ -25,7 +25,7 @@ const ProductScore: React.FC<Props> = ({
 
   const styles = StyleSheet.create({
     container: {
-      padding: 8,
+      paddingVertical: 8,
       paddingHorizontal: 24,
       marginHorizontal: 24,
       backgroundColor: score >= 50 ? '#14c258' : '#c72400',
