@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, Button, Alert, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, Alert, StyleSheet, Pressable, Image} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import ProductScoreService from '../services/product-score-service';
 import {ProductInformationEnum} from '../enums';
@@ -20,28 +20,55 @@ const ProductScore: React.FC<Props> = ({
   const {t} = useTranslation();
   const productScoreService = new ProductScoreService();
 
-  const progressBarWidth = 200;
+  const progressBarWidth = 250;
   const progressBarHeight = 20;
+
+  // One second before assign score so we have a cool animation
+  const [isIndeterminate, setIndeterminate] = useState(true);
+  setInterval(() => setIndeterminate(false), 1000);
 
   const styles = StyleSheet.create({
     container: {
       paddingVertical: 8,
       paddingHorizontal: 24,
       marginHorizontal: 24,
-      backgroundColor: score >= 50 ? '#14c258' : '#c72400',
       marginTop: 8,
+      alignSelf: 'center',
     },
-    section: {
-      marginTop: 8,
+    productName: {
+      color: '#FFFFFF',
     },
-    helpButton: {
-      width: 32,
-      height: 32,
+    scoreText: {
+      alignSelf: 'center',
+      color: '#FFFFFF',
+      marginRight: 16,
+      fontWeight: 'bold',
+    },
+    // https://www.flaticon.com/free-icon/information_906794
+    helpImage: {
+      width: 24,
+      height: 24,
+      marginLeft: 8,
+    },
+    row: {
+      flexDirection: 'row',
     },
   });
 
-  const getScoreForProgressBar = () => {
+  const getProgressBarScore = () => {
     return score / 100.0;
+  };
+
+  const getProgressBarColor = (
+    highscoreColor: string,
+    lowscoreColor: string,
+    isUnfilledColor: boolean,
+  ): string => {
+    if (isIndeterminate) {
+      return isUnfilledColor ? '#d1e5f0' : '#1C7DB7';
+    } else {
+      return score >= 50 ? highscoreColor : lowscoreColor;
+    }
   };
 
   const getNutritionValueForI18n = () => {
@@ -56,18 +83,28 @@ const ProductScore: React.FC<Props> = ({
         <View />
       ) : (
         <View style={styles.container}>
-          <View style={styles.section}>
-            <Text>
+          <View>
+            <Text style={styles.scoreText}>
+              {t<string>(productScoreService.getNutritionLabel(productInfo))}
+            </Text>
+            <View style={styles.row}>
               <View>
                 <ProgressBar
-                  progress={getScoreForProgressBar()}
+                  color={getProgressBarColor('#14c258', '#c72400', false)}
+                  unfilledColor={getProgressBarColor(
+                    '#d0f2dd',
+                    '#f3d3cc',
+                    true,
+                  )}
+                  progress={getProgressBarScore()}
                   width={progressBarWidth}
                   height={progressBarHeight}
+                  indeterminate={isIndeterminate}
+                  indeterminateAnimationDuration={1000}
                 />
               </View>
-              <View style={styles.helpButton}>
-                <Button
-                  title="?"
+              <View>
+                <Pressable
                   onPress={() =>
                     Alert.alert(
                       t<string>('informations'),
@@ -78,13 +115,17 @@ const ProductScore: React.FC<Props> = ({
                         },
                       ),
                     )
-                  }
-                />
+                  }>
+                  <Image
+                    style={styles.helpImage}
+                    source={require('../../assets/images/icons/help.png')}
+                  />
+                </Pressable>
               </View>
-            </Text>
+            </View>
           </View>
-          <View style={styles.section}>
-            <Text>
+          <View>
+            <Text style={styles.productName}>
               {t<string>(productScoreService.getExpression(score, productInfo))}
             </Text>
           </View>

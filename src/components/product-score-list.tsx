@@ -1,19 +1,30 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import ProductScore from './product-score';
 import {ProductInformationEnum} from '../enums';
 import Product from '../classes/product';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
   product: Product;
 }
 
 const ProductScoreList: React.FC<Props> = ({product}) => {
-  
+  const {t} = useTranslation();
+
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#707070',
+      backgroundColor: '#803c13',
       paddingVertical: 16,
+    },
+    scoresTitle: {
+      alignSelf: 'center',
+      marginRight: 16,
+    },
+    scoresTitleText: {
+      color: '#FFFFFF',
+      fontSize: 32,
+      fontWeight: 'bold',
     },
   });
 
@@ -28,12 +39,17 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.scoresTitle}>
+        <Text style={styles.scoresTitleText}>{t<string>('ScoresTitle')}</Text>
+      </View>
       {canDisplayScore(product.nutritionValues.fat, product.score.fat) ? (
-        <ProductScore
-          score={product.score.fat as number}
-          nutritionValue={product.nutritionValues.fat as number}
-          productInfo={ProductInformationEnum.fat}
-        />
+        <View>
+          <ProductScore
+            score={product.score.fat as number}
+            nutritionValue={product.nutritionValues.fat as number}
+            productInfo={ProductInformationEnum.fat}
+          />
+        </View>
       ) : (
         <View></View>
       )}

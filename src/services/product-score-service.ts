@@ -48,4 +48,17 @@ export default class ProductScoreService {
 
     return expressions[productInfo];
   }
+
+  public getNutritionLabel(productInfo: ProductInformationEnum): string {
+    const expressions = {
+      [ProductInformationEnum.fat]: 'nutrition.fat',
+      [ProductInformationEnum.sugar]: 'nutrition.sugar',
+      [ProductInformationEnum.salt]: 'nutrition.salt',
+      [ProductInformationEnum.additives]: 'nutrition.additives',
+      [ProductInformationEnum.novaGroup]: 'nutrition.novaGroup',
+      [ProductInformationEnum.eco]: 'nutrition.eco',
+    };
+
+    return expressions[productInfo];
+  }
 }

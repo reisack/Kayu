@@ -119,7 +119,10 @@ const ProductDetails: React.FC<Props> = ({
       ) : (
         <View>
           <View style={styles.productHeader}>
-            <Image style={styles.productImage} source={{uri: product.imageUrl}} />
+            <Image
+              style={styles.productImage}
+              source={{uri: product.imageUrl}}
+            />
             <View style={styles.productTextContainer}>
               <Text style={styles.productText}>{product.frName}</Text>
             </View>

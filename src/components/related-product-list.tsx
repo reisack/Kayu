@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, ActivityIndicator, StyleSheet} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import {View, ActivityIndicator, StyleSheet, Text} from 'react-native';
 import Product from '../classes/product';
 import RelatedProductsService from '../services/related-products-service';
 import RelatedProduct from './related-product';
@@ -12,6 +13,8 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
   const [isLoading, setLoading] = useState(true);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
 
+  const {t} = useTranslation();
+
   const relatedProductsService = new RelatedProductsService();
   const isMounted = useRef(true);
 
@@ -19,6 +22,12 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
     container: {
       backgroundColor: '#CDCDCD',
       paddingVertical: 16,
+    },
+    scoresTitleText: {
+      paddingBottom: 8,
+      fontSize: 32,
+      fontWeight: 'bold',
+      alignSelf: 'center',
     },
   });
 
@@ -50,6 +59,9 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.scoresTitleText}>
+        {t<string>('RelatedProductsTitle')}
+      </Text>
       {isLoading ? (
         <ActivityIndicator />
       ) : (

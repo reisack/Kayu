@@ -13,7 +13,14 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
 
   const styles = StyleSheet.create({
     container: {
+      backgroundColor: '#DEDEDE',
       alignItems: 'center',
+      borderColor: '#1C7DB7',
+      borderStyle: 'dashed',
+      borderWidth: 1,
+      marginVertical: 8,
+      marginHorizontal: 16,
+      paddingVertical: 16,
     },
     productImage: {
       width: 100,
@@ -23,7 +30,7 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
     },
     productTextContainer: {
       width: 250,
-      paddingVertical: 8,
+      marginTop: 8,
     },
     productText: {
       textAlign: 'left',
