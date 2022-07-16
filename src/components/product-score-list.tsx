@@ -40,7 +40,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
   return (
     <View style={styles.container}>
       <View style={styles.scoresTitle}>
-        <Text style={styles.scoresTitleText}>{t<string>('ScoresTitle')}</Text>
+        <Text style={styles.scoresTitleText}>{t<string>('ScoreTitle')}</Text>
       </View>
       {canDisplayScore(product.nutritionValues.fat, product.score.fat) ? (
         <View>
