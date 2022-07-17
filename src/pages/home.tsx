@@ -12,13 +12,13 @@ const Home: React.FC<Props> = ({navigation}) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 16,
       alignItems: 'center',
+      justifyContent: 'center',
     },
     buttonBarcode: {
       backgroundColor: '#1C7DB7',
       borderRadius: 16,
-      padding: 16,
+      paddingHorizontal: 16,
       marginBottom: 16,
       shadowColor: '#303838',
       shadowOffset: {width: 0, height: 5},
@@ -35,6 +35,7 @@ const Home: React.FC<Props> = ({navigation}) => {
       textAlign: 'center',
       color: '#FFFFFF',
       fontSize: 16,
+      paddingBottom: 16
     },
   });
 
