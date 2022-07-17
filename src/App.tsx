@@ -3,7 +3,6 @@ import {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './pages/home';
-import Tutorial from './pages/tutorial';
 import BarcodeScanner from './pages/barcode-scanner';
 import ProductScreen from './pages/product-screen';
 import AdditiveInformationsService from './services/additive-informations-service';
@@ -21,11 +20,6 @@ const App: React.FC = () => {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Tutorial"
-          component={Tutorial}
           options={{headerShown: false}}
         />
         <Stack.Screen
