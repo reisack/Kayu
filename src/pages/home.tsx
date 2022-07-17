@@ -35,7 +35,7 @@ const Home: React.FC<Props> = ({navigation}) => {
       textAlign: 'center',
       color: '#FFFFFF',
       fontSize: 16,
-      paddingBottom: 16
+      paddingBottom: 16,
     },
   });
 
