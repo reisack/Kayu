@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Button, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import ProductDetails from '../components/product-details';
 import NotFoundProduct from '../components/not-found-product';
@@ -29,27 +29,46 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   // https://www.flaticon.com/fr/icone-gratuite/accueil_25694
   const actions = [
     {
-      text: 'Home',
+      text: t<string>('home'),
       icon: require('../../assets/images/home.png'),
       name: 'homeButton',
       position: 1,
     },
     {
-      text: 'Scan',
+      text: t<string>('scanAnotherBarcode'),
       icon: require('../../assets/images/barcode.png'),
       name: 'barcodeButton',
       position: 2,
     },
   ];
 
-  const redirectToScannedProduct = () => {
-    navigation.goBack();
+  const actionsRelatedProduct = [
+    {
+      text: t<string>('backToScannedProduct'),
+      icon: require('../../assets/images/barcode.png'),
+      name: 'backButton',
+      position: 1,
+    },
+  ];
+
+  const onFabPressItem = (name: string | undefined) => {
+    switch (name) {
+      case 'homeButton':
+        navigation.navigate('Home');
+        break;
+      case 'barcodeButton':
+        navigation.navigate('BarcodeScanner');
+        break;
+      case 'backButton':
+        navigation.goBack();
+        break;
+    }
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View style={styles.container}>
+        <View>
           {productCouldBeFound ? (
             <ProductDetails
               eanCode={eanCode}
@@ -59,38 +78,16 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
           ) : (
             <NotFoundProduct />
           )}
-
-          {originProductEanCode ? (
-            <View style={styles.buttonContainer}>
-              <Button
-                title={t<string>('backToScannedProduct')}
-                onPress={() => redirectToScannedProduct()}
-              />
-            </View>
-          ) : (
-            <View>
-              <View style={styles.buttonContainer}>
-                <Button
-                  title={t<string>('home')}
-                  onPress={() => navigation.navigate('Home')}
-                />
-              </View>
-              <View style={styles.buttonContainer}>
-                <Button
-                  title={t<string>('scanAnotherBarcode')}
-                  onPress={() => navigation.navigate('BarcodeScanner')}
-                />
-              </View>
-            </View>
-          )}
         </View>
       </ScrollView>
-      <FloatingAction
-        actions={actions}
-        onPressItem={name => {
-          console.log(`selected button: ${name}`);
-        }}
-      />
+      <View>
+        <FloatingAction
+          actions={originProductEanCode ? actionsRelatedProduct : actions}
+          onPressItem={name => {
+            onFabPressItem(name);
+          }}
+        />
+      </View>
     </View>
   );
 };
