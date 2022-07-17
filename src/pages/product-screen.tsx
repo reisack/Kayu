@@ -30,7 +30,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   const actions = [
     {
       text: 'Home',
-      icon: require('../../assets/images/icons/home.png'),
+      icon: require('../../assets/images/home.png'),
       name: 'homeButton',
       position: 1,
     },

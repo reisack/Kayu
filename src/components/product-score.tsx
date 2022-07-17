@@ -118,7 +118,7 @@ const ProductScore: React.FC<Props> = ({
                   }>
                   <Image
                     style={styles.helpImage}
-                    source={require('../../assets/images/icons/help.png')}
+                    source={require('../../assets/images/help.png')}
                   />
                 </Pressable>
               </View>
