@@ -20,7 +20,7 @@ const NotFoundProduct: React.FC = () => {
       width: 128,
       height: 128,
       alignSelf: 'center',
-      marginVertical: 32
+      marginVertical: 32,
     },
   });
 
