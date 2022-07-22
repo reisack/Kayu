@@ -43,7 +43,7 @@ export default class AdditiveInformationsService {
       additiveScoreInformations;
   }
 
-  public static getAdditiveScoreInformations(): AdditiveInformation[] {
+  public static getAdditiveScoreInformations(): ReadonlyArray<AdditiveInformation> {
     return AdditiveInformationsService._additiveScoreInformations;
   }
 }
