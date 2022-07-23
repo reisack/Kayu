@@ -1,26 +1,27 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, useWindowDimensions} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 const NotFoundProduct: React.FC = () => {
   const {t} = useTranslation();
+  const {width, fontScale} = useWindowDimensions();
 
   const styles = StyleSheet.create({
     message: {
-      paddingTop: 16,
-      paddingLeft: 16,
-      fontSize: 24,
+      paddingTop: width * 0.0625,
+      paddingLeft: width * 0.0625,
+      fontSize: 24 * fontScale,
       textAlign: 'left',
       alignItems: 'center',
       justifyContent: 'center',
-      paddingHorizontal: 16,
+      paddingHorizontal: width * 0.0625,
     },
     // https://www.flaticon.com/free-icon/sad-face-in-rounded-square_42901
     notFoundImage: {
-      width: 128,
-      height: 128,
+      width: width * 0.33,
+      height: width * 0.33,
       alignSelf: 'center',
-      marginVertical: 32,
+      marginVertical: width * 0.125,
     },
   });
 

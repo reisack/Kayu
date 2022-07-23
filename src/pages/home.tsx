@@ -1,6 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  useWindowDimensions,
+} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import Consts from '../consts';
 
 interface Props {
   navigation: any;
@@ -8,6 +16,7 @@ interface Props {
 
 const Home: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
+  const {width, fontScale} = useWindowDimensions();
 
   const styles = StyleSheet.create({
     container: {
@@ -16,10 +25,10 @@ const Home: React.FC<Props> = ({navigation}) => {
       justifyContent: 'center',
     },
     buttonBarcode: {
-      backgroundColor: '#1C7DB7',
-      borderRadius: 16,
-      paddingHorizontal: 16,
-      marginBottom: 16,
+      backgroundColor: Consts.primaryColor,
+      borderRadius: width * 0.0625,
+      paddingHorizontal: width * 0.0625,
+      marginBottom: width * 0.0625,
       shadowColor: '#303838',
       shadowOffset: {width: 0, height: 5},
       shadowRadius: 10,
@@ -27,15 +36,15 @@ const Home: React.FC<Props> = ({navigation}) => {
     },
     // https://www.flaticon.com/fr/icone-gratuite/code-barres_372665
     imageBarcode: {
-      width: 200,
-      height: 200,
+      width: width * 0.5,
+      height: width * 0.5,
       resizeMode: 'center',
     },
     textImageBarcode: {
       textAlign: 'center',
       color: '#FFFFFF',
-      fontSize: 16,
-      paddingBottom: 16,
+      fontSize: 16 * fontScale,
+      paddingBottom: width * 0.0625,
     },
   });
 

@@ -6,4 +6,5 @@ export default class Consts {
       'User-Agent': 'Kayu - Android - Version 1.0',
     },
   };
+  static readonly primaryColor: string = '#1C7DB7';
 }

@@ -1,6 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {View, ActivityIndicator, StyleSheet, Text} from 'react-native';
+import {
+  View,
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+} from 'react-native';
 import Product from '../classes/product';
 import RelatedProductsService from '../services/related-products-service';
 import RelatedProduct from './related-product';
@@ -14,6 +20,7 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
 
   const {t} = useTranslation();
+  const {width, fontScale} = useWindowDimensions();
 
   const relatedProductsService = new RelatedProductsService();
   const isMounted = useRef(true);
@@ -21,11 +28,11 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: '#CDCDCD',
-      paddingVertical: 16,
+      paddingVertical: width * 0.0625,
     },
     scoresTitleText: {
-      paddingBottom: 8,
-      fontSize: 32,
+      paddingBottom: width * 0.03125,
+      fontSize: 32 * fontScale,
       fontWeight: 'bold',
       alignSelf: 'center',
     },

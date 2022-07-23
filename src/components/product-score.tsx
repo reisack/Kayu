@@ -1,10 +1,19 @@
 import React, {useState} from 'react';
-import {View, Text, Alert, StyleSheet, Pressable, Image} from 'react-native';
+import {
+  View,
+  Text,
+  Alert,
+  StyleSheet,
+  Pressable,
+  Image,
+  useWindowDimensions,
+} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import ProductScoreService from '../services/product-score-service';
 import {ProductInformationEnum} from '../enums';
 // @ts-ignore
 import ProgressBar from 'react-native-progress/Bar';
+import Consts from '../consts';
 
 interface Props {
   score: number;
@@ -18,10 +27,12 @@ const ProductScore: React.FC<Props> = ({
   productInfo: productInfo,
 }) => {
   const {t} = useTranslation();
+  const {width} = useWindowDimensions();
+
   const productScoreService = new ProductScoreService();
 
-  const progressBarWidth = 250;
-  const progressBarHeight = 20;
+  const progressBarWidth = width * 0.75;
+  const progressBarHeight = width * 0.0625;
 
   // One second before assign score so we have a cool animation
   const [isIndeterminate, setIndeterminate] = useState(true);
@@ -29,10 +40,10 @@ const ProductScore: React.FC<Props> = ({
 
   const styles = StyleSheet.create({
     container: {
-      paddingVertical: 8,
-      paddingHorizontal: 24,
-      marginHorizontal: 24,
-      marginTop: 8,
+      paddingVertical: width * 0.03125,
+      paddingHorizontal: width * 0.09375,
+      marginHorizontal: width * 0.09375,
+      marginTop: width * 0.03125,
       alignSelf: 'center',
     },
     productName: {
@@ -41,14 +52,14 @@ const ProductScore: React.FC<Props> = ({
     scoreText: {
       alignSelf: 'center',
       color: '#FFFFFF',
-      marginRight: 16,
+      marginRight: width * 0.0625,
       fontWeight: 'bold',
     },
     // https://www.flaticon.com/free-icon/information_906794
     helpImage: {
-      width: 24,
-      height: 24,
-      marginLeft: 8,
+      width: width * 0.09375,
+      height: width * 0.09375,
+      marginLeft: width * 0.03125,
     },
     row: {
       flexDirection: 'row',
@@ -65,7 +76,7 @@ const ProductScore: React.FC<Props> = ({
     isUnfilledColor: boolean,
   ): string => {
     if (isIndeterminate) {
-      return isUnfilledColor ? '#d1e5f0' : '#1C7DB7';
+      return isUnfilledColor ? '#d1e5f0' : Consts.primaryColor;
     } else {
       return score >= 50 ? highscoreColor : lowscoreColor;
     }

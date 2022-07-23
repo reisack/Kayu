@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet, useWindowDimensions} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import ProductDetails from '../components/product-details';
 import NotFoundProduct from '../components/not-found-product';
 import {FloatingAction} from 'react-native-floating-action';
+import Consts from '../consts';
 
 interface Props {
   route: any;
@@ -12,13 +13,14 @@ interface Props {
 
 const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   const {t} = useTranslation();
+  const {width} = useWindowDimensions();
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
     },
     buttonContainer: {
-      paddingTop: 32,
+      paddingTop: width * 0.25,
     },
   });
 
@@ -31,12 +33,14 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
     {
       text: t<string>('home'),
       icon: require('../../assets/images/home.png'),
+      color: Consts.primaryColor,
       name: 'homeButton',
       position: 1,
     },
     {
       text: t<string>('scanAnotherBarcode'),
       icon: require('../../assets/images/barcode.png'),
+      color: Consts.primaryColor,
       name: 'barcodeButton',
       position: 2,
     },
@@ -46,6 +50,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
     {
       text: t<string>('backToScannedProduct'),
       icon: require('../../assets/images/barcode.png'),
+      color: Consts.primaryColor,
       name: 'backButton',
       position: 1,
     },
@@ -82,6 +87,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
       </ScrollView>
       <View>
         <FloatingAction
+          color={Consts.primaryColor}
           actions={originProductEanCode ? actionsRelatedProduct : actions}
           onPressItem={name => {
             onFabPressItem(name);

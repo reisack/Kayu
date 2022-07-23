@@ -1,11 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Image, ActivityIndicator, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ActivityIndicator,
+  StyleSheet,
+  useWindowDimensions,
+} from 'react-native';
 import ScoreCalculationService from '../services/score-calculation-service';
 import consts from '../consts';
 import NutritionValues from '../classes/nutrition-values';
 import Product from '../classes/product';
 import RelatedProductList from './related-product-list';
 import ProductScoreList from './product-score-list';
+import Consts from '../consts';
 
 interface Props {
   eanCode: string;
@@ -18,6 +26,8 @@ const ProductDetails: React.FC<Props> = ({
   isRelated,
   onNotFoundProduct,
 }) => {
+  const {width, fontScale} = useWindowDimensions();
+
   const [isLoading, setLoading] = useState(true);
   const [product, setProduct] = useState<Product>(Product.empty);
 
@@ -27,22 +37,22 @@ const ProductDetails: React.FC<Props> = ({
   const styles = StyleSheet.create({
     productHeader: {
       alignItems: 'center',
-      backgroundColor: '#1C7DB7',
+      backgroundColor: Consts.primaryColor,
     },
     productImage: {
-      width: 200,
-      height: 200,
+      width: width * 0.5,
+      height: width * 0.5,
       resizeMode: 'contain',
       backgroundColor: '#FFFFFF',
-      marginTop: 16,
+      marginTop: width * 0.0625,
     },
     productTextContainer: {
-      width: 250,
-      paddingVertical: 16,
+      width: width * 0.75,
+      paddingVertical: width * 0.0625,
     },
     productText: {
       textAlign: 'left',
-      fontSize: 16,
+      fontSize: 16 * fontScale,
       color: '#FFFFFF',
     },
   });

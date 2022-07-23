@@ -1,7 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {RNCamera} from 'react-native-camera';
 import BarcodeMask from 'react-native-barcode-mask';
-import {StyleSheet, View, Text, Pressable, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  Image,
+  useWindowDimensions,
+} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
@@ -11,6 +18,7 @@ interface Props {
 
 const BarcodeScanner: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
+  const {width, fontScale} = useWindowDimensions();
 
   const isFocused = useIsFocused();
   const [productHasBeenScanned, setProductHasBeenScanned] =
@@ -28,35 +36,35 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     },
     overlay: {
       position: 'absolute',
-      padding: 16,
+      padding: width * 0.0625,
       right: 0,
       left: 0,
       alignItems: 'center',
     },
     topOverlay: {
-      top: 16,
+      top: width * 0.0625,
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
     },
     bottomOverlay: {
-      bottom: 16,
+      bottom: width * 0.0625,
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-between',
       alignItems: 'center',
     },
     scanScreenMessage: {
-      fontSize: 16,
+      fontSize: 16 * fontScale,
       color: 'white',
       textAlign: 'center',
       alignItems: 'center',
       justifyContent: 'center',
     },
     iconButton: {
-      width: 32,
-      height: 32,
+      width: width * 0.125,
+      height: width * 0.125,
     },
     torchButton: {
       alignSelf: 'flex-end',

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, useWindowDimensions, View} from 'react-native';
 import ProductScore from './product-score';
 import {ProductInformationEnum} from '../enums';
 import Product from '../classes/product';
@@ -11,19 +11,20 @@ interface Props {
 
 const ProductScoreList: React.FC<Props> = ({product}) => {
   const {t} = useTranslation();
+  const {width, fontScale} = useWindowDimensions();
 
   const styles = StyleSheet.create({
     container: {
       backgroundColor: '#803c13',
-      paddingVertical: 16,
+      paddingVertical: width * 0.0625,
     },
     scoresTitle: {
       alignSelf: 'center',
-      marginRight: 16,
+      marginRight: width * 0.0625,
     },
     scoresTitleText: {
       color: '#FFFFFF',
-      fontSize: 32,
+      fontSize: 32 * fontScale,
       fontWeight: 'bold',
     },
   });

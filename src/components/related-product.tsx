@@ -1,7 +1,15 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Text, StyleSheet, Image, Pressable, View} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import Product from '../classes/product';
+import Consts from '../consts';
 
 interface Props {
   product: Product;
@@ -10,31 +18,32 @@ interface Props {
 
 const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
   const navigation: any = useNavigation();
+  const {width, fontScale} = useWindowDimensions();
 
   const styles = StyleSheet.create({
     container: {
       backgroundColor: '#DEDEDE',
       alignItems: 'center',
-      borderColor: '#1C7DB7',
+      borderColor: Consts.primaryColor,
       borderStyle: 'dashed',
       borderWidth: 1,
-      marginVertical: 8,
-      marginHorizontal: 16,
-      paddingVertical: 16,
+      marginVertical: width * 0.03125,
+      marginHorizontal: width * 0.0625,
+      paddingVertical: width * 0.0625,
     },
     productImage: {
-      width: 100,
-      height: 100,
+      width: width * 0.25,
+      height: width * 0.25,
       resizeMode: 'contain',
       backgroundColor: '#FFFFFF',
     },
     productTextContainer: {
-      width: 250,
-      marginTop: 8,
+      width: width * 0.75,
+      marginTop: width * 0.03125,
     },
     productText: {
       textAlign: 'left',
-      fontSize: 16,
+      fontSize: 16 * fontScale,
     },
   });
 
