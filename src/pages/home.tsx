@@ -29,10 +29,6 @@ const Home: React.FC<Props> = ({navigation}) => {
       borderRadius: width * Consts.style.scaleFactor.oneSixteenth,
       paddingHorizontal: width * Consts.style.scaleFactor.oneSixteenth,
       marginBottom: width * Consts.style.scaleFactor.oneSixteenth,
-      shadowColor: '#303838',
-      shadowOffset: {width: 0, height: 5},
-      shadowRadius: 10,
-      shadowOpacity: 0.35,
     },
     // https://www.flaticon.com/fr/icone-gratuite/code-barres_372665
     imageBarcode: {
