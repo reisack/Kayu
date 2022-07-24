@@ -10,6 +10,7 @@ export default class Consts {
   };
   static readonly style: IStyle = {
     primaryColor: '#1C7DB7',
+    secondaryColor: '#787878',
     scaleFactor: {
       threeQuarter: 0.75,
       half: 0.5,

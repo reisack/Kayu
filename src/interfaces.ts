@@ -11,5 +11,6 @@ export interface IScaleFactor {
 
 export interface IStyle {
   primaryColor: string;
+  secondaryColor: string;
   scaleFactor: IScaleFactor;
 }

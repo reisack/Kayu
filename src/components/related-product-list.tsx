@@ -36,6 +36,7 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
       fontSize: 32 * fontScale,
       fontWeight: 'bold',
       alignSelf: 'center',
+      color: Consts.style.secondaryColor,
     },
   });
 

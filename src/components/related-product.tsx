@@ -44,6 +44,7 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
     productText: {
       textAlign: 'left',
       fontSize: 16 * fontScale,
+      color: Consts.style.secondaryColor,
     },
   });
 

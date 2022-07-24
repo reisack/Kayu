@@ -16,6 +16,7 @@ const NotFoundProduct: React.FC = () => {
       alignItems: 'center',
       justifyContent: 'center',
       paddingHorizontal: width * Consts.style.scaleFactor.oneSixteenth,
+      color: Consts.style.secondaryColor,
     },
     // https://www.flaticon.com/free-icon/sad-face-in-rounded-square_42901
     notFoundImage: {
