@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
+import Consts from '../consts';
 
 interface Props {
   navigation: any;
@@ -36,20 +37,20 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     },
     overlay: {
       position: 'absolute',
-      padding: width * 0.0625,
+      padding: width * Consts.style.scaleFactor.oneSixteenth,
       right: 0,
       left: 0,
       alignItems: 'center',
     },
     topOverlay: {
-      top: width * 0.0625,
+      top: width * Consts.style.scaleFactor.oneSixteenth,
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
     },
     bottomOverlay: {
-      bottom: width * 0.0625,
+      bottom: width * Consts.style.scaleFactor.oneSixteenth,
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-between',
@@ -63,8 +64,8 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
       justifyContent: 'center',
     },
     iconButton: {
-      width: width * 0.125,
-      height: width * 0.125,
+      width: width * Consts.style.scaleFactor.oneEighth,
+      height: width * Consts.style.scaleFactor.oneEighth,
     },
     torchButton: {
       alignSelf: 'flex-end',

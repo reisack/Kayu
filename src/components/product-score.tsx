@@ -31,8 +31,8 @@ const ProductScore: React.FC<Props> = ({
 
   const productScoreService = new ProductScoreService();
 
-  const progressBarWidth = width * 0.75;
-  const progressBarHeight = width * 0.0625;
+  const progressBarWidth = width * Consts.style.scaleFactor.threeQuarter;
+  const progressBarHeight = width * Consts.style.scaleFactor.oneSixteenth;
 
   // One second before assign score so we have a cool animation
   const [isIndeterminate, setIndeterminate] = useState(true);
@@ -40,10 +40,10 @@ const ProductScore: React.FC<Props> = ({
 
   const styles = StyleSheet.create({
     container: {
-      paddingVertical: width * 0.03125,
-      paddingHorizontal: width * 0.09375,
-      marginHorizontal: width * 0.09375,
-      marginTop: width * 0.03125,
+      paddingVertical: width * Consts.style.scaleFactor.oneThirtySecond,
+      paddingHorizontal: width * Consts.style.scaleFactor.oneTwelfth,
+      marginHorizontal: width * Consts.style.scaleFactor.oneTwelfth,
+      marginTop: width * Consts.style.scaleFactor.oneThirtySecond,
       alignSelf: 'center',
     },
     productName: {
@@ -52,14 +52,14 @@ const ProductScore: React.FC<Props> = ({
     scoreText: {
       alignSelf: 'center',
       color: '#FFFFFF',
-      marginRight: width * 0.0625,
+      marginRight: width * Consts.style.scaleFactor.oneSixteenth,
       fontWeight: 'bold',
     },
     // https://www.flaticon.com/free-icon/information_906794
     helpImage: {
-      width: width * 0.09375,
-      height: width * 0.09375,
-      marginLeft: width * 0.03125,
+      width: width * Consts.style.scaleFactor.oneTwelfth,
+      height: width * Consts.style.scaleFactor.oneTwelfth,
+      marginLeft: width * Consts.style.scaleFactor.oneThirtySecond,
     },
     row: {
       flexDirection: 'row',
@@ -76,7 +76,7 @@ const ProductScore: React.FC<Props> = ({
     isUnfilledColor: boolean,
   ): string => {
     if (isIndeterminate) {
-      return isUnfilledColor ? '#d1e5f0' : Consts.primaryColor;
+      return isUnfilledColor ? '#d1e5f0' : Consts.style.primaryColor;
     } else {
       return score >= 50 ? highscoreColor : lowscoreColor;
     }

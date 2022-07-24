@@ -4,6 +4,7 @@ import ProductScore from './product-score';
 import {ProductInformationEnum} from '../enums';
 import Product from '../classes/product';
 import {useTranslation} from 'react-i18next';
+import Consts from '../consts';
 
 interface Props {
   product: Product;
@@ -16,11 +17,11 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: '#803c13',
-      paddingVertical: width * 0.0625,
+      paddingVertical: width * Consts.style.scaleFactor.oneSixteenth,
     },
     scoresTitle: {
       alignSelf: 'center',
-      marginRight: width * 0.0625,
+      marginRight: width * Consts.style.scaleFactor.oneSixteenth,
     },
     scoresTitleText: {
       color: '#FFFFFF',

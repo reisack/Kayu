@@ -25,10 +25,10 @@ const Home: React.FC<Props> = ({navigation}) => {
       justifyContent: 'center',
     },
     buttonBarcode: {
-      backgroundColor: Consts.primaryColor,
-      borderRadius: width * 0.0625,
-      paddingHorizontal: width * 0.0625,
-      marginBottom: width * 0.0625,
+      backgroundColor: Consts.style.primaryColor,
+      borderRadius: width * Consts.style.scaleFactor.oneSixteenth,
+      paddingHorizontal: width * Consts.style.scaleFactor.oneSixteenth,
+      marginBottom: width * Consts.style.scaleFactor.oneSixteenth,
       shadowColor: '#303838',
       shadowOffset: {width: 0, height: 5},
       shadowRadius: 10,
@@ -36,15 +36,15 @@ const Home: React.FC<Props> = ({navigation}) => {
     },
     // https://www.flaticon.com/fr/icone-gratuite/code-barres_372665
     imageBarcode: {
-      width: width * 0.5,
-      height: width * 0.5,
+      width: width * Consts.style.scaleFactor.half,
+      height: width * Consts.style.scaleFactor.half,
       resizeMode: 'center',
     },
     textImageBarcode: {
       textAlign: 'center',
       color: '#FFFFFF',
       fontSize: 16 * fontScale,
-      paddingBottom: width * 0.0625,
+      paddingBottom: width * Consts.style.scaleFactor.oneSixteenth,
     },
   });
 

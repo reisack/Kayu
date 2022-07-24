@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, useWindowDimensions} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import Consts from '../consts';
 
 const NotFoundProduct: React.FC = () => {
   const {t} = useTranslation();
@@ -8,20 +9,20 @@ const NotFoundProduct: React.FC = () => {
 
   const styles = StyleSheet.create({
     message: {
-      paddingTop: width * 0.0625,
-      paddingLeft: width * 0.0625,
+      paddingTop: width * Consts.style.scaleFactor.oneSixteenth,
+      paddingLeft: width * Consts.style.scaleFactor.oneSixteenth,
       fontSize: 24 * fontScale,
       textAlign: 'left',
       alignItems: 'center',
       justifyContent: 'center',
-      paddingHorizontal: width * 0.0625,
+      paddingHorizontal: width * Consts.style.scaleFactor.oneSixteenth,
     },
     // https://www.flaticon.com/free-icon/sad-face-in-rounded-square_42901
     notFoundImage: {
-      width: width * 0.33,
-      height: width * 0.33,
+      width: width * Consts.style.scaleFactor.third,
+      height: width * Consts.style.scaleFactor.third,
       alignSelf: 'center',
-      marginVertical: width * 0.125,
+      marginVertical: width * Consts.style.scaleFactor.oneEighth,
     },
   });
 

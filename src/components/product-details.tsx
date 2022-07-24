@@ -37,18 +37,18 @@ const ProductDetails: React.FC<Props> = ({
   const styles = StyleSheet.create({
     productHeader: {
       alignItems: 'center',
-      backgroundColor: Consts.primaryColor,
+      backgroundColor: Consts.style.primaryColor,
     },
     productImage: {
-      width: width * 0.5,
-      height: width * 0.5,
+      width: width * Consts.style.scaleFactor.half,
+      height: width * Consts.style.scaleFactor.half,
       resizeMode: 'contain',
       backgroundColor: '#FFFFFF',
-      marginTop: width * 0.0625,
+      marginTop: width * Consts.style.scaleFactor.oneSixteenth,
     },
     productTextContainer: {
-      width: width * 0.75,
-      paddingVertical: width * 0.0625,
+      width: width * Consts.style.scaleFactor.threeQuarter,
+      paddingVertical: width * Consts.style.scaleFactor.oneSixteenth,
     },
     productText: {
       textAlign: 'left',

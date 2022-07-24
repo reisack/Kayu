@@ -8,6 +8,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import Product from '../classes/product';
+import Consts from '../consts';
 import RelatedProductsService from '../services/related-products-service';
 import RelatedProduct from './related-product';
 
@@ -28,10 +29,10 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: '#CDCDCD',
-      paddingVertical: width * 0.0625,
+      paddingVertical: width * Consts.style.scaleFactor.oneSixteenth,
     },
     scoresTitleText: {
-      paddingBottom: width * 0.03125,
+      paddingBottom: width * Consts.style.scaleFactor.oneThirtySecond,
       fontSize: 32 * fontScale,
       fontWeight: 'bold',
       alignSelf: 'center',

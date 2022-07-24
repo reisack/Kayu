@@ -20,7 +20,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
       flex: 1,
     },
     buttonContainer: {
-      paddingTop: width * 0.25,
+      paddingTop: width * Consts.style.scaleFactor.quarter,
     },
   });
 
@@ -33,14 +33,14 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
     {
       text: t<string>('home'),
       icon: require('../../assets/images/home.png'),
-      color: Consts.primaryColor,
+      color: Consts.style.primaryColor,
       name: 'homeButton',
       position: 1,
     },
     {
       text: t<string>('scanAnotherBarcode'),
       icon: require('../../assets/images/barcode.png'),
-      color: Consts.primaryColor,
+      color: Consts.style.primaryColor,
       name: 'barcodeButton',
       position: 2,
     },
@@ -50,7 +50,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
     {
       text: t<string>('backToScannedProduct'),
       icon: require('../../assets/images/barcode.png'),
-      color: Consts.primaryColor,
+      color: Consts.style.primaryColor,
       name: 'backButton',
       position: 1,
     },
@@ -87,7 +87,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
       </ScrollView>
       <View>
         <FloatingAction
-          color={Consts.primaryColor}
+          color={Consts.style.primaryColor}
           actions={originProductEanCode ? actionsRelatedProduct : actions}
           onPressItem={name => {
             onFabPressItem(name);

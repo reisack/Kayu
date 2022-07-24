@@ -1,3 +1,5 @@
+import {IStyle} from './interfaces';
+
 export default class Consts {
   static readonly openFoodFactAPIBaseUrl = 'https://fr.openfoodfacts.org/';
   static readonly httpHeaderGetRequest: any = {
@@ -6,5 +8,17 @@ export default class Consts {
       'User-Agent': 'Kayu - Android - Version 1.0',
     },
   };
-  static readonly primaryColor: string = '#1C7DB7';
+  static readonly style: IStyle = {
+    primaryColor: '#1C7DB7',
+    scaleFactor: {
+      threeQuarter: 0.75,
+      half: 0.5,
+      third: 0.33,
+      quarter: 0.25,
+      oneEighth: 0.125,
+      oneTwelfth: 0.09375,
+      oneSixteenth: 0.0625,
+      oneThirtySecond: 0.03125,
+    },
+  };
 }
