@@ -1,6 +1,6 @@
 {
   "name": "Kayu",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "prettier --write . && eslint . && jest && react-native run-android",
