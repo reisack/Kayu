@@ -6,12 +6,21 @@ import Home from './pages/home';
 import BarcodeScanner from './pages/barcode-scanner';
 import ProductScreen from './pages/product-screen';
 import AdditiveInformationsService from './services/additive-informations-service';
+import {ToastAndroid} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 const Stack = createNativeStackNavigator();
 
 const App: React.FC = () => {
+  const {t} = useTranslation();
+
   useEffect(() => {
-    AdditiveInformationsService.initAdditiveScoreInformations();
+    AdditiveInformationsService.initAdditiveScoreInformations().catch(() => {
+      ToastAndroid.show(
+        t<string>('error.initAdditiveScoreInformations'),
+        ToastAndroid.LONG,
+      );
+    });
   }, []);
 
   return (

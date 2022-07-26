@@ -70,7 +70,8 @@ export default class RelatedProductsService {
         );
       }
     } catch (error) {
-      console.error(error);
+      // We reset products list if API throws an error
+      relatedProducts.clear();
     }
 
     return relatedProducts;
@@ -159,7 +160,6 @@ export default class RelatedProductsService {
     } catch (error) {
       // We reset products list if API throws an error
       relatedProducts.clear();
-      console.error(error);
     }
   }
 }

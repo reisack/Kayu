@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   useWindowDimensions,
+  ToastAndroid,
 } from 'react-native';
 import ScoreCalculationService from '../services/score-calculation-service';
 import consts from '../consts';
@@ -14,6 +15,7 @@ import Product from '../classes/product';
 import RelatedProductList from './related-product-list';
 import ProductScoreList from './product-score-list';
 import Consts from '../consts';
+import {useTranslation} from 'react-i18next';
 
 interface Props {
   eanCode: string;
@@ -26,6 +28,7 @@ const ProductDetails: React.FC<Props> = ({
   isRelated,
   onNotFoundProduct,
 }) => {
+  const {t} = useTranslation();
   const {width, height, fontScale} = useWindowDimensions();
 
   const [isLoading, setLoading] = useState(true);
@@ -83,7 +86,10 @@ const ProductDetails: React.FC<Props> = ({
         }
       }
     } catch (error) {
-      console.error(error);
+      ToastAndroid.show(
+        t<string>('error.getProductByEanCode'),
+        ToastAndroid.LONG,
+      );
       if (isMounted.current) {
         onNotFoundProduct();
       }

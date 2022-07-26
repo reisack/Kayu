@@ -8,10 +8,11 @@ export default class AdditiveInformationsService {
     try {
       const additivesUrl = `${Consts.openFoodFactAPIBaseUrl}data/taxonomies/additives.json`;
       const response = await fetch(additivesUrl, Consts.httpHeaderGetRequest);
+
       const json = await response.json();
       this.setSimplifiedObject(json);
     } catch (error) {
-      console.error(error);
+      return Promise.reject();
     }
   }
 

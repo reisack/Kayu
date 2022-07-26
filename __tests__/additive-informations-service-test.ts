@@ -53,7 +53,10 @@ describe('Additive informations service', () => {
   it('should have no additives informations when API throw error', async () => {
     fetchMock.mockResponseOnce(() => Promise.reject());
 
-    await AdditiveInformationsService.initAdditiveScoreInformations();
+    await expect(
+      AdditiveInformationsService.initAdditiveScoreInformations(),
+    ).rejects.toBeUndefined();
+
     const result = AdditiveInformationsService.getAdditiveScoreInformations();
 
     expect(result).toEqual([]);

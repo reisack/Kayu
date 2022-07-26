@@ -4,7 +4,7 @@
   "scanBarcodeLightOn": "Et la lumière fut.",
   "home": "Accueil",
   "scanAnotherBarcode": "Scanner un autre code-barres",
-  "notFoundProduct": "Oups... Soit tu as scanné un produit non alimentaire en te disant : \"Haha ! Je vais faire planter l'appli !\"\n\nSoit tu achètes de la bouffe de hipster.",
+  "notFoundProduct": "Oups... Soit tu as scanné un produit non alimentaire en te disant : \"Haha ! Je vais faire planter l'appli !\"\n\nSoit tu achètes de la bouffe de hipster.\n\nSoit c'est un plantage.",
   "backToScannedProduct": "Retour au produit scanné",
   "informations": "Informations",
   "ScoreTitle": "Score",
@@ -40,5 +40,9 @@
       "novaGroup": "Score NOVA : {{nutritionValue}} (Transformation des aliments)",
       "eco": "Eco score : {{nutritionValue}} (Empreinte carbone)"
     }
+  },
+  "error": {
+    "getProductByEanCode": "Erreur lors de la récupération du produit, veuillez réessayer ultérieurement.",
+    "initAdditiveScoreInformations": "Impossible d'importer les informations sur les additifs.\nUn nouvel import sera fait lors du prochain démarrage de l'application"
   }
 }
