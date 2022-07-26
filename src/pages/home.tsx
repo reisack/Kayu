@@ -42,6 +42,9 @@ const Home: React.FC<Props> = ({navigation}) => {
       fontSize: 16 * fontScale,
       paddingBottom: width * Consts.style.scaleFactor.oneSixteenth,
     },
+    textImageBarcodeContainer: {
+      width: width * Consts.style.scaleFactor.half,
+    },
   });
 
   return (
@@ -52,9 +55,11 @@ const Home: React.FC<Props> = ({navigation}) => {
             style={styles.imageBarcode}
             source={require('../../assets/images/barcode.png')}
           />
-          <Text style={styles.textImageBarcode}>
-            {t<string>('scanBarcode')}
-          </Text>
+          <View style={styles.textImageBarcodeContainer}>
+            <Text style={styles.textImageBarcode}>
+              {t<string>('scanBarcode')}
+            </Text>
+          </View>
         </Pressable>
       </View>
     </View>
