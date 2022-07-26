@@ -72,7 +72,7 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
         {t<string>('RelatedProductsTitle')}
       </Text>
       {isLoading ? (
-        <ActivityIndicator />
+        <ActivityIndicator size="small" color={Consts.style.primaryColor} />
       ) : (
         relatedProducts.map((relatedProduct: Product) => {
           return (

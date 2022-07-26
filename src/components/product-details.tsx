@@ -26,7 +26,7 @@ const ProductDetails: React.FC<Props> = ({
   isRelated,
   onNotFoundProduct,
 }) => {
-  const {width, fontScale} = useWindowDimensions();
+  const {width, height, fontScale} = useWindowDimensions();
 
   const [isLoading, setLoading] = useState(true);
   const [product, setProduct] = useState<Product>(Product.empty);
@@ -54,6 +54,11 @@ const ProductDetails: React.FC<Props> = ({
       textAlign: 'left',
       fontSize: 16 * fontScale,
       color: '#FFFFFF',
+    },
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      height: height,
     },
   });
 
@@ -125,7 +130,9 @@ const ProductDetails: React.FC<Props> = ({
   return (
     <View>
       {isLoading ? (
-        <ActivityIndicator />
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color={Consts.style.primaryColor} />
+        </View>
       ) : (
         <View>
           <View style={styles.productHeader}>
