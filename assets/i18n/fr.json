@@ -4,7 +4,7 @@
   "scanBarcodeLightOn": "Et la lumière fut.",
   "home": "Accueil",
   "scanAnotherBarcode": "Scanner un autre code-barres",
-  "notFoundProduct": "Oups... Soit tu as scanné un produit non alimentaire en te disant : \"Haha ! Je vais faire planter l'appli !\"\n\nSoit tu achètes de la bouffe de hipster.\n\nSoit c'est un plantage.",
+  "notFoundProduct": "Oups... Soit tu as scanné un produit non alimentaire en te disant : \"Haha ! Je vais faire planter l'appli !\"\n\nSoit tu achètes de la bouffe de hipster.\n\nSoit c'est un plantage du serveur ou alors tu n'as plus de réseau.",
   "backToScannedProduct": "Retour au produit scanné",
   "informations": "Informations",
   "ScoreTitle": "Score",
