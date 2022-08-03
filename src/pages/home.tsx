@@ -6,6 +6,7 @@ import {
   Image,
   Pressable,
   useWindowDimensions,
+  Linking,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import Consts from '../consts';
@@ -45,7 +46,25 @@ const Home: React.FC<Props> = ({navigation}) => {
     textImageBarcodeContainer: {
       width: width * Consts.style.scaleFactor.half,
     },
+    privacyContainer: {
+      position: 'absolute',
+      bottom: 0,
+      marginBottom: width * Consts.style.scaleFactor.oneThirtySecond,
+    },
+    privacyText: {
+      textDecorationLine: 'underline',
+      fontSize: 14 * fontScale,
+    },
   });
+
+  const displayPrivacy = () => {
+    const privacyUrl = 'https://reisack.github.io/Kayu/privacy.html';
+    Linking.canOpenURL(privacyUrl).then(canOpen => {
+      if (canOpen) {
+        Linking.openURL(privacyUrl);
+      }
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -60,6 +79,11 @@ const Home: React.FC<Props> = ({navigation}) => {
               {t<string>('scanBarcode')}
             </Text>
           </View>
+        </Pressable>
+      </View>
+      <View style={styles.privacyContainer}>
+        <Pressable onPress={displayPrivacy}>
+          <Text style={styles.privacyText}>{t<string>('privacy')}</Text>
         </Pressable>
       </View>
     </View>
