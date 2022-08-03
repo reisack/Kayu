@@ -6,6 +6,7 @@
     "android": "prettier --write . && eslint . && jest && react-native run-android",
     "android:release": "prettier --write . && eslint . && jest && react-native run-android --variant=release",
     "clean:android": "cd android && ./gradlew clean && cd ../",
+    "aab": "cd android && ./gradlew bundleRelease && cd ../",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
