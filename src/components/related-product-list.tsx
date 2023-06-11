@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   View,
@@ -23,7 +23,6 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
   const {t} = useTranslation();
   const {width, fontScale} = useWindowDimensions();
 
-  const relatedProductsService = new RelatedProductsService();
   const isMounted = useRef(true);
 
   const styles = StyleSheet.create({
@@ -40,24 +39,27 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
     },
   });
 
-  const getRelatedproducts = async (
-    category: string,
-    productTotalScore: number,
-  ): Promise<void> => {
-    const relatedProducts = await relatedProductsService.getRelatedproducts(
-      category,
-      productTotalScore,
-    );
-    if (isMounted.current) {
-      setRelatedProducts(relatedProducts);
-      setLoading(false);
-    }
-  };
+  const getRelatedproducts = useCallback(
+    async (category: string, productTotalScore: number): Promise<void> => {
+      const relatedProductsService = new RelatedProductsService();
+
+      const relatedProductsResult =
+        await relatedProductsService.getRelatedproducts(
+          category,
+          productTotalScore,
+        );
+      if (isMounted.current) {
+        setRelatedProducts(relatedProductsResult);
+        setLoading(false);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     isMounted.current &&
       getRelatedproducts(product.mainCategory, product.score.getTotal());
-  }, [product]);
+  }, [product, getRelatedproducts]);
 
   // Cleanup
   useEffect(() => {

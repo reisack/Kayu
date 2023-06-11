@@ -53,7 +53,7 @@ describe('Score product service', () => {
     expect(result).toEqual('nutrition.sugar');
   });
 
-  it('should return label for sugar', () => {
+  it('should return label for salt', () => {
     const result = productScoreService.getNutritionLabel(
       ProductInformationEnum.salt,
     );

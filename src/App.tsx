@@ -21,7 +21,7 @@ const App: React.FC = () => {
         ToastAndroid.LONG,
       );
     });
-  }, []);
+  }, [t]);
 
   return (
     <NavigationContainer>

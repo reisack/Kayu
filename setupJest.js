@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 // mock API calls
 require('jest-fetch-mock').enableMocks();
 

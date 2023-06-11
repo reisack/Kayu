@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -34,7 +34,6 @@ const ProductDetails: React.FC<Props> = ({
   const [isLoading, setLoading] = useState(true);
   const [product, setProduct] = useState<Product>(Product.empty);
 
-  const scoreCalculationService = new ScoreCalculationService();
   const isMounted = useRef(true);
 
   const styles = StyleSheet.create({
@@ -65,7 +64,38 @@ const ProductDetails: React.FC<Props> = ({
     },
   });
 
-  const getProductByEanCode = async (eanCode: string): Promise<void> => {
+  const getSimplifiedProduct = useCallback(
+    (jsonFromAPI: {product: any}): Product => {
+      const productFromApi = jsonFromAPI.product;
+
+      const nutritionValues: NutritionValues = {
+        fat: productFromApi['saturated-fat_100g'],
+        sugar: productFromApi.sugars_100g,
+        salt: productFromApi.salt_100g,
+        additives: productFromApi.additives_tags,
+        novaGroup: productFromApi.nova_group,
+        eco: productFromApi.ecoscore_score,
+      };
+
+      const scoreCalculationService = new ScoreCalculationService();
+
+      const simplifiedProduct: Product = {
+        eanCode: eanCode,
+        frName: productFromApi.product_name_fr,
+        brands: productFromApi.brands,
+        imageUrl: productFromApi.image_front_url,
+        mainCategory: productFromApi.compared_to_category,
+        categories: productFromApi.categories_hierarchy ?? [],
+        nutritionValues: nutritionValues,
+        score: scoreCalculationService.getScore(nutritionValues),
+      };
+
+      return simplifiedProduct;
+    },
+    [eanCode],
+  );
+
+  const getProductByEanCode = useCallback(async (): Promise<void> => {
     try {
       const productDetailsUrl = `${consts.openFoodFactAPIBaseUrl}api/v0/product/`;
       const paramFields =
@@ -94,37 +124,11 @@ const ProductDetails: React.FC<Props> = ({
         onNotFoundProduct();
       }
     }
-  };
-
-  const getSimplifiedProduct = (jsonFromAPI: {product: any}): Product => {
-    const product = jsonFromAPI.product;
-
-    const nutritionValues: NutritionValues = {
-      fat: product['saturated-fat_100g'],
-      sugar: product.sugars_100g,
-      salt: product.salt_100g,
-      additives: product.additives_tags,
-      novaGroup: product.nova_group,
-      eco: product.ecoscore_score,
-    };
-
-    const simplifiedProduct: Product = {
-      eanCode: eanCode,
-      frName: product.product_name_fr,
-      brands: product.brands,
-      imageUrl: product.image_front_url,
-      mainCategory: product.compared_to_category,
-      categories: product.categories_hierarchy ?? [],
-      nutritionValues: nutritionValues,
-      score: scoreCalculationService.getScore(nutritionValues),
-    };
-
-    return simplifiedProduct;
-  };
+  }, [getSimplifiedProduct, onNotFoundProduct, t, eanCode]);
 
   useEffect(() => {
-    isMounted.current && getProductByEanCode(eanCode);
-  }, [eanCode]);
+    isMounted.current && getProductByEanCode();
+  }, [eanCode, getProductByEanCode]);
 
   // Cleanup
   useEffect(() => {
@@ -156,7 +160,7 @@ const ProductDetails: React.FC<Props> = ({
               <RelatedProductList product={product} />
             </View>
           ) : (
-            <View></View>
+            <View />
           )}
         </View>
       )}

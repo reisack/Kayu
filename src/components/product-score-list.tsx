@@ -53,7 +53,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
           />
         </View>
       ) : (
-        <View></View>
+        <View />
       )}
 
       {canDisplayScore(product.nutritionValues.salt, product.score.salt) ? (
@@ -63,7 +63,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
           productInfo={ProductInformationEnum.salt}
         />
       ) : (
-        <View></View>
+        <View />
       )}
 
       {canDisplayScore(product.nutritionValues.sugar, product.score.sugar) ? (
@@ -73,7 +73,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
           productInfo={ProductInformationEnum.sugar}
         />
       ) : (
-        <View></View>
+        <View />
       )}
 
       {canDisplayScore(
@@ -86,7 +86,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
           productInfo={ProductInformationEnum.novaGroup}
         />
       ) : (
-        <View></View>
+        <View />
       )}
 
       {canDisplayScore(product.nutritionValues.eco, product.score.eco) ? (
@@ -96,7 +96,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
           productInfo={ProductInformationEnum.eco}
         />
       ) : (
-        <View></View>
+        <View />
       )}
 
       {canDisplayScore(
@@ -109,7 +109,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
           productInfo={ProductInformationEnum.additives}
         />
       ) : (
-        <View></View>
+        <View />
       )}
     </View>
   );

@@ -118,7 +118,7 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
             {t<string>('scanBarcodeLightOn')}
           </Text>
         ) : (
-          <View></View>
+          <View />
         )}
 
         <View style={styles.torchButton}>
