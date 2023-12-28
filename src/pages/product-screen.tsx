@@ -3,7 +3,7 @@ import {View, ScrollView, StyleSheet, useWindowDimensions} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import ProductDetails from '../components/product-details';
 import NotFoundProduct from '../components/not-found-product';
-import {FloatingAction} from 'react-native-floating-action';
+import {FloatingAction, IActionProps} from 'react-native-floating-action';
 import Consts from '../consts';
 import {
   DefaultNavigationHandler,
@@ -35,30 +35,27 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   const [productCouldBeFound, setProductCouldBeFound] = useState(true);
 
   // https://www.flaticon.com/fr/icone-gratuite/accueil_25694
-  const actions = [
+  const actions: IActionProps[] = [
     {
       text: t<string>('home'),
       icon: require('../../assets/images/home.png'),
       color: Consts.style.primaryColor,
       name: 'homeButton',
-      position: 1,
     },
     {
       text: t<string>('scanAnotherBarcode'),
       icon: require('../../assets/images/barcode.png'),
       color: Consts.style.primaryColor,
       name: 'barcodeButton',
-      position: 2,
     },
   ];
 
-  const actionsRelatedProduct = [
+  const actionsRelatedProduct: IActionProps[] = [
     {
       text: t<string>('backToScannedProduct'),
       icon: require('../../assets/images/barcode.png'),
       color: Consts.style.primaryColor,
       name: 'backButton',
-      position: 1,
     },
   ];
 
