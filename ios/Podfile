@@ -43,8 +43,6 @@ target 'Kayu' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
-
   target 'KayuTests' do
     inherit! :complete
     # Pods for testing

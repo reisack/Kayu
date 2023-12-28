@@ -7,10 +7,12 @@ import {
   Pressable,
   useWindowDimensions,
   Linking,
+  Button,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import Consts from '../consts';
 import {DefaultNavigationHandler} from '../shared-types';
+import {useCameraPermission} from 'react-native-vision-camera';
 
 interface Props {
   navigation: DefaultNavigationHandler;
@@ -19,6 +21,7 @@ interface Props {
 const Home: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
   const {width, fontScale} = useWindowDimensions();
+  const {hasPermission, requestPermission} = useCameraPermission();
 
   const styles = StyleSheet.create({
     container: {
@@ -71,19 +74,29 @@ const Home: React.FC<Props> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttonBarcode}>
-        <Pressable onPress={() => navigation.navigate('BarcodeScanner')}>
-          <Image
-            style={styles.imageBarcode}
-            source={require('../../assets/images/barcode.png')}
-          />
-          <View style={styles.textImageBarcodeContainer}>
-            <Text style={styles.textImageBarcode}>
-              {t<string>('scanBarcode')}
-            </Text>
-          </View>
-        </Pressable>
-      </View>
+      {!hasPermission ? (
+        <View style={styles.buttonBarcode}>
+          <Text>Camera Permission</Text>
+          <Button title="Grant" onPress={requestPermission} />
+        </View>
+      ) : (
+        <View style={styles.buttonBarcode}>
+          <Pressable
+            disabled={!hasPermission}
+            onPress={() => navigation.navigate('BarcodeScanner')}>
+            <Image
+              style={styles.imageBarcode}
+              source={require('../../assets/images/barcode.png')}
+            />
+            <View style={styles.textImageBarcodeContainer}>
+              <Text style={styles.textImageBarcode}>
+                {t<string>('scanBarcode')}
+              </Text>
+            </View>
+          </Pressable>
+        </View>
+      )}
+
       <View style={styles.privacyContainer}>
         <Pressable onPress={displayPrivacy}>
           <Text style={styles.privacyText}>{t<string>('privacy')}</Text>

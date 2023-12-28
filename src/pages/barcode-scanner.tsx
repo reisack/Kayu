@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {RNCamera} from 'react-native-camera';
-import BarcodeMask from 'react-native-barcode-mask';
 import {
   StyleSheet,
   View,
@@ -13,19 +11,30 @@ import {useIsFocused} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import Consts from '../consts';
 import {NavigationHandler, NavigationProductProps} from '../shared-types';
+import {
+  Camera,
+  Code,
+  useCameraDevice,
+  useCodeScanner,
+} from 'react-native-vision-camera';
 
 interface Props {
   navigation: NavigationHandler<NavigationProductProps>;
 }
 
+type torchMode = 'off' | 'on';
+
 const BarcodeScanner: React.FC<Props> = ({navigation}) => {
+  const cameraDevice = useCameraDevice('back');
+
   const {t} = useTranslation();
   const {width, fontScale} = useWindowDimensions();
 
   const isFocused = useIsFocused();
   const [productHasBeenScanned, setProductHasBeenScanned] =
     useState<boolean>(false);
-  const [torchMode, setTorchMode] = useState(RNCamera.Constants.FlashMode.off);
+
+  const [torchMode, setTorchMode] = useState<torchMode>('off');
 
   const styles = StyleSheet.create({
     container: {
@@ -73,24 +82,31 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     },
   });
 
-  const onBarcodeRead = (scanResult: {data: string}) => {
-    if (!productHasBeenScanned && scanResult && scanResult.data) {
-      setProductHasBeenScanned(true);
-      navigation.navigate('ProductScreen', {
-        eanCode: scanResult.data,
-        isRelated: false,
-        originProductEanCode: null,
-      });
-    }
-  };
+  const onBarcodeRead = useCodeScanner({
+    codeTypes: ['ean-13'],
+    onCodeScanned: (codes: Code[]) => {
+      if (!productHasBeenScanned && codes && codes.length > 0) {
+        // We only want the first one
+        const code = codes[0];
+        if (code && code.value) {
+          setProductHasBeenScanned(true);
+          navigation.navigate('ProductScreen', {
+            eanCode: code.value,
+            isRelated: false,
+            originProductEanCode: null,
+          });
+        }
+      }
+    },
+  });
 
   const toggleTorch = () => {
-    if (torchMode === RNCamera.Constants.FlashMode.off) {
+    if (torchMode === 'off') {
       // https://www.flaticon.com/premium-icon/torch_3287897
-      setTorchMode(RNCamera.Constants.FlashMode.torch);
+      setTorchMode('on');
     } else {
       // https://www.flaticon.com/premium-icon/torch_3287903
-      setTorchMode(RNCamera.Constants.FlashMode.off);
+      setTorchMode('off');
     }
   };
 
@@ -98,48 +114,52 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     setProductHasBeenScanned(false);
   }, [isFocused]);
 
-  return (
-    <View style={styles.container}>
-      <RNCamera
-        captureAudio={false}
-        flashMode={torchMode}
-        type={RNCamera.Constants.Type.back}
-        style={styles.preview}
-        onBarCodeRead={onBarcodeRead.bind(this)}>
-        <BarcodeMask showAnimatedLine={false} width={300} height={300} />
-      </RNCamera>
-      <View style={[styles.overlay, styles.topOverlay]}>
-        <Text style={styles.scanScreenMessage}>
-          {t<string>('scanBarcodePlease')}
-        </Text>
-      </View>
-      <View style={[styles.overlay, styles.bottomOverlay]}>
-        {torchMode === RNCamera.Constants.FlashMode.torch ? (
+  if (!cameraDevice) {
+    navigation.navigate('home');
+  } else {
+    return (
+      <View style={styles.container}>
+        <Camera
+          device={cameraDevice}
+          isActive={true}
+          audio={false}
+          torch={torchMode}
+          style={styles.preview}
+          codeScanner={onBarcodeRead}
+        />
+        <View style={[styles.overlay, styles.topOverlay]}>
           <Text style={styles.scanScreenMessage}>
-            {t<string>('scanBarcodeLightOn')}
+            {t<string>('scanBarcodePlease')}
           </Text>
-        ) : (
-          <View />
-        )}
+        </View>
+        <View style={[styles.overlay, styles.bottomOverlay]}>
+          {torchMode === 'on' ? (
+            <Text style={styles.scanScreenMessage}>
+              {t<string>('scanBarcodeLightOn')}
+            </Text>
+          ) : (
+            <View />
+          )}
 
-        <View style={styles.torchButton}>
-          <Pressable onPress={() => toggleTorch()}>
-            {torchMode === RNCamera.Constants.FlashMode.off ? (
-              <Image
-                style={styles.iconButton}
-                source={require('../../assets/images/torch_on.png')}
-              />
-            ) : (
-              <Image
-                style={styles.iconButton}
-                source={require('../../assets/images/torch_off.png')}
-              />
-            )}
-          </Pressable>
+          <View style={styles.torchButton}>
+            <Pressable onPress={() => toggleTorch()}>
+              {torchMode === 'off' ? (
+                <Image
+                  style={styles.iconButton}
+                  source={require('../../assets/images/torch_on.png')}
+                />
+              ) : (
+                <Image
+                  style={styles.iconButton}
+                  source={require('../../assets/images/torch_off.png')}
+                />
+              )}
+            </Pressable>
+          </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  }
 };
 
 export default BarcodeScanner;

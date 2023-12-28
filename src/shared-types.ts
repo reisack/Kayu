@@ -21,7 +21,7 @@ export type DefaultNavigationHandler = {
 };
 
 export type NavigationHandler<T> = {
-  navigate: (screenName: string, props: T) => void;
+  navigate: (screenName: string, props?: T) => void;
   push: (screenName: string, props: T) => void;
 };
 
