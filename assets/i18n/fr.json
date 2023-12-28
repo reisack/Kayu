@@ -45,5 +45,10 @@
     "getProductByEanCode": "Erreur lors de la récupération du produit, veuillez réessayer ultérieurement.",
     "initAdditiveScoreInformations": "Impossible d'importer les informations sur les additifs.\nUn nouvel import sera fait lors du prochain démarrage de l'application"
   },
-  "privacy": "Règles de confidentialité"
+  "privacy": "Règles de confidentialité",
+  "permission": {
+    "message": "Vous devez autoriser la caméra pour utiliser l'application",
+    "messageComplement": "(Oui, je sais, c'est chiant, mais je suis obligé de vous le demander. Sinon, je suis un mauvais développeur !)",
+    "validate": "Valider"
+  }
 }

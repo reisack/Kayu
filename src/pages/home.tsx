@@ -29,6 +29,17 @@ const Home: React.FC<Props> = ({navigation}) => {
       alignItems: 'center',
       justifyContent: 'center',
     },
+    permissionText: {
+      fontSize: 20 * fontScale,
+      textAlign: 'center',
+      color: '#565656',
+    },
+    permissionComplementText: {
+      fontSize: 12 * fontScale,
+      textAlign: 'center',
+      color: '#565656',
+      paddingBottom: width * Consts.style.scaleFactor.oneSixteenth,
+    },
     buttonBarcode: {
       backgroundColor: Consts.style.primaryColor,
       borderRadius: width * Consts.style.scaleFactor.oneSixteenth,
@@ -75,9 +86,18 @@ const Home: React.FC<Props> = ({navigation}) => {
   return (
     <View style={styles.container}>
       {!hasPermission ? (
-        <View style={styles.buttonBarcode}>
-          <Text>Camera Permission</Text>
-          <Button title="Grant" onPress={requestPermission} />
+        <View>
+          <Text style={styles.permissionText}>
+            {t<string>('permission.message')}
+          </Text>
+          <Text style={styles.permissionComplementText}>
+            {t<string>('permission.messageComplement')}
+          </Text>
+          <Button
+            title={t<string>('permission.validate')}
+            color={Consts.style.primaryColor}
+            onPress={requestPermission}
+          />
         </View>
       ) : (
         <View style={styles.buttonBarcode}>
