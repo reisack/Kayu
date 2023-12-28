@@ -43,7 +43,8 @@
   },
   "error": {
     "getProductByEanCode": "Erreur lors de la récupération du produit, veuillez réessayer ultérieurement.",
-    "initAdditiveScoreInformations": "Impossible d'importer les informations sur les additifs.\nUn nouvel import sera fait lors du prochain démarrage de l'application"
+    "initAdditiveScoreInformations": "Impossible d'importer les informations sur les additifs.\nUn nouvel import sera fait lors du prochain démarrage de l'application",
+    "CannotFindCamera": "Une erreur est survenue lors de l'utilisation de la caméra."
   },
   "privacy": "Règles de confidentialité",
   "permission": {

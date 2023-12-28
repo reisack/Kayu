@@ -6,6 +6,7 @@ import {
   Pressable,
   Image,
   useWindowDimensions,
+  ToastAndroid,
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
@@ -115,7 +116,8 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
   }, [isFocused]);
 
   if (!cameraDevice) {
-    navigation.navigate('home');
+    ToastAndroid.show(t<string>('error.CannotFindCamera'), ToastAndroid.LONG);
+    navigation.navigate('Home');
   } else {
     return (
       <View style={styles.container}>
