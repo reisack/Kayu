@@ -5,10 +5,15 @@ import ProductDetails from '../components/product-details';
 import NotFoundProduct from '../components/not-found-product';
 import {FloatingAction} from 'react-native-floating-action';
 import Consts from '../consts';
+import {
+  DefaultNavigationHandler,
+  NavigationProductProps,
+} from '../shared-types';
+import {ParamListBase, RouteProp} from '@react-navigation/native';
 
 interface Props {
-  route: any;
-  navigation: any;
+  route: RouteProp<ParamListBase, 'ProductScreen'>;
+  navigation: DefaultNavigationHandler;
 }
 
 const ProductScreen: React.FC<Props> = ({route, navigation}) => {
@@ -24,7 +29,8 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
     },
   });
 
-  const {eanCode, isRelated, originProductEanCode} = route.params;
+  const {eanCode, isRelated, originProductEanCode} =
+    route.params as NavigationProductProps;
 
   const [productCouldBeFound, setProductCouldBeFound] = useState(true);
 

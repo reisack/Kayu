@@ -1,6 +1,22 @@
 import AdditiveInformation from '../classes/additive-information';
 import Consts from '../consts';
 
+type Risk = 'en:high' | 'en:moderate' | 'en:no';
+
+type RiskScores = {
+  'en:high': number;
+  'en:moderate': number;
+  'en:no': number;
+};
+
+type AdditiveInformationsApiResponse = {
+  [key: string]: {
+    efsa_evaluation_overexposure_risk: {
+      en: Risk;
+    };
+  };
+};
+
 export default class AdditiveInformationsService {
   private static _additiveScoreInformations: AdditiveInformation[] = [];
 
@@ -9,23 +25,26 @@ export default class AdditiveInformationsService {
       const additivesUrl = `${Consts.openFoodFactAPIBaseUrl}data/taxonomies/additives.json`;
       const response = await fetch(additivesUrl, Consts.httpHeaderGetRequest);
 
-      const json = await response.json();
+      const json: AdditiveInformationsApiResponse = await response.json();
       this.setSimplifiedObject(json);
     } catch (error) {
       return Promise.reject();
     }
   }
 
-  private static setSimplifiedObject(jsonFromAPI: any): void {
+  private static setSimplifiedObject(
+    jsonFromAPI: AdditiveInformationsApiResponse,
+  ): void {
     const additiveScoreInformations: AdditiveInformation[] = [];
     for (const property in jsonFromAPI) {
       if (
         jsonFromAPI[property].efsa_evaluation_overexposure_risk &&
         jsonFromAPI[property].efsa_evaluation_overexposure_risk.en
       ) {
-        const risk = jsonFromAPI[property].efsa_evaluation_overexposure_risk.en;
+        const risk = jsonFromAPI[property].efsa_evaluation_overexposure_risk
+          .en as Risk;
 
-        const riskScores: any = {
+        const riskScores: RiskScores = {
           'en:high': 30,
           'en:moderate': 15,
           'en:no': 5,

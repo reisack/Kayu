@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Product from '../classes/product';
 import Consts from '../consts';
+import {NavigationHandler, NavigationProductProps} from '../shared-types';
 
 interface Props {
   product: Product;
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
-  const navigation: any = useNavigation();
+  const navigation = useNavigation<NavigationHandler<NavigationProductProps>>();
   const {width, fontScale} = useWindowDimensions();
 
   const styles = StyleSheet.create({

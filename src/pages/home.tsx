@@ -10,9 +10,10 @@ import {
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import Consts from '../consts';
+import {DefaultNavigationHandler} from '../shared-types';
 
 interface Props {
-  navigation: any;
+  navigation: DefaultNavigationHandler;
 }
 
 const Home: React.FC<Props> = ({navigation}) => {

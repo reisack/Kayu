@@ -3,7 +3,14 @@ import Product from '../classes/product';
 import Score from '../classes/score';
 import consts from '../consts';
 import ScoreCalculationService from './score-calculation-service';
-import '../extensions';
+import '../extensions'; // needed for clear method extension (for arrays)
+import {Nullable} from '../extensions';
+import {ProductApi} from '../shared-types';
+
+type ProductsApiResponse = {
+  products: ProductApi[];
+  count: Nullable<number>;
+};
 
 export default class RelatedProductsService {
   private readonly searchProductsUrl = `${consts.openFoodFactAPIBaseUrl}api/v2/search`;
@@ -60,7 +67,7 @@ export default class RelatedProductsService {
         `${this.searchProductsUrl}?categories_tags_en=${category}&fields=${fields}&page_size=100`,
         consts.httpHeaderGetRequest,
       );
-      const json: any = await response.json();
+      const json: ProductsApiResponse = await response.json();
 
       if (json && json.count && json.count > 0) {
         this.setRelatedProductsWithTotalScore(
@@ -79,7 +86,7 @@ export default class RelatedProductsService {
 
   private setRelatedProductsWithTotalScore(
     relatedProducts: Product[],
-    json: any,
+    json: ProductsApiResponse,
     productTotalScore: number,
   ): void {
     for (const relatedProduct of json.products) {
@@ -123,7 +130,7 @@ export default class RelatedProductsService {
   }
 
   // Fisher–Yates shuffle algorithm
-  private shuffleArray(array: any[]): void {
+  private shuffleArray(array: Product[]): void {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
@@ -143,7 +150,7 @@ export default class RelatedProductsService {
         consts.httpHeaderGetRequest,
       );
 
-      const json: any = await response.json();
+      const json: ProductsApiResponse = await response.json();
       if (json && json.count && json.count > 0) {
         for (const relatedProduct of json.products) {
           const product = relatedProducts.find(

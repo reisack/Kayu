@@ -16,12 +16,19 @@ import RelatedProductList from './related-product-list';
 import ProductScoreList from './product-score-list';
 import Consts from '../consts';
 import {useTranslation} from 'react-i18next';
+import {ProductApi} from '../shared-types';
+import {Nullable} from '../extensions';
 
 interface Props {
   eanCode: string;
   isRelated: boolean;
   onNotFoundProduct: () => void;
 }
+
+type ProductApiResponse = {
+  product: ProductApi;
+  status: Nullable<number>;
+};
 
 const ProductDetails: React.FC<Props> = ({
   eanCode,
@@ -65,7 +72,7 @@ const ProductDetails: React.FC<Props> = ({
   });
 
   const getSimplifiedProduct = useCallback(
-    (jsonFromAPI: {product: any}): Product => {
+    (jsonFromAPI: ProductApiResponse): Product => {
       const productFromApi = jsonFromAPI.product;
 
       const nutritionValues: NutritionValues = {
@@ -101,12 +108,12 @@ const ProductDetails: React.FC<Props> = ({
       const paramFields =
         'product_name_fr,brands,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score,image_front_url,compared_to_category,categories_hierarchy';
 
-      const response: any = await fetch(
+      const response = await fetch(
         `${productDetailsUrl}${eanCode}.json?fields=${paramFields}`,
         consts.httpHeaderGetRequest,
       );
 
-      const json: any = await response.json();
+      const json: ProductApiResponse = await response.json();
       if (isMounted.current) {
         if (json && json.status && json.status === 1) {
           setProduct(getSimplifiedProduct(json));

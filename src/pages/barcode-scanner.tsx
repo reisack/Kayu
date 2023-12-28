@@ -12,9 +12,10 @@ import {
 import {useIsFocused} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import Consts from '../consts';
+import {NavigationHandler, NavigationProductProps} from '../shared-types';
 
 interface Props {
-  navigation: any;
+  navigation: NavigationHandler<NavigationProductProps>;
 }
 
 const BarcodeScanner: React.FC<Props> = ({navigation}) => {
@@ -72,7 +73,7 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     },
   });
 
-  const onBarcodeRead = (scanResult: {data: any}) => {
+  const onBarcodeRead = (scanResult: {data: string}) => {
     if (!productHasBeenScanned && scanResult && scanResult.data) {
       setProductHasBeenScanned(true);
       navigation.navigate('ProductScreen', {

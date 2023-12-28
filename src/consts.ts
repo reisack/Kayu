@@ -1,8 +1,15 @@
 import {IStyle} from './interfaces';
 
+type HttpHeaderRequest = {
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  headers: {
+    'User-Agent': string;
+  };
+};
+
 export default class Consts {
   static readonly openFoodFactAPIBaseUrl = 'https://fr.openfoodfacts.org/';
-  static readonly httpHeaderGetRequest: any = {
+  static readonly httpHeaderGetRequest: HttpHeaderRequest = {
     method: 'GET',
     headers: {
       'User-Agent': 'Kayu - Android - Version 1.0',

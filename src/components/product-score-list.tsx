@@ -5,6 +5,7 @@ import {ProductInformationEnum} from '../enums';
 import Product from '../classes/product';
 import {useTranslation} from 'react-i18next';
 import Consts from '../consts';
+import {Nullable} from '../extensions';
 
 interface Props {
   product: Product;
@@ -30,7 +31,10 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
     },
   });
 
-  const canDisplayScore = (nutritionValue: any, score: any): boolean => {
+  const canDisplayScore = (
+    nutritionValue: Nullable<number> | Nullable<string[]>,
+    score: Nullable<number>,
+  ): boolean => {
     return (
       nutritionValue !== undefined &&
       nutritionValue !== null &&
