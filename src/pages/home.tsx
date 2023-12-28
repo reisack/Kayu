@@ -50,9 +50,10 @@ const Home: React.FC<Props> = ({navigation}) => {
     privacyContainer: {
       position: 'absolute',
       bottom: 0,
-      marginBottom: width * Consts.style.scaleFactor.oneThirtySecond,
+      marginBottom: width * Consts.style.scaleFactor.oneEighth,
     },
     privacyText: {
+      color: '#565656',
       textDecorationLine: 'underline',
       fontSize: 14 * fontScale,
     },
@@ -60,6 +61,7 @@ const Home: React.FC<Props> = ({navigation}) => {
 
   const displayPrivacy = () => {
     const privacyUrl = 'https://reisack.github.io/Kayu/privacy.html';
+
     Linking.canOpenURL(privacyUrl).then(canOpen => {
       if (canOpen) {
         Linking.openURL(privacyUrl);
