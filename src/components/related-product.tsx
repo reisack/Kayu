@@ -23,7 +23,7 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
 
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#DEDEDE',
+      backgroundColor: Consts.style.primaryBackgroundColor,
       alignItems: 'center',
       borderColor: Consts.style.primaryColor,
       borderStyle: 'dashed',
@@ -36,7 +36,6 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
       width: width * Consts.style.scaleFactor.quarter,
       height: width * Consts.style.scaleFactor.quarter,
       resizeMode: 'contain',
-      backgroundColor: '#FFFFFF',
     },
     productTextContainer: {
       width: width * Consts.style.scaleFactor.threeQuarter,

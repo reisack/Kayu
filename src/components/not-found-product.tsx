@@ -8,6 +8,10 @@ const NotFoundProduct: React.FC = () => {
   const {width, fontScale} = useWindowDimensions();
 
   const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: Consts.style.primaryBackgroundColor,
+    },
     message: {
       paddingTop: width * Consts.style.scaleFactor.oneSixteenth,
       paddingLeft: width * Consts.style.scaleFactor.oneSixteenth,
@@ -28,7 +32,7 @@ const NotFoundProduct: React.FC = () => {
   });
 
   return (
-    <View>
+    <View style={styles.container}>
       <Image
         style={styles.notFoundImage}
         source={require('../../assets/images/sad.png')}

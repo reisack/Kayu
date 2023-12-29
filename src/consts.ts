@@ -17,7 +17,12 @@ export default class Consts {
   };
   static readonly style: IStyle = {
     primaryColor: '#1C7DB7',
+    primaryFontColor: '#FFFFFF',
     secondaryColor: '#787878',
+    secondaryFontColor: '#565656',
+    primaryBackgroundColor: '#DEDEDE',
+    secondaryBackgroundColor: '#CDCDCD',
+    tertiaryBackgroundColor: '#114E73',
     scaleFactor: {
       threeQuarter: 0.75,
       half: 0.5,

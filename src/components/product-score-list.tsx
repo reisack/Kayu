@@ -17,7 +17,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
 
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#803c13',
+      backgroundColor: Consts.style.tertiaryBackgroundColor,
       paddingVertical: width * Consts.style.scaleFactor.oneSixteenth,
     },
     scoresTitle: {
@@ -25,7 +25,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
       marginRight: width * Consts.style.scaleFactor.oneSixteenth,
     },
     scoresTitleText: {
-      color: '#FFFFFF',
+      color: Consts.style.primaryFontColor,
       fontSize: 32 * fontScale,
       fontWeight: 'bold',
     },

@@ -47,11 +47,11 @@ const ProductScore: React.FC<Props> = ({
       alignSelf: 'center',
     },
     productName: {
-      color: '#FFFFFF',
+      color: Consts.style.primaryFontColor,
     },
     scoreText: {
       alignSelf: 'center',
-      color: '#FFFFFF',
+      color: Consts.style.primaryFontColor,
       marginRight: width * Consts.style.scaleFactor.oneSixteenth,
       fontWeight: 'bold',
     },

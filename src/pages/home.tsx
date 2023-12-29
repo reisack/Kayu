@@ -28,16 +28,17 @@ const Home: React.FC<Props> = ({navigation}) => {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
+      backgroundColor: Consts.style.primaryBackgroundColor,
     },
     permissionText: {
       fontSize: 20 * fontScale,
       textAlign: 'center',
-      color: '#565656',
+      color: Consts.style.secondaryFontColor,
     },
     permissionComplementText: {
       fontSize: 12 * fontScale,
       textAlign: 'center',
-      color: '#565656',
+      color: Consts.style.secondaryFontColor,
       paddingBottom: width * Consts.style.scaleFactor.oneSixteenth,
     },
     buttonBarcode: {
@@ -54,7 +55,7 @@ const Home: React.FC<Props> = ({navigation}) => {
     },
     textImageBarcode: {
       textAlign: 'center',
-      color: '#FFFFFF',
+      color: Consts.style.primaryFontColor,
       fontSize: 16 * fontScale,
       paddingBottom: width * Consts.style.scaleFactor.oneSixteenth,
     },
@@ -67,7 +68,7 @@ const Home: React.FC<Props> = ({navigation}) => {
       marginBottom: width * Consts.style.scaleFactor.oneEighth,
     },
     privacyText: {
-      color: '#565656',
+      color: Consts.style.secondaryFontColor,
       textDecorationLine: 'underline',
       fontSize: 14 * fontScale,
     },

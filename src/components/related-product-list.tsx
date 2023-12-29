@@ -27,7 +27,7 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
 
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#CDCDCD',
+      backgroundColor: Consts.style.secondaryBackgroundColor,
       paddingVertical: width * Consts.style.scaleFactor.oneSixteenth,
     },
     scoresTitleText: {

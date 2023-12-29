@@ -23,6 +23,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor: Consts.style.primaryBackgroundColor,
     },
     buttonContainer: {
       paddingTop: width * Consts.style.scaleFactor.quarter,

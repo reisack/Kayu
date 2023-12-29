@@ -52,7 +52,6 @@ const ProductDetails: React.FC<Props> = ({
       width: width * Consts.style.scaleFactor.half,
       height: width * Consts.style.scaleFactor.half,
       resizeMode: 'contain',
-      backgroundColor: '#FFFFFF',
       marginTop: width * Consts.style.scaleFactor.oneSixteenth,
     },
     productTextContainer: {
@@ -62,7 +61,7 @@ const ProductDetails: React.FC<Props> = ({
     productText: {
       textAlign: 'left',
       fontSize: 16 * fontScale,
-      color: '#FFFFFF',
+      color: Consts.style.primaryFontColor,
     },
     loadingContainer: {
       flex: 1,
