@@ -122,6 +122,7 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     return (
       <View style={styles.container}>
         <Camera
+          fps={30}
           device={cameraDevice}
           isActive={true}
           audio={false}
