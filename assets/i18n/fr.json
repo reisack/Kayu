@@ -48,7 +48,7 @@
   },
   "privacy": "Règles de confidentialité",
   "permission": {
-    "message": "Vous devez autoriser la caméra pour utiliser l'application",
+    "message": "Vous devez autoriser la caméra pour utiliser l'application.",
     "messageComplement": "(Oui, je sais, c'est chiant, mais je suis obligé de vous le demander. Sinon, je suis un mauvais développeur !)",
     "validate": "Valider"
   }

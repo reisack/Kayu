@@ -1,3 +1,4 @@
+import {Appearance} from 'react-native';
 import {IStyle} from './interfaces';
 
 type HttpHeaderRequest = {
@@ -8,6 +9,13 @@ type HttpHeaderRequest = {
 };
 
 export default class Consts {
+  private static isDarkTheme: boolean;
+
+  private static initialize = (() => {
+    const colorScheme = Appearance.getColorScheme();
+    Consts.isDarkTheme = colorScheme === 'dark';
+  })();
+
   static readonly openFoodFactAPIBaseUrl = 'https://fr.openfoodfacts.org/';
   static readonly httpHeaderGetRequest: HttpHeaderRequest = {
     method: 'GET',
@@ -18,10 +26,10 @@ export default class Consts {
   static readonly style: IStyle = {
     primaryColor: '#1C7DB7',
     primaryFontColor: '#FFFFFF',
-    secondaryColor: '#787878',
-    secondaryFontColor: '#565656',
-    primaryBackgroundColor: '#DEDEDE',
-    secondaryBackgroundColor: '#CDCDCD',
+    secondaryColor: Consts.isDarkTheme ? '#ABABAB' : '#787878',
+    secondaryFontColor: Consts.isDarkTheme ? '#CDCDCD' : '#565656',
+    primaryBackgroundColor: Consts.isDarkTheme ? '#343434' : '#DEDEDE',
+    secondaryBackgroundColor: Consts.isDarkTheme ? '#232323' : '#CDCDCD',
     tertiaryBackgroundColor: '#114E73',
     scaleFactor: {
       threeQuarter: 0.75,
