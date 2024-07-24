@@ -16,6 +16,7 @@ import {
   Camera,
   Code,
   useCameraDevice,
+  useCameraFormat,
   useCodeScanner,
 } from 'react-native-vision-camera';
 
@@ -27,6 +28,8 @@ type torchMode = 'off' | 'on';
 
 const BarcodeScanner: React.FC<Props> = ({navigation}) => {
   const cameraDevice = useCameraDevice('back');
+  const cameraFormat = useCameraFormat(cameraDevice, [{fps: 30}]);
+  const fps = cameraFormat?.maxFps;
 
   const {t} = useTranslation();
   const {width, fontScale} = useWindowDimensions();
@@ -122,7 +125,8 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     return (
       <View style={styles.container}>
         <Camera
-          fps={30}
+          fps={fps}
+          format={cameraFormat}
           device={cameraDevice}
           isActive={true}
           audio={false}
