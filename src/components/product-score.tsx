@@ -9,11 +9,11 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
-import ProductScoreService from '../services/product-score-service';
-import {ProductInformationEnum} from '../enums';
+import ProductScoreService from '@/services/product-score-service';
+import {ProductInformationEnum} from '@/enums';
 // @ts-ignore
 import ProgressBar from 'react-native-progress/Bar';
-import Consts from '../consts';
+import Consts from '@/consts';
 
 interface Props {
   score: number;

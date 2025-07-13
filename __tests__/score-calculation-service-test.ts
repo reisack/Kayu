@@ -1,7 +1,7 @@
-import AdditiveInformation from '../src/classes/additive-information';
-import NutritionValues from '../src/classes/nutrition-values';
-import AdditiveInformationsService from '../src/services/additive-informations-service';
-import ScoreCalculationService from '../src/services/score-calculation-service';
+import AdditiveInformation from '@/classes/additive-information';
+import NutritionValues from '@/classes/nutrition-values';
+import AdditiveInformationsService from '@/services/additive-informations-service';
+import ScoreCalculationService from '@/services/score-calculation-service';
 
 describe('Score calculation service', () => {
   let scoreCalculationService: ScoreCalculationService;

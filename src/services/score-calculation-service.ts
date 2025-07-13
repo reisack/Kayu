@@ -1,6 +1,6 @@
-import NutritionValues from '../classes/nutrition-values';
-import Score from '../classes/score';
-import AdditiveInformationsService from './additive-informations-service';
+import NutritionValues from '@/classes/nutrition-values';
+import Score from '@/classes/score';
+import AdditiveInformationsService from '@/services/additive-informations-service';
 
 export default class ScoreCalculationService {
   public getScore(nutritionValues: NutritionValues): Score {

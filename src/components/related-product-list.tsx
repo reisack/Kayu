@@ -7,10 +7,10 @@ import {
   Text,
   useWindowDimensions,
 } from 'react-native';
-import Product from '../classes/product';
-import Consts from '../consts';
-import RelatedProductsService from '../services/related-products-service';
-import RelatedProduct from './related-product';
+import Product from '@/classes/product';
+import Consts from '@/consts';
+import RelatedProductsService from '@/services/related-products-service';
+import RelatedProduct from '@/components/related-product';
 
 interface Props {
   product: Product;

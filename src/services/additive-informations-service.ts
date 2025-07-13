@@ -1,5 +1,5 @@
-import AdditiveInformation from '../classes/additive-information';
-import Consts from '../consts';
+import AdditiveInformation from '@/classes/additive-information';
+import Consts from '@/consts';
 
 type Risk = 'en:high' | 'en:moderate' | 'en:no';
 

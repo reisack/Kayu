@@ -1,6 +1,6 @@
-import AdditiveInformationsService from '../src/services/additive-informations-service';
+import AdditiveInformationsService from '@/services/additive-informations-service';
 import fetchMock from 'jest-fetch-mock';
-import AdditiveInformation from '../src/classes/additive-information';
+import AdditiveInformation from '@/classes/additive-information';
 
 import additivesMock from './mocks/additives-mock.json';
 import additivesWithoutRisksMock from './mocks/additives-without-risks-mock.json';

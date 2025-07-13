@@ -8,16 +8,16 @@ import {
   useWindowDimensions,
   ToastAndroid,
 } from 'react-native';
-import ScoreCalculationService from '../services/score-calculation-service';
-import consts from '../consts';
-import NutritionValues from '../classes/nutrition-values';
-import Product from '../classes/product';
-import RelatedProductList from './related-product-list';
-import ProductScoreList from './product-score-list';
-import Consts from '../consts';
+import ScoreCalculationService from '@/services/score-calculation-service';
+import consts from '@/consts';
+import NutritionValues from '@/classes/nutrition-values';
+import Product from '@/classes/product';
+import RelatedProductList from '@/components/related-product-list';
+import ProductScoreList from '@/components/product-score-list';
+import Consts from '@/consts';
 import {useTranslation} from 'react-i18next';
-import {ProductApi} from '../shared-types';
-import {Nullable} from '../extensions';
+import {ProductApi} from '@/shared-types';
+import {Nullable} from '@/extensions';
 
 interface Props {
   eanCode: string;

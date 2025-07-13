@@ -8,9 +8,9 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import Product from '../classes/product';
-import Consts from '../consts';
-import {NavigationHandler, NavigationProductProps} from '../shared-types';
+import Product from '@/classes/product';
+import Consts from '@/consts';
+import {NavigationHandler, NavigationProductProps} from '@/shared-types';
 
 interface Props {
   product: Product;

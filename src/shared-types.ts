@@ -1,4 +1,4 @@
-import {Nullable} from './extensions';
+import {Nullable} from '@/extensions';
 
 export type ProductApi = {
   'saturated-fat_100g': Nullable<number>;

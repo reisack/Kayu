@@ -1,5 +1,5 @@
 import {Appearance} from 'react-native';
-import {IStyle} from './interfaces';
+import {IStyle} from '@/interfaces';
 
 type HttpHeaderRequest = {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';

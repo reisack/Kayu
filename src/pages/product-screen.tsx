@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
 import {View, ScrollView, StyleSheet, useWindowDimensions} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import ProductDetails from '../components/product-details';
-import NotFoundProduct from '../components/not-found-product';
+import ProductDetails from '@/components/product-details';
+import NotFoundProduct from '@/components/not-found-product';
 import {FloatingAction, IActionProps} from 'react-native-floating-action';
-import Consts from '../consts';
-import {
-  DefaultNavigationHandler,
-  NavigationProductProps,
-} from '../shared-types';
+import Consts from '@/consts';
+import {DefaultNavigationHandler, NavigationProductProps} from '@/shared-types';
 import {ParamListBase, RouteProp} from '@react-navigation/native';
 
 interface Props {

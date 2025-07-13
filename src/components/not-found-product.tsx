@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, useWindowDimensions} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import Consts from '../consts';
+import Consts from '@/consts';
 
 const NotFoundProduct: React.FC = () => {
   const {t} = useTranslation();

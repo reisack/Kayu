@@ -10,8 +10,8 @@ import {
   Button,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
-import Consts from '../consts';
-import {DefaultNavigationHandler} from '../shared-types';
+import Consts from '@/consts';
+import {DefaultNavigationHandler} from '@/shared-types';
 import {useCameraPermission} from 'react-native-vision-camera';
 
 interface Props {

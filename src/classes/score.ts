@@ -1,4 +1,4 @@
-import {Nullable} from '../extensions';
+import {Nullable} from '@/extensions';
 
 export default class Score {
   fat: Nullable<number>;

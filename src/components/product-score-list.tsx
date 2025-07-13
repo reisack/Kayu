@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, Text, useWindowDimensions, View} from 'react-native';
-import ProductScore from './product-score';
+import ProductScore from '@/components/product-score';
 import {ProductInformationEnum} from '../enums';
-import Product from '../classes/product';
+import Product from '@/classes/product';
 import {useTranslation} from 'react-i18next';
-import Consts from '../consts';
-import {Nullable} from '../extensions';
+import Consts from '@/consts';
+import {Nullable} from '@/extensions';
 
 interface Props {
   product: Product;

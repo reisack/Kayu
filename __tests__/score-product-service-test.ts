@@ -1,5 +1,5 @@
-import ProductScoreService from '../src/services/product-score-service';
-import {ProductInformationEnum} from '../src/enums';
+import ProductScoreService from '@/services/product-score-service';
+import {ProductInformationEnum} from '@/enums';
 
 describe('Score product service', () => {
   let productScoreService: ProductScoreService;

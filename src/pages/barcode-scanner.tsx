@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
-import Consts from '../consts';
-import {NavigationHandler, NavigationProductProps} from '../shared-types';
+import Consts from '@/consts';
+import {NavigationHandler, NavigationProductProps} from '@/shared-types';
 import {
   Camera,
   Code,
