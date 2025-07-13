@@ -122,10 +122,7 @@ const ProductDetails: React.FC<Props> = ({
         }
       }
     } catch (error) {
-      ToastAndroid.show(
-        t<string>('error.getProductByEanCode'),
-        ToastAndroid.LONG,
-      );
+      ToastAndroid.show(t('error.getProductByEanCode'), ToastAndroid.LONG);
       if (isMounted.current) {
         onNotFoundProduct();
       }

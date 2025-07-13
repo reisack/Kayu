@@ -19,6 +19,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
     container: {
       backgroundColor: Consts.style.tertiaryBackgroundColor,
       paddingVertical: width * Consts.style.scaleFactor.oneSixteenth,
+      paddingBottom: width * Consts.style.scaleFactor.oneEighth,
     },
     scoresTitle: {
       alignSelf: 'center',
@@ -46,7 +47,7 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
   return (
     <View style={styles.container}>
       <View style={styles.scoresTitle}>
-        <Text style={styles.scoresTitleText}>{t<string>('ScoreTitle')}</Text>
+        <Text style={styles.scoresTitleText}>{t('ScoreTitle')}</Text>
       </View>
       {canDisplayScore(product.nutritionValues.fat, product.score.fat) ? (
         <View>

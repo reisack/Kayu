@@ -4,7 +4,7 @@ import fr from '../../assets/i18n/fr.json';
 
 export default function initI18n(): void {
   i18n.use(initReactI18next).init({
-    compatibilityJSON: 'v3',
+    compatibilityJSON: 'v4',
     resources: {
       fr: {
         translation: fr,

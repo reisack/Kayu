@@ -17,7 +17,7 @@ const App: React.FC = () => {
   useEffect(() => {
     AdditiveInformationsService.initAdditiveScoreInformations().catch(() => {
       ToastAndroid.show(
-        t<string>('error.initAdditiveScoreInformations'),
+        t('error.initAdditiveScoreInformations'),
         ToastAndroid.LONG,
       );
     });

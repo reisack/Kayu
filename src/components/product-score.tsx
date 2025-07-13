@@ -96,7 +96,7 @@ const ProductScore: React.FC<Props> = ({
         <View style={styles.container}>
           <View>
             <Text style={styles.scoreText}>
-              {t<string>(productScoreService.getNutritionLabel(productInfo))}
+              {t(productScoreService.getNutritionLabel(productInfo))}
             </Text>
             <View style={styles.row}>
               <View>
@@ -118,13 +118,10 @@ const ProductScore: React.FC<Props> = ({
                 <Pressable
                   onPress={() =>
                     Alert.alert(
-                      t<string>('informations'),
-                      t<string>(
-                        productScoreService.getHelpMessage(productInfo),
-                        {
-                          nutritionValue: getNutritionValueForI18n(),
-                        },
-                      ),
+                      t('informations'),
+                      t(productScoreService.getHelpMessage(productInfo), {
+                        nutritionValue: getNutritionValueForI18n(),
+                      }),
                     )
                   }>
                   <Image
@@ -137,7 +134,7 @@ const ProductScore: React.FC<Props> = ({
           </View>
           <View>
             <Text style={styles.productName}>
-              {t<string>(productScoreService.getExpression(score, productInfo))}
+              {t(productScoreService.getExpression(score, productInfo))}
             </Text>
           </View>
         </View>

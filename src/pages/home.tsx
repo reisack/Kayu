@@ -30,6 +30,9 @@ const Home: React.FC<Props> = ({navigation}) => {
       justifyContent: 'center',
       backgroundColor: Consts.style.primaryBackgroundColor,
     },
+    permissionButtonContainer: {
+      paddingHorizontal: width * Consts.style.scaleFactor.oneEighth,
+    },
     permissionText: {
       fontSize: 20 * fontScale,
       textAlign: 'center',
@@ -88,17 +91,17 @@ const Home: React.FC<Props> = ({navigation}) => {
     <View style={styles.container}>
       {!hasPermission ? (
         <View>
-          <Text style={styles.permissionText}>
-            {t<string>('permission.message')}
-          </Text>
+          <Text style={styles.permissionText}>{t('permission.message')}</Text>
           <Text style={styles.permissionComplementText}>
-            {t<string>('permission.messageComplement')}
+            {t('permission.messageComplement')}
           </Text>
-          <Button
-            title={t<string>('permission.validate')}
-            color={Consts.style.primaryColor}
-            onPress={requestPermission}
-          />
+          <View style={styles.permissionButtonContainer}>
+            <Button
+              title={t('permission.validate')}
+              color={Consts.style.primaryColor}
+              onPress={requestPermission}
+            />
+          </View>
         </View>
       ) : (
         <View style={styles.buttonBarcode}>
@@ -110,9 +113,7 @@ const Home: React.FC<Props> = ({navigation}) => {
               source={require('../../assets/images/barcode.png')}
             />
             <View style={styles.textImageBarcodeContainer}>
-              <Text style={styles.textImageBarcode}>
-                {t<string>('scanBarcode')}
-              </Text>
+              <Text style={styles.textImageBarcode}>{t('scanBarcode')}</Text>
             </View>
           </Pressable>
         </View>
@@ -120,7 +121,7 @@ const Home: React.FC<Props> = ({navigation}) => {
 
       <View style={styles.privacyContainer}>
         <Pressable onPress={displayPrivacy}>
-          <Text style={styles.privacyText}>{t<string>('privacy')}</Text>
+          <Text style={styles.privacyText}>{t('privacy')}</Text>
         </Pressable>
       </View>
     </View>

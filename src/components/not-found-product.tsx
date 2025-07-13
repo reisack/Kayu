@@ -37,7 +37,7 @@ const NotFoundProduct: React.FC = () => {
         style={styles.notFoundImage}
         source={require('../../assets/images/sad.png')}
       />
-      <Text style={styles.message}>{t<string>('notFoundProduct')}</Text>
+      <Text style={styles.message}>{t('notFoundProduct')}</Text>
     </View>
   );
 };

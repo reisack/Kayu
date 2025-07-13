@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -27,9 +27,10 @@ interface Props {
 type torchMode = 'off' | 'on';
 
 const BarcodeScanner: React.FC<Props> = ({navigation}) => {
+  const didMount = useRef(false);
   const cameraDevice = useCameraDevice('back');
   const cameraFormat = useCameraFormat(cameraDevice, [{fps: 30}]);
-  const fps = cameraFormat?.maxFps;
+  const fps = cameraFormat?.maxFps ?? 30;
 
   const {t} = useTranslation();
   const {width, fontScale} = useWindowDimensions();
@@ -94,6 +95,7 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
         const code = codes[0];
         if (code && code.value) {
           setProductHasBeenScanned(true);
+          setTorchMode('off');
           navigation.navigate('ProductScreen', {
             eanCode: code.value,
             isRelated: false,
@@ -118,9 +120,20 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
     setProductHasBeenScanned(false);
   }, [isFocused]);
 
+  useEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true;
+      return; // Don't run on first mount
+    }
+
+    if (!cameraDevice) {
+      ToastAndroid.show(t('error.CannotFindCamera'), ToastAndroid.LONG);
+      navigation.navigate('Home');
+    }
+  }, [cameraDevice, navigation, t]);
+
   if (!cameraDevice) {
-    ToastAndroid.show(t<string>('error.CannotFindCamera'), ToastAndroid.LONG);
-    navigation.navigate('Home');
+    return null; // Handled with useEffect() for cameraDevice
   } else {
     return (
       <View style={styles.container}>
@@ -135,14 +148,12 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
           codeScanner={onBarcodeRead}
         />
         <View style={[styles.overlay, styles.topOverlay]}>
-          <Text style={styles.scanScreenMessage}>
-            {t<string>('scanBarcodePlease')}
-          </Text>
+          <Text style={styles.scanScreenMessage}>{t('scanBarcodePlease')}</Text>
         </View>
         <View style={[styles.overlay, styles.bottomOverlay]}>
           {torchMode === 'on' ? (
             <Text style={styles.scanScreenMessage}>
-              {t<string>('scanBarcodeLightOn')}
+              {t('scanBarcodeLightOn')}
             </Text>
           ) : (
             <View />

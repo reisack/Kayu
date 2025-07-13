@@ -20,9 +20,9 @@ export type DefaultNavigationHandler = {
   goBack: () => void;
 };
 
-export type NavigationHandler<T> = {
-  navigate: (screenName: string, props?: T) => void;
-  push: (screenName: string, props: T) => void;
+export type NavigationHandler<TProps> = {
+  navigate: (screenName: string, props?: TProps) => void;
+  push: (screenName: string, props: TProps) => void;
 };
 
 export type NavigationProductProps = {

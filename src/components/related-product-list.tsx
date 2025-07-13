@@ -29,6 +29,7 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
     container: {
       backgroundColor: Consts.style.secondaryBackgroundColor,
       paddingVertical: width * Consts.style.scaleFactor.oneSixteenth,
+      paddingBottom: width * Consts.style.scaleFactor.oneEighth,
     },
     scoresTitleText: {
       paddingBottom: width * Consts.style.scaleFactor.oneThirtySecond,
@@ -70,9 +71,7 @@ const RelatedProductList: React.FC<Props> = ({product}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.scoresTitleText}>
-        {t<string>('RelatedProductsTitle')}
-      </Text>
+      <Text style={styles.scoresTitleText}>{t('RelatedProductsTitle')}</Text>
       {isLoading ? (
         <ActivityIndicator size="small" color={Consts.style.primaryColor} />
       ) : (

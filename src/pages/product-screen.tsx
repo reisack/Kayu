@@ -38,13 +38,13 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
   // https://www.flaticon.com/fr/icone-gratuite/accueil_25694
   const actions: IActionProps[] = [
     {
-      text: t<string>('home'),
+      text: t('home'),
       icon: require('../../assets/images/home.png'),
       color: Consts.style.primaryColor,
       name: 'homeButton',
     },
     {
-      text: t<string>('scanAnotherBarcode'),
+      text: t('scanAnotherBarcode'),
       icon: require('../../assets/images/barcode.png'),
       color: Consts.style.primaryColor,
       name: 'barcodeButton',
@@ -53,7 +53,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
 
   const actionsRelatedProduct: IActionProps[] = [
     {
-      text: t<string>('backToScannedProduct'),
+      text: t('backToScannedProduct'),
       icon: require('../../assets/images/barcode.png'),
       color: Consts.style.primaryColor,
       name: 'backButton',
