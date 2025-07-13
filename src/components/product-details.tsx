@@ -144,12 +144,17 @@ const ProductDetails: React.FC<Props> = ({
     <View>
       {isLoading ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={Consts.style.primaryColor} />
+          <ActivityIndicator
+            testID="product-loading"
+            size="large"
+            color={Consts.style.primaryColor}
+          />
         </View>
       ) : (
         <View>
           <View style={styles.productHeader}>
             <Image
+              testID="product-image"
               style={styles.productImage}
               source={{uri: product.imageUrl}}
             />

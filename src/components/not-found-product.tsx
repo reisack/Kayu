@@ -34,6 +34,7 @@ const NotFoundProduct: React.FC = () => {
   return (
     <View style={styles.container}>
       <Image
+        testID="not-found-image"
         style={styles.notFoundImage}
         source={require('../../assets/images/sad.png')}
       />
