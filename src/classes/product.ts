@@ -31,7 +31,7 @@ export default class Product {
     this.score = score;
   }
 
-  public static empty: Product = {
+  public static readonly empty: Product = {
     eanCode: '',
     frName: '',
     brands: '',

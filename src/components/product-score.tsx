@@ -37,7 +37,7 @@ const ProductScore: React.FC<Props> = ({
   const progressBarHeight = width * Consts.style.scaleFactor.oneSixteenth;
 
   // One second before assign score so we have a cool animation
-  const [isIndeterminate, setIndeterminate] = useState(true);
+  const [indeterminate, setIndeterminate] = useState(true);
   setInterval(() => setIndeterminate(false), 1000);
 
   const styles = StyleSheet.create({
@@ -77,7 +77,7 @@ const ProductScore: React.FC<Props> = ({
     lowscoreColor: string,
     isUnfilledColor: boolean,
   ): string => {
-    if (isIndeterminate) {
+    if (indeterminate) {
       return isUnfilledColor ? '#d1e5f0' : Consts.style.primaryColor;
     } else {
       return score! >= 50 ? highscoreColor : lowscoreColor;
@@ -113,7 +113,7 @@ const ProductScore: React.FC<Props> = ({
                   progress={getProgressBarScore()}
                   width={progressBarWidth}
                   height={progressBarHeight}
-                  indeterminate={isIndeterminate}
+                  indeterminate={indeterminate}
                   indeterminateAnimationDuration={1000}
                 />
               </View>

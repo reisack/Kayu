@@ -37,7 +37,7 @@ const ProductDetails: React.FC<Props> = ({
   const { t } = useTranslation();
   const { width, height, fontScale } = useWindowDimensions();
 
-  const [isLoading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState<Product>(Product.empty);
 
   const isMounted = useRef(true);
@@ -145,7 +145,7 @@ const ProductDetails: React.FC<Props> = ({
 
   return (
     <View>
-      {isLoading ? (
+      {loading ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator
             testID="product-loading"

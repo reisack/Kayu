@@ -11,7 +11,7 @@ type HttpHeaderRequest = {
 export default class Consts {
   private static isDarkTheme: boolean;
 
-  private static initialize = (() => {
+  private static readonly initialize = (() => {
     const colorScheme = Appearance.getColorScheme();
     Consts.isDarkTheme = colorScheme === 'dark';
   })();

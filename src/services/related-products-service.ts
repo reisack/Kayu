@@ -14,7 +14,7 @@ type ProductsApiResponse = {
 
 export default class RelatedProductsService {
   private readonly searchProductsUrl = `${consts.openFoodFactAPIBaseUrl}api/v2/search`;
-  private scoreCalculationService: ScoreCalculationService;
+  private readonly scoreCalculationService: ScoreCalculationService;
 
   constructor() {
     this.scoreCalculationService = new ScoreCalculationService();

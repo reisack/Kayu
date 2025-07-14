@@ -17,7 +17,7 @@ interface Props {
 }
 
 const RelatedProductList: React.FC<Props> = ({ product }) => {
-  const [isLoading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
 
   const { t } = useTranslation();
@@ -72,7 +72,7 @@ const RelatedProductList: React.FC<Props> = ({ product }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.scoresTitleText}>{t('RelatedProductsTitle')}</Text>
-      {isLoading ? (
+      {loading ? (
         <ActivityIndicator
           testID="related-products-loader"
           size="small"
