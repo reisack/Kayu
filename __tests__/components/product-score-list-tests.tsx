@@ -62,11 +62,13 @@ describe('ProductScoreList', () => {
       },
       score: new Score(5, null, 1, 4, 3, 2),
       brands: 'brand1',
-      categories: ['cat1'],
       eanCode: '12345',
       frName: 'frName1',
       imageUrl: 'urlImage',
-      mainCategory: 'cat1',
+      category: {
+        mainCategory: 'cat1',
+        categories: ['cat1'],
+      },
     };
 
     const { getByText, queryByText } = render(
@@ -152,11 +154,13 @@ describe('ProductScoreList', () => {
       },
       score: new Score(null, 4, null, null, null, 1),
       brands: 'brand1',
-      categories: ['cat1'],
       eanCode: '12345',
       frName: 'frName1',
       imageUrl: 'urlImage',
-      mainCategory: 'cat1',
+      category: {
+        mainCategory: 'cat1',
+        categories: ['cat1'],
+      },
     };
 
     const { getByText, queryByText } = render(

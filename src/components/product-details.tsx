@@ -89,10 +89,12 @@ const ProductDetails: React.FC<Props> = ({
         frName: productFromApi.product_name_fr,
         brands: productFromApi.brands,
         imageUrl: productFromApi.image_front_url,
-        mainCategory: productFromApi.compared_to_category,
-        categories: productFromApi.categories_hierarchy ?? [],
         nutritionValues: nutritionValues,
         score: scoreCalculationService.getScore(nutritionValues),
+        category: {
+          mainCategory: productFromApi.compared_to_category,
+          categories: productFromApi.categories_hierarchy ?? [],
+        },
       };
 
       return simplifiedProduct;

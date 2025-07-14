@@ -37,13 +37,15 @@ jest.mock('react-native/Libraries/Utilities/useWindowDimensions', () => ({
 
 const baseProduct: Product = {
   eanCode: '111',
-  mainCategory: 'snacks',
   score: new Score(3, 5, null, 2, 6, 2),
   frName: '',
   brands: '',
   imageUrl: '',
-  categories: [],
   nutritionValues: new NutritionValues(),
+  category: {
+    mainCategory: 'snacks',
+    categories: [],
+  }
 };
 
 // --- Mock RelatedProduct ---

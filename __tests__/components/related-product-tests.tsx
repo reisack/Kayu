@@ -41,9 +41,7 @@ const product: Product = {
   eanCode: '987654321',
   frName: 'Related Yoghurt',
   imageUrl: 'https://img.com/related.png',
-  mainCategory: 'dairy',
   brands: 'brand1',
-  categories: ['cat1'],
   score: new Score(null, 12, null, 1, 25, 1),
   nutritionValues: {
     additives: ['test1'],
@@ -52,6 +50,10 @@ const product: Product = {
     novaGroup: 1,
     salt: null,
     sugar: 12,
+  },
+  category: {
+    mainCategory: 'dairy',
+    categories: ['cat1'],
   },
 };
 

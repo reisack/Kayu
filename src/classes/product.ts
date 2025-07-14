@@ -1,13 +1,17 @@
 import NutritionValues from '@/classes/nutrition-values';
 import Score from '@/classes/score';
 
+type ProductCategory = {
+  mainCategory: string;
+  categories: string[]
+}
+
 export default class Product {
   eanCode: string;
   frName: string;
   brands: string;
   imageUrl: string;
-  mainCategory: string;
-  categories: string[];
+  category: ProductCategory;
   nutritionValues: NutritionValues;
   score: Score;
 
@@ -18,17 +22,19 @@ export default class Product {
     frName?: string,
     brands?: string,
     imageUrl?: string,
-    mainCategory?: string,
-    categories?: string[],
+    category?: ProductCategory,
   ) {
     this.eanCode = eanCode;
     this.frName = frName ?? '';
     this.brands = brands ?? '';
     this.imageUrl = imageUrl ?? '';
-    this.mainCategory = mainCategory ?? '';
-    this.categories = categories ?? [];
     this.nutritionValues = nutritionValues ?? new NutritionValues();
     this.score = score;
+
+    this.category = {
+      mainCategory: category?.mainCategory ?? '',
+      categories: category?.categories ?? []
+    };
   }
 
   public static readonly empty: Product = {
@@ -36,8 +42,7 @@ export default class Product {
     frName: '',
     brands: '',
     imageUrl: '',
-    mainCategory: '',
-    categories: [],
+    category: { mainCategory: '' ,categories: []},
     nutritionValues: new NutritionValues(),
     score: new Score(),
   };

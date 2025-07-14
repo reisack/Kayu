@@ -26,7 +26,7 @@ interface Props {
 const ProductScore: React.FC<Props> = ({
   score,
   nutritionValue,
-  productInfo: productInfo,
+  productInfo,
 }) => {
   const { t } = useTranslation();
   const { width } = useWindowDimensions();
