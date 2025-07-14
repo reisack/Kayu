@@ -11,12 +11,14 @@ import {
 import {useTranslation} from 'react-i18next';
 import ProductScoreService from '@/services/product-score-service';
 import {ProductInformationEnum} from '@/enums';
-// @ts-ignore
-import ProgressBar from 'react-native-progress/Bar';
 import Consts from '@/consts';
 
+// node_modules/react-native-progress/Bar.js' implicitly has an 'any'
+// @ts-ignore
+import ProgressBar from 'react-native-progress/Bar';
+
 interface Props {
-  score: number;
+  score: number | null;
   nutritionValue: number | string[];
   productInfo: ProductInformationEnum;
 }
@@ -67,7 +69,7 @@ const ProductScore: React.FC<Props> = ({
   });
 
   const getProgressBarScore = () => {
-    return score / 100.0;
+    return score! / 100.0;
   };
 
   const getProgressBarColor = (
@@ -78,7 +80,7 @@ const ProductScore: React.FC<Props> = ({
     if (isIndeterminate) {
       return isUnfilledColor ? '#d1e5f0' : Consts.style.primaryColor;
     } else {
-      return score >= 50 ? highscoreColor : lowscoreColor;
+      return score! >= 50 ? highscoreColor : lowscoreColor;
     }
   };
 
@@ -101,6 +103,7 @@ const ProductScore: React.FC<Props> = ({
             <View style={styles.row}>
               <View>
                 <ProgressBar
+                  testID="progress-bar-props"
                   color={getProgressBarColor('#14c258', '#c72400', false)}
                   unfilledColor={getProgressBarColor(
                     '#d0f2dd',
@@ -116,6 +119,7 @@ const ProductScore: React.FC<Props> = ({
               </View>
               <View>
                 <Pressable
+                  testID="pressable-info-icon"
                   onPress={() =>
                     Alert.alert(
                       t('informations'),

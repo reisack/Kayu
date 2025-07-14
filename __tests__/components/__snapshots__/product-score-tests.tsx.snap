@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductScore renders nothing when score is null 1`] = `
+<View>
+  <View />
+</View>
+`;
