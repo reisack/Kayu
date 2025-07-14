@@ -62,9 +62,9 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
   };
 
   return (
-    <Pressable onPress={() => onRelatedProductPress()}>
+    <Pressable testID="related-product-button" onPress={() => onRelatedProductPress()}>
       <View style={styles.container}>
-        <Image style={styles.productImage} source={{uri: product.imageUrl}} />
+        <Image testID="related-product-image" style={styles.productImage} source={{uri: product.imageUrl}} />
         <View style={styles.productTextContainer}>
           <Text style={styles.productText}>{product.frName}</Text>
         </View>

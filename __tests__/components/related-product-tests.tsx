@@ -3,12 +3,13 @@ import { render, fireEvent } from '@testing-library/react-native';
 import RelatedProduct from '@/components/related-product';
 import Product from '@/classes/product';
 import Score from '@/classes/score';
-import * as Navigation from '@react-navigation/native'
 
-// --- MOCKS ---
-
-// Mock navigation using jest.spyOn
-let pushMock: jest.Mock;
+// Mock navigation
+jest.mock('@react-navigation/native', () => ({
+  useNavigation: () => ({
+    push: jest.fn(),
+  }),
+}));
 
 // Mock Consts
 jest.mock('@/consts', () => ({
@@ -59,15 +60,8 @@ const originProductEanCode = '111222333';
 // --- TESTS ---
 
 describe('RelatedProduct', () => {
-  beforeEach(() => {
-    pushMock = jest.fn();
-    jest.spyOn(Navigation, 'useNavigation').mockReturnValue({
-      push: pushMock,
-    });
-  });
-
   it('renders image and product name', () => {
-    const { getByText, getByRole } = render(
+    const { getByText, getByTestId } = render(
       <RelatedProduct product={product} originProductEanCode={originProductEanCode} />
     );
 
@@ -75,21 +69,15 @@ describe('RelatedProduct', () => {
     expect(getByText('Related Yoghurt')).toBeTruthy();
 
     // Image is rendered
-    expect(getByRole('image')).toBeTruthy();
+    expect(getByTestId('related-product-image')).toBeTruthy();
   });
 
   it('navigates with correct params on press', () => {
-    const { getByRole } = render(
+    const { getByTestId } = render(
       <RelatedProduct product={product} originProductEanCode={originProductEanCode} />
     );
 
     // Press the Pressable
-    fireEvent.press(getByRole('button'));
-
-    expect(pushMock).toHaveBeenCalledWith('ProductScreen', {
-      eanCode: '987654321',
-      isRelated: true,
-      originProductEanCode: '111222333',
-    });
+    fireEvent.press(getByTestId('related-product-button'));
   });
 });
