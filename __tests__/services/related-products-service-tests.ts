@@ -1,4 +1,4 @@
-import {mockRandom, resetMockRandom} from 'jest-mock-random';
+import { mockRandom, resetMockRandom } from 'jest-mock-random';
 import fetchMock from 'jest-fetch-mock';
 import RelatedProductsService from '@/services/related-products-service';
 

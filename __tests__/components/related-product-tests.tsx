@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react-native';
+import { render, fireEvent } from '@testing-library/react-native';
 import RelatedProduct from '@/components/related-product';
 import Product from '@/classes/product';
 import Score from '@/classes/score';
@@ -61,7 +61,7 @@ const originProductEanCode = '111222333';
 
 describe('RelatedProduct', () => {
   it('renders image and product name', () => {
-    const {getByText, getByTestId} = render(
+    const { getByText, getByTestId } = render(
       <RelatedProduct
         product={product}
         originProductEanCode={originProductEanCode}
@@ -76,7 +76,7 @@ describe('RelatedProduct', () => {
   });
 
   it('navigates with correct params on press', () => {
-    const {getByTestId} = render(
+    const { getByTestId } = render(
       <RelatedProduct
         product={product}
         originProductEanCode={originProductEanCode}

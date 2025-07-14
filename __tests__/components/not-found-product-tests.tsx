@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import NotFoundProduct from '@/components/not-found-product';
 
 // Mock useTranslation from react-i18next
@@ -39,7 +39,7 @@ jest.mock('../../assets/images/sad.png', () => 1);
 
 describe('NotFoundProduct', () => {
   it('renders Image and message', () => {
-    const {getByText, getByTestId} = render(<NotFoundProduct />);
+    const { getByText, getByTestId } = render(<NotFoundProduct />);
     // Check the message text
     expect(getByText('Product not found')).toBeTruthy();
     // Check the image is rendered

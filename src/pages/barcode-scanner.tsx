@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -8,10 +8,10 @@ import {
   useWindowDimensions,
   ToastAndroid,
 } from 'react-native';
-import {useIsFocused} from '@react-navigation/native';
-import {useTranslation} from 'react-i18next';
+import { useIsFocused } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import Consts from '@/consts';
-import {NavigationHandler, NavigationProductProps} from '@/shared-types';
+import { NavigationHandler, NavigationProductProps } from '@/shared-types';
 import {
   Camera,
   Code,
@@ -26,14 +26,14 @@ interface Props {
 
 type torchMode = 'off' | 'on';
 
-const BarcodeScanner: React.FC<Props> = ({navigation}) => {
+const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
   const didMount = useRef(false);
   const cameraDevice = useCameraDevice('back');
-  const cameraFormat = useCameraFormat(cameraDevice, [{fps: 30}]);
+  const cameraFormat = useCameraFormat(cameraDevice, [{ fps: 30 }]);
   const fps = cameraFormat?.maxFps ?? 30;
 
-  const {t} = useTranslation();
-  const {width, fontScale} = useWindowDimensions();
+  const { t } = useTranslation();
+  const { width, fontScale } = useWindowDimensions();
 
   const isFocused = useIsFocused();
   const [productHasBeenScanned, setProductHasBeenScanned] =

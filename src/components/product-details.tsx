@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -15,9 +15,9 @@ import Product from '@/classes/product';
 import RelatedProductList from '@/components/related-product-list';
 import ProductScoreList from '@/components/product-score-list';
 import Consts from '@/consts';
-import {useTranslation} from 'react-i18next';
-import {ProductApi} from '@/shared-types';
-import {Nullable} from '@/extensions';
+import { useTranslation } from 'react-i18next';
+import { ProductApi } from '@/shared-types';
+import { Nullable } from '@/extensions';
 
 interface Props {
   eanCode: string;
@@ -35,8 +35,8 @@ const ProductDetails: React.FC<Props> = ({
   isRelated,
   onNotFoundProduct,
 }) => {
-  const {t} = useTranslation();
-  const {width, height, fontScale} = useWindowDimensions();
+  const { t } = useTranslation();
+  const { width, height, fontScale } = useWindowDimensions();
 
   const [isLoading, setLoading] = useState(true);
   const [product, setProduct] = useState<Product>(Product.empty);
@@ -156,7 +156,7 @@ const ProductDetails: React.FC<Props> = ({
             <Image
               testID="product-image"
               style={styles.productImage}
-              source={{uri: product.imageUrl}}
+              source={{ uri: product.imageUrl }}
             />
             <View style={styles.productTextContainer}>
               <Text style={styles.productText}>{product.frName}</Text>

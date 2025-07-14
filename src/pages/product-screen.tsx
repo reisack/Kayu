@@ -1,21 +1,29 @@
-import React, {useState} from 'react';
-import {View, ScrollView, StyleSheet, useWindowDimensions} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import React, { useState } from 'react';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+} from 'react-native';
+import { useTranslation } from 'react-i18next';
 import ProductDetails from '@/components/product-details';
 import NotFoundProduct from '@/components/not-found-product';
-import {FloatingAction, IActionProps} from 'react-native-floating-action';
+import { FloatingAction, IActionProps } from 'react-native-floating-action';
 import Consts from '@/consts';
-import {DefaultNavigationHandler, NavigationProductProps} from '@/shared-types';
-import {ParamListBase, RouteProp} from '@react-navigation/native';
+import {
+  DefaultNavigationHandler,
+  NavigationProductProps,
+} from '@/shared-types';
+import { ParamListBase, RouteProp } from '@react-navigation/native';
 
 interface Props {
   route: RouteProp<ParamListBase, 'ProductScreen'>;
   navigation: DefaultNavigationHandler;
 }
 
-const ProductScreen: React.FC<Props> = ({route, navigation}) => {
-  const {t} = useTranslation();
-  const {width} = useWindowDimensions();
+const ProductScreen: React.FC<Props> = ({ route, navigation }) => {
+  const { t } = useTranslation();
+  const { width } = useWindowDimensions();
 
   const styles = StyleSheet.create({
     container: {
@@ -27,7 +35,7 @@ const ProductScreen: React.FC<Props> = ({route, navigation}) => {
     },
   });
 
-  const {eanCode, isRelated, originProductEanCode} =
+  const { eanCode, isRelated, originProductEanCode } =
     route.params as NavigationProductProps;
 
   const [productCouldBeFound, setProductCouldBeFound] = useState(true);

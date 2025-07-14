@@ -1,11 +1,17 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, useWindowDimensions} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  useWindowDimensions,
+} from 'react-native';
+import { useTranslation } from 'react-i18next';
 import Consts from '@/consts';
 
 const NotFoundProduct: React.FC = () => {
-  const {t} = useTranslation();
-  const {width, fontScale} = useWindowDimensions();
+  const { t } = useTranslation();
+  const { width, fontScale } = useWindowDimensions();
 
   const styles = StyleSheet.create({
     container: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import fetchMock from 'jest-fetch-mock';
 import * as ReactNative from 'react-native';
-import {render, waitFor} from '@testing-library/react-native';
+import { render, waitFor } from '@testing-library/react-native';
 import ProductDetails from '@/components/product-details';
 
 // --- MOCKS ---
@@ -12,7 +12,7 @@ jest.mock('@/components/product-score-list', () => 'ProductScoreList');
 
 // Mock translation
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({t: (k: string) => k}),
+  useTranslation: () => ({ t: (k: string) => k }),
 }));
 
 // Mock ScoreCalculationService
@@ -91,7 +91,7 @@ describe('ProductDetails', () => {
 
   it('shows loader while fetching', () => {
     // fetch never resolves
-    const {getByTestId} = render(
+    const { getByTestId } = render(
       <ProductDetails
         eanCode={eanCodeMock}
         isRelated={false}
@@ -105,7 +105,7 @@ describe('ProductDetails', () => {
   it('renders product info on success', async () => {
     fetchMock.mockResponseOnce(JSON.stringify(productApiMock));
 
-    const {getByText, getByTestId} = render(
+    const { getByText, getByTestId } = render(
       <ProductDetails
         eanCode={eanCodeMock}
         isRelated={false}
@@ -124,7 +124,7 @@ describe('ProductDetails', () => {
   });
 
   it('calls onNotFoundProduct if status is not 1', async () => {
-    fetchMock.mockResponseOnce(JSON.stringify({status: 0, product: null}));
+    fetchMock.mockResponseOnce(JSON.stringify({ status: 0, product: null }));
 
     render(
       <ProductDetails

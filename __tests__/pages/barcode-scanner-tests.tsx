@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, fireEvent, waitFor} from '@testing-library/react-native';
+import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import BarcodeScanner from '@/pages/barcode-scanner';
 import fetchMock from 'jest-fetch-mock';
 import * as ReactNative from 'react-native';
@@ -38,13 +38,13 @@ jest.mock('@react-navigation/native', () => ({
 }));
 
 jest.mock('react-native-vision-camera', () => {
-  const cameraDeviceMock = {id: 'mock-device'};
-  const cameraFormatMock = {maxFps: 60};
+  const cameraDeviceMock = { id: 'mock-device' };
+  const cameraFormatMock = { maxFps: 60 };
   return {
     useCameraDevice: jest.fn().mockReturnValue(cameraDeviceMock),
     useCameraFormat: jest.fn().mockReturnValue(cameraFormatMock),
     useCodeScanner: jest.fn(opts => opts.onCodeScanned),
-    Camera: ({children}: {children?: React.ReactNode}) => <>{children}</>,
+    Camera: ({ children }: { children?: React.ReactNode }) => <>{children}</>,
   };
 });
 
@@ -54,7 +54,7 @@ jest.mock('../../assets/images/torch_off.png', () => 1);
 const navigateMock = jest.fn();
 
 // --- TEST NAVIGATION PROP TYPE ---
-import {NavigationHandler, NavigationProductProps} from '@/shared-types';
+import { NavigationHandler, NavigationProductProps } from '@/shared-types';
 const navigation: NavigationHandler<NavigationProductProps> = {
   navigate: navigateMock,
   push: jest.fn(),
@@ -67,7 +67,7 @@ beforeEach(() => {
 
 describe('BarcodeScanner', () => {
   it('renders scan message and toggles torch', () => {
-    const {getByText, getByTestId} = render(
+    const { getByText, getByTestId } = render(
       <BarcodeScanner navigation={navigation} />,
     );
 
@@ -93,8 +93,8 @@ describe('BarcodeScanner', () => {
     render(<BarcodeScanner navigation={navigation} />);
 
     // Simulate code scan
-    const code: VisionCamera.Code = {value: '1234567890123', type: 'ean-13'};
-    const frame: VisionCamera.CodeScannerFrame = {height: 10, width: 10};
+    const code: VisionCamera.Code = { value: '1234567890123', type: 'ean-13' };
+    const frame: VisionCamera.CodeScannerFrame = { height: 10, width: 10 };
     const onCodeScanned = useCodeScannerSpy.mock.calls[0][0].onCodeScanned;
     onCodeScanned([code], frame);
 
@@ -133,7 +133,7 @@ describe('BarcodeScanner', () => {
       sensorOrientation: 'portrait',
     });
 
-    const {rerender} = render(<BarcodeScanner navigation={navigation} />);
+    const { rerender } = render(<BarcodeScanner navigation={navigation} />);
 
     // 2. Update: cameraDevice becomes undefined
     jest.spyOn(VisionCamera, 'useCameraDevice').mockReturnValue(undefined);

@@ -1,9 +1,9 @@
 import React from 'react';
-import {render, fireEvent, waitFor} from '@testing-library/react-native';
+import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import Home from '@/pages/home';
 import fetchMock from 'jest-fetch-mock';
-import {Linking} from 'react-native';
-import {DefaultNavigationHandler} from '@/shared-types';
+import { Linking } from 'react-native';
+import { DefaultNavigationHandler } from '@/shared-types';
 import * as VisionCamera from 'react-native-vision-camera';
 
 // --- MOCKS ---
@@ -66,7 +66,7 @@ const navigation: DefaultNavigationHandler = {
 
 describe('Home', () => {
   it('renders permission message and calls requestPermission on button press', () => {
-    const {getByText} = render(<Home navigation={navigation} />);
+    const { getByText } = render(<Home navigation={navigation} />);
     expect(getByText('permission.message')).toBeTruthy();
     expect(getByText('permission.messageComplement')).toBeTruthy();
 
@@ -81,7 +81,7 @@ describe('Home', () => {
       requestPermission: requestPermissionMock,
     });
 
-    const {getByText, getByTestId} = render(<Home navigation={navigation} />);
+    const { getByText, getByTestId } = render(<Home navigation={navigation} />);
     expect(getByText('scanBarcode')).toBeTruthy();
     // Press barcode scan button
     fireEvent.press(getByTestId('barcode-scanner-button'));
@@ -96,7 +96,7 @@ describe('Home', () => {
       .spyOn(Linking, 'openURL')
       .mockResolvedValue(undefined);
 
-    const {getByText} = render(<Home navigation={navigation} />);
+    const { getByText } = render(<Home navigation={navigation} />);
     fireEvent.press(getByText('privacy'));
     await waitFor(() => {
       expect(canOpenURLMock).toHaveBeenCalledWith(
@@ -119,7 +119,7 @@ describe('Home', () => {
       .spyOn(Linking, 'openURL')
       .mockResolvedValue(undefined);
 
-    const {getByText} = render(<Home navigation={navigation} />);
+    const { getByText } = render(<Home navigation={navigation} />);
     fireEvent.press(getByText('privacy'));
     await waitFor(() => {
       expect(canOpenURLMock).toHaveBeenCalledWith(

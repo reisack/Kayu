@@ -1,4 +1,4 @@
-import {ProductInformationEnum} from '@/enums';
+import { ProductInformationEnum } from '@/enums';
 
 export default class ProductScoreService {
   public getExpression(

@@ -4,8 +4,8 @@ import Score from '@/classes/score';
 import consts from '@/consts';
 import ScoreCalculationService from '@/services/score-calculation-service';
 import '@/extensions'; // needed for clear method extension (for arrays)
-import {Nullable} from '@/extensions';
-import {ProductApi} from '@/shared-types';
+import { Nullable } from '@/extensions';
+import { ProductApi } from '@/shared-types';
 
 type ProductsApiResponse = {
   products: ProductApi[];

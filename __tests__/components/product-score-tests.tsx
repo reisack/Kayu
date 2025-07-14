@@ -1,14 +1,14 @@
 import React from 'react';
-import {render, fireEvent, act} from '@testing-library/react-native';
+import { render, fireEvent, act } from '@testing-library/react-native';
 import ProductScore from '@/components/product-score';
-import {ProductInformationEnum} from '@/enums';
-import {Alert} from 'react-native';
+import { ProductInformationEnum } from '@/enums';
+import { Alert } from 'react-native';
 
 // --- MOCKS ---
 
 // Mock translation
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({t: (k: string) => k}),
+  useTranslation: () => ({ t: (k: string) => k }),
 }));
 
 // Mock Consts
@@ -40,7 +40,7 @@ jest.mock('react-native/Libraries/Utilities/useWindowDimensions', () => ({
 jest.mock(
   'react-native-progress/Bar',
   () => (props: Record<string, unknown>) => {
-    const {View, Text} = require('react-native');
+    const { View, Text } = require('react-native');
     return (
       <View>
         <Text testID="progress-bar-props">{JSON.stringify(props)}</Text>
@@ -79,7 +79,7 @@ describe('ProductScore', () => {
   };
 
   it('renders label, score and progress bar', () => {
-    const {getByText, getByTestId} = render(<ProductScore {...baseProps} />);
+    const { getByText, getByTestId } = render(<ProductScore {...baseProps} />);
     // Check label (uses t(getNutritionLabel))
     expect(getByText('nutrition-label-0')).toBeTruthy();
     // Check score expression (uses t(getExpression))
@@ -91,7 +91,7 @@ describe('ProductScore', () => {
   });
 
   it('sets progress bar indeterminate to false after timer', () => {
-    const {getByTestId} = render(<ProductScore {...baseProps} />);
+    const { getByTestId } = render(<ProductScore {...baseProps} />);
 
     // Advance timer by 1 second
     act(() => {
@@ -109,7 +109,7 @@ describe('ProductScore', () => {
     // Mock Alert
     const alertSpy = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
 
-    const {getByTestId} = render(<ProductScore {...baseProps} />);
+    const { getByTestId } = render(<ProductScore {...baseProps} />);
     const pressable = getByTestId('pressable-info-icon');
 
     fireEvent.press(pressable);
@@ -126,14 +126,14 @@ describe('ProductScore', () => {
       productInfo: ProductInformationEnum.additives,
     };
 
-    const {getByText} = render(<ProductScore {...stringArrayProps} />);
+    const { getByText } = render(<ProductScore {...stringArrayProps} />);
 
     expect(getByText('nutrition-label-5')).toBeTruthy();
     expect(getByText('expression-2-5')).toBeTruthy();
   });
 
   it('renders nothing when score is null', () => {
-    const {toJSON} = render(
+    const { toJSON } = render(
       <ProductScore
         score={null}
         nutritionValue={20}

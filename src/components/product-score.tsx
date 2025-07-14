@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,9 +8,9 @@ import {
   Image,
   useWindowDimensions,
 } from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import ProductScoreService from '@/services/product-score-service';
-import {ProductInformationEnum} from '@/enums';
+import { ProductInformationEnum } from '@/enums';
 import Consts from '@/consts';
 
 // node_modules/react-native-progress/Bar.js' implicitly has an 'any'
@@ -28,8 +28,8 @@ const ProductScore: React.FC<Props> = ({
   nutritionValue,
   productInfo: productInfo,
 }) => {
-  const {t} = useTranslation();
-  const {width} = useWindowDimensions();
+  const { t } = useTranslation();
+  const { width } = useWindowDimensions();
 
   const productScoreService = new ProductScoreService();
 

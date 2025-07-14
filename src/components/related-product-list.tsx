@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {useTranslation} from 'react-i18next';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   View,
   ActivityIndicator,
@@ -16,12 +16,12 @@ interface Props {
   product: Product;
 }
 
-const RelatedProductList: React.FC<Props> = ({product}) => {
+const RelatedProductList: React.FC<Props> = ({ product }) => {
   const [isLoading, setLoading] = useState(true);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
 
-  const {t} = useTranslation();
-  const {width, fontScale} = useWindowDimensions();
+  const { t } = useTranslation();
+  const { width, fontScale } = useWindowDimensions();
 
   const isMounted = useRef(true);
 

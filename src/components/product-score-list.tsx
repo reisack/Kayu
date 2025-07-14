@@ -1,19 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, useWindowDimensions, View} from 'react-native';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import ProductScore from '@/components/product-score';
-import {ProductInformationEnum} from '../enums';
+import { ProductInformationEnum } from '../enums';
 import Product from '@/classes/product';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Consts from '@/consts';
-import {Nullable} from '@/extensions';
+import { Nullable } from '@/extensions';
 
 interface Props {
   product: Product;
 }
 
-const ProductScoreList: React.FC<Props> = ({product}) => {
-  const {t} = useTranslation();
-  const {width, fontScale} = useWindowDimensions();
+const ProductScoreList: React.FC<Props> = ({ product }) => {
+  const { t } = useTranslation();
+  const { width, fontScale } = useWindowDimensions();
 
   const styles = StyleSheet.create({
     container: {

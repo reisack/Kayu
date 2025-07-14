@@ -1,7 +1,7 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import ProductScoreList from '@/components/product-score-list';
-import {ProductInformationEnum} from '@/enums';
+import { ProductInformationEnum } from '@/enums';
 import Product from '@/classes/product';
 import Score from '@/classes/score';
 
@@ -9,7 +9,7 @@ import Score from '@/classes/score';
 
 // Mock translation
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({t: (key: string) => key}),
+  useTranslation: () => ({ t: (key: string) => key }),
 }));
 
 // Mock Consts
@@ -42,7 +42,7 @@ jest.mock(
       nutritionValue: number | string[];
       productInfo: ProductInformationEnum;
     }) => {
-      const {Text} = require('react-native');
+      const { Text } = require('react-native');
       return <Text>{JSON.stringify(props)}</Text>;
     },
 );
@@ -69,7 +69,7 @@ describe('ProductScoreList', () => {
       mainCategory: 'cat1',
     };
 
-    const {getByText, queryByText} = render(
+    const { getByText, queryByText } = render(
       <ProductScoreList product={mockProduct} />,
     );
 
@@ -159,7 +159,7 @@ describe('ProductScoreList', () => {
       mainCategory: 'cat1',
     };
 
-    const {getByText, queryByText} = render(
+    const { getByText, queryByText } = render(
       <ProductScoreList product={mockProduct} />,
     );
     expect(getByText('ScoreTitle')).toBeTruthy();

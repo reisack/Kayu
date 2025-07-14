@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   Text,
@@ -10,16 +10,16 @@ import {
 } from 'react-native';
 import Product from '@/classes/product';
 import Consts from '@/consts';
-import {NavigationHandler, NavigationProductProps} from '@/shared-types';
+import { NavigationHandler, NavigationProductProps } from '@/shared-types';
 
 interface Props {
   product: Product;
   originProductEanCode: string;
 }
 
-const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
+const RelatedProduct: React.FC<Props> = ({ product, originProductEanCode }) => {
   const navigation = useNavigation<NavigationHandler<NavigationProductProps>>();
-  const {width, fontScale} = useWindowDimensions();
+  const { width, fontScale } = useWindowDimensions();
 
   const styles = StyleSheet.create({
     container: {
@@ -69,7 +69,7 @@ const RelatedProduct: React.FC<Props> = ({product, originProductEanCode}) => {
         <Image
           testID="related-product-image"
           style={styles.productImage}
-          source={{uri: product.imageUrl}}
+          source={{ uri: product.imageUrl }}
         />
         <View style={styles.productTextContainer}>
           <Text style={styles.productText}>{product.frName}</Text>
