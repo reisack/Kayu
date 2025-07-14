@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import {render, fireEvent} from '@testing-library/react-native';
 import ProductScreen from '@/pages/product-screen';
 import fetchMock from 'jest-fetch-mock';
-import { ParamListBase, RouteProp } from '@react-navigation/native';
-import { IActionProps } from 'react-native-floating-action';
+import {ParamListBase, RouteProp} from '@react-navigation/native';
+import {IActionProps} from 'react-native-floating-action';
 
 // --- Mocks ---
 
@@ -25,12 +25,12 @@ jest.mock('@/consts', () => ({
 
 jest.mock('react-native/Libraries/Utilities/useWindowDimensions', () => ({
   __esModule: true,
-  default: () => ({ width: 400 }),
+  default: () => ({width: 400}),
 }));
 
 // Mock FloatingAction to a minimal version
 jest.mock('react-native-floating-action', () => {
-  const { Pressable, Text } = require('react-native');
+  const {Pressable, Text} = require('react-native');
   return {
     FloatingAction: ({
       onPressItem,
@@ -42,40 +42,43 @@ jest.mock('react-native-floating-action', () => {
       color: string;
     }) => (
       <>
-        {actions.map((a) => (
+        {actions.map(a => (
           <Pressable
             key={a.name}
             testID={`fab-btn-${a.name}`}
             onPress={() => onPressItem(a.name)}
-            style={{ backgroundColor: color }}
-          >
+            style={{backgroundColor: color}}>
             <Text>{a.text}</Text>
           </Pressable>
         ))}
       </>
     ),
-  }
+  };
 });
 
 // Mock ProductDetails and NotFoundProduct
 jest.mock('@/components/product-details', () => {
-  const { Pressable, Text } = require('react-native');
+  const {Pressable, Text} = require('react-native');
   return {
     __esModule: true,
-    default: ({ onNotFoundProduct }: { onNotFoundProduct: () => void }) => (
+    default: ({onNotFoundProduct}: {onNotFoundProduct: () => void}) => (
       <Pressable testID="details-btn" onPress={onNotFoundProduct}>
         <Text>ProductDetails</Text>
       </Pressable>
     ),
-  }
+  };
 });
 
 jest.mock('@/components/not-found-product', () => {
-  const { View, Text } = require('react-native');
+  const {View, Text} = require('react-native');
   return {
     __esModule: true,
-    default: () => <View testID="notfound"><Text>NotFoundProduct</Text></View>,
-  }
+    default: () => (
+      <View testID="notfound">
+        <Text>NotFoundProduct</Text>
+      </View>
+    ),
+  };
 });
 
 // --- Navigation Mock ---
@@ -104,8 +107,8 @@ beforeEach(() => {
 
 describe('ProductScreen', () => {
   it('renders ProductDetails and switches to NotFoundProduct when not found', () => {
-    const { getByTestId, queryByTestId } = render(
-      <ProductScreen navigation={navigation} route={route} />
+    const {getByTestId, queryByTestId} = render(
+      <ProductScreen navigation={navigation} route={route} />,
     );
 
     // ProductDetails should be visible
@@ -120,8 +123,8 @@ describe('ProductScreen', () => {
   });
 
   it('navigates when floating action buttons are pressed', () => {
-    const { getByTestId } = render(
-      <ProductScreen navigation={navigation} route={route} />
+    const {getByTestId} = render(
+      <ProductScreen navigation={navigation} route={route} />,
     );
 
     fireEvent.press(getByTestId('fab-btn-homeButton'));
@@ -140,8 +143,8 @@ describe('ProductScreen', () => {
       },
     };
 
-    const { getByTestId } = render(
-      <ProductScreen navigation={navigation} route={routeWithOrigin} />
+    const {getByTestId} = render(
+      <ProductScreen navigation={navigation} route={routeWithOrigin} />,
     );
 
     fireEvent.press(getByTestId('fab-btn-backButton'));

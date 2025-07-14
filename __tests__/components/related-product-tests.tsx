@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react-native';
+import {render, fireEvent} from '@testing-library/react-native';
 import RelatedProduct from '@/components/related-product';
 import Product from '@/classes/product';
 import Score from '@/classes/score';
@@ -51,8 +51,8 @@ const product: Product = {
     fat: null,
     novaGroup: 1,
     salt: null,
-    sugar: 12
-  }
+    sugar: 12,
+  },
 };
 
 const originProductEanCode = '111222333';
@@ -61,8 +61,11 @@ const originProductEanCode = '111222333';
 
 describe('RelatedProduct', () => {
   it('renders image and product name', () => {
-    const { getByText, getByTestId } = render(
-      <RelatedProduct product={product} originProductEanCode={originProductEanCode} />
+    const {getByText, getByTestId} = render(
+      <RelatedProduct
+        product={product}
+        originProductEanCode={originProductEanCode}
+      />,
     );
 
     // Product name visible
@@ -73,8 +76,11 @@ describe('RelatedProduct', () => {
   });
 
   it('navigates with correct params on press', () => {
-    const { getByTestId } = render(
-      <RelatedProduct product={product} originProductEanCode={originProductEanCode} />
+    const {getByTestId} = render(
+      <RelatedProduct
+        product={product}
+        originProductEanCode={originProductEanCode}
+      />,
     );
 
     // Press the Pressable

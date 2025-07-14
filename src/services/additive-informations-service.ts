@@ -41,8 +41,7 @@ export default class AdditiveInformationsService {
         jsonFromAPI[property].efsa_evaluation_overexposure_risk &&
         jsonFromAPI[property].efsa_evaluation_overexposure_risk.en
       ) {
-        const risk = jsonFromAPI[property].efsa_evaluation_overexposure_risk
-          .en as Risk;
+        const risk = jsonFromAPI[property].efsa_evaluation_overexposure_risk.en;
 
         const riskScores: RiskScores = {
           'en:high': 30,

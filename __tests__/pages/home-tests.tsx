@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import {render, fireEvent, waitFor} from '@testing-library/react-native';
 import Home from '@/pages/home';
 import fetchMock from 'jest-fetch-mock';
-import { useCameraPermission } from 'react-native-vision-camera';
-import { Linking } from 'react-native';
-import { DefaultNavigationHandler } from '@/shared-types';
+import {Linking} from 'react-native';
+import {DefaultNavigationHandler} from '@/shared-types';
+import * as VisionCamera from 'react-native-vision-camera';
 
 // --- MOCKS ---
 
@@ -50,7 +50,8 @@ beforeEach(() => {
   fetchMock.resetMocks();
   navigateMock.mockReset();
   requestPermissionMock.mockReset();
-  (useCameraPermission as jest.Mock).mockReturnValue({
+
+  jest.spyOn(VisionCamera, 'useCameraPermission').mockReturnValue({
     hasPermission: false,
     requestPermission: requestPermissionMock,
   });
@@ -58,14 +59,14 @@ beforeEach(() => {
 
 const navigation: DefaultNavigationHandler = {
   navigate: navigateMock,
-  goBack: jest.fn()
+  goBack: jest.fn(),
 };
 
 // --- TESTS ---
 
 describe('Home', () => {
   it('renders permission message and calls requestPermission on button press', () => {
-    const { getByText } = render(<Home navigation={navigation} />);
+    const {getByText} = render(<Home navigation={navigation} />);
     expect(getByText('permission.message')).toBeTruthy();
     expect(getByText('permission.messageComplement')).toBeTruthy();
 
@@ -75,12 +76,12 @@ describe('Home', () => {
   });
 
   it('renders scan UI and navigates on press when hasPermission', () => {
-    (useCameraPermission as jest.Mock).mockReturnValue({
+    jest.spyOn(VisionCamera, 'useCameraPermission').mockReturnValue({
       hasPermission: true,
       requestPermission: requestPermissionMock,
     });
 
-    const { getByText, getByTestId } = render(<Home navigation={navigation} />);
+    const {getByText, getByTestId} = render(<Home navigation={navigation} />);
     expect(getByText('scanBarcode')).toBeTruthy();
     // Press barcode scan button
     fireEvent.press(getByTestId('barcode-scanner-button'));
@@ -88,17 +89,21 @@ describe('Home', () => {
   });
 
   it('opens privacy link', async () => {
-    const canOpenURLMock = jest.spyOn(Linking, 'canOpenURL').mockResolvedValue(true);
-    const openURLMock = jest.spyOn(Linking, 'openURL').mockResolvedValue(undefined);
+    const canOpenURLMock = jest
+      .spyOn(Linking, 'canOpenURL')
+      .mockResolvedValue(true);
+    const openURLMock = jest
+      .spyOn(Linking, 'openURL')
+      .mockResolvedValue(undefined);
 
-    const { getByText } = render(<Home navigation={navigation} />);
+    const {getByText} = render(<Home navigation={navigation} />);
     fireEvent.press(getByText('privacy'));
     await waitFor(() => {
       expect(canOpenURLMock).toHaveBeenCalledWith(
-        'https://reisack.github.io/Kayu/privacy.html'
+        'https://reisack.github.io/Kayu/privacy.html',
       );
       expect(openURLMock).toHaveBeenCalledWith(
-        'https://reisack.github.io/Kayu/privacy.html'
+        'https://reisack.github.io/Kayu/privacy.html',
       );
     });
 
@@ -107,16 +112,20 @@ describe('Home', () => {
   });
 
   it('Cannot open privacy link', async () => {
-    const canOpenURLMock = jest.spyOn(Linking, 'canOpenURL').mockResolvedValue(false);
-    const openURLMock = jest.spyOn(Linking, 'openURL').mockResolvedValue(undefined);
+    const canOpenURLMock = jest
+      .spyOn(Linking, 'canOpenURL')
+      .mockResolvedValue(false);
+    const openURLMock = jest
+      .spyOn(Linking, 'openURL')
+      .mockResolvedValue(undefined);
 
-    const { getByText } = render(<Home navigation={navigation} />);
+    const {getByText} = render(<Home navigation={navigation} />);
     fireEvent.press(getByText('privacy'));
     await waitFor(() => {
       expect(canOpenURLMock).toHaveBeenCalledWith(
-        'https://reisack.github.io/Kayu/privacy.html'
+        'https://reisack.github.io/Kayu/privacy.html',
       );
-      expect(openURLMock).not.toHaveBeenCalled()
+      expect(openURLMock).not.toHaveBeenCalled();
     });
 
     canOpenURLMock.mockReset();

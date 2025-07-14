@@ -103,9 +103,7 @@ describe('ProductDetails', () => {
   });
 
   it('renders product info on success', async () => {
-    fetchMock.mockResponseOnce(
-      JSON.stringify(productApiMock)
-    );
+    fetchMock.mockResponseOnce(JSON.stringify(productApiMock));
 
     const {getByText, getByTestId} = render(
       <ProductDetails
@@ -126,9 +124,7 @@ describe('ProductDetails', () => {
   });
 
   it('calls onNotFoundProduct if status is not 1', async () => {
-    fetchMock.mockResponseOnce(
-      JSON.stringify({ status: 0, product: null })
-    );
+    fetchMock.mockResponseOnce(JSON.stringify({status: 0, product: null}));
 
     render(
       <ProductDetails
@@ -145,7 +141,7 @@ describe('ProductDetails', () => {
 
   it('calls onNotFoundProduct on fetch error', async () => {
     fetchMock.mockRejectOnce(new Error('Network error'));
-    
+
     render(
       <ProductDetails
         eanCode={eanCodeMock}
@@ -153,7 +149,7 @@ describe('ProductDetails', () => {
         onNotFoundProduct={onNotFoundMock}
       />,
     );
-    
+
     await waitFor(() => {
       expect(onNotFoundMock).toHaveBeenCalled();
     });

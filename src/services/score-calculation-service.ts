@@ -5,22 +5,22 @@ import AdditiveInformationsService from '@/services/additive-informations-servic
 export default class ScoreCalculationService {
   public getScore(nutritionValues: NutritionValues): Score {
     const fat = this.canBeCalculated(nutritionValues.fat)
-      ? (nutritionValues.fat as number) * 10
+      ? nutritionValues.fat! * 10
       : null;
     const sugar = this.canBeCalculated(nutritionValues.sugar)
-      ? (nutritionValues.sugar as number) * 2.22
+      ? nutritionValues.sugar! * 2.22
       : null;
     const salt = this.canBeCalculated(nutritionValues.salt)
-      ? (nutritionValues.salt as number) * 40
+      ? nutritionValues.salt! * 40
       : null;
     const novaGroup = this.canBeCalculated(nutritionValues.novaGroup)
-      ? (nutritionValues.novaGroup as number) * 25
+      ? nutritionValues.novaGroup! * 25
       : null;
     const eco = this.canBeCalculated(nutritionValues.eco)
-      ? 100 - (nutritionValues.eco as number)
+      ? 100 - nutritionValues.eco!
       : null;
     const additives = this.canBeCalculated(nutritionValues.additives)
-      ? this.getAdditivesScore(nutritionValues.additives as string[])
+      ? this.getAdditivesScore(nutritionValues.additives!)
       : null;
 
     return new Score(fat, sugar, salt, novaGroup, eco, additives);

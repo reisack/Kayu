@@ -52,8 +52,8 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
       {canDisplayScore(product.nutritionValues.fat, product.score.fat) ? (
         <View>
           <ProductScore
-            score={product.score.fat as number}
-            nutritionValue={product.nutritionValues.fat as number}
+            score={product.score.fat ?? null}
+            nutritionValue={product.nutritionValues.fat ?? 0}
             productInfo={ProductInformationEnum.fat}
           />
         </View>
@@ -63,8 +63,8 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
 
       {canDisplayScore(product.nutritionValues.salt, product.score.salt) ? (
         <ProductScore
-          score={product.score.salt as number}
-          nutritionValue={product.nutritionValues.salt as number}
+          score={product.score.salt ?? null}
+          nutritionValue={product.nutritionValues.salt ?? 0}
           productInfo={ProductInformationEnum.salt}
         />
       ) : (
@@ -73,8 +73,8 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
 
       {canDisplayScore(product.nutritionValues.sugar, product.score.sugar) ? (
         <ProductScore
-          score={product.score.sugar as number}
-          nutritionValue={product.nutritionValues.sugar as number}
+          score={product.score.sugar ?? null}
+          nutritionValue={product.nutritionValues.sugar ?? 0}
           productInfo={ProductInformationEnum.sugar}
         />
       ) : (
@@ -86,8 +86,8 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
         product.score.novaGroup,
       ) ? (
         <ProductScore
-          score={product.score.novaGroup as number}
-          nutritionValue={product.nutritionValues.novaGroup as number}
+          score={product.score.novaGroup ?? null}
+          nutritionValue={product.nutritionValues.novaGroup ?? 0}
           productInfo={ProductInformationEnum.novaGroup}
         />
       ) : (
@@ -96,8 +96,8 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
 
       {canDisplayScore(product.nutritionValues.eco, product.score.eco) ? (
         <ProductScore
-          score={product.score.eco as number}
-          nutritionValue={product.nutritionValues.eco as number}
+          score={product.score.eco ?? null}
+          nutritionValue={product.nutritionValues.eco ?? 0}
           productInfo={ProductInformationEnum.eco}
         />
       ) : (
@@ -109,8 +109,8 @@ const ProductScoreList: React.FC<Props> = ({product}) => {
         product.score.additives,
       ) ? (
         <ProductScore
-          score={product.score.additives as number}
-          nutritionValue={product.nutritionValues.additives as string[]}
+          score={product.score.additives ?? null}
+          nutritionValue={product.nutritionValues.additives ?? []}
           productInfo={ProductInformationEnum.additives}
         />
       ) : (

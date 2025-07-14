@@ -160,7 +160,9 @@ const BarcodeScanner: React.FC<Props> = ({navigation}) => {
           )}
 
           <View style={styles.torchButton}>
-            <Pressable testID='torch-toggle-button' onPress={() => toggleTorch()}>
+            <Pressable
+              testID="torch-toggle-button"
+              onPress={() => toggleTorch()}>
               {torchMode === 'off' ? (
                 <Image
                   testID="torch-on-image"
