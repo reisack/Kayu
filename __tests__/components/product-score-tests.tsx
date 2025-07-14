@@ -2,7 +2,6 @@ import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react-native';
 import ProductScore from '@/components/product-score';
 import { ProductInformationEnum } from '@/enums';
-import fetchMock from 'jest-fetch-mock';
 import { Alert } from 'react-native';
 
 // --- MOCKS ---
@@ -58,7 +57,6 @@ jest.mock('@/services/product-score-service', () =>
 
 // --- SETUP ---
 beforeEach(() => {
-  fetchMock.resetMocks();
   jest.useFakeTimers(); // Because the component uses setInterval!
 });
 
