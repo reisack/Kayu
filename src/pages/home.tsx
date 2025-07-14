@@ -106,6 +106,7 @@ const Home: React.FC<Props> = ({navigation}) => {
       ) : (
         <View style={styles.buttonBarcode}>
           <Pressable
+            testID='barcode-scanner-button'
             disabled={!hasPermission}
             onPress={() => navigation.navigate('BarcodeScanner')}>
             <Image
