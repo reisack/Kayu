@@ -40,10 +40,7 @@ export default class AdditiveInformationsService {
   ): void {
     const additiveScoreInformations: AdditiveInformation[] = [];
     for (const property in jsonFromAPI) {
-      if (
-        jsonFromAPI[property].efsa_evaluation_overexposure_risk &&
-        jsonFromAPI[property].efsa_evaluation_overexposure_risk.en
-      ) {
+      if (jsonFromAPI[property].efsa_evaluation_overexposure_risk?.en) {
         const risk = jsonFromAPI[property].efsa_evaluation_overexposure_risk.en;
 
         const riskScores: RiskScores = {

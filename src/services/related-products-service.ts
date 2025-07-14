@@ -69,7 +69,7 @@ export default class RelatedProductsService {
       );
       const json: ProductsApiResponse = await response.json();
 
-      if (json && json.count && json.count > 0) {
+      if (json?.count && json.count > 0) {
         this.setRelatedProductsWithTotalScore(
           relatedProducts,
           json,
@@ -154,7 +154,7 @@ export default class RelatedProductsService {
       );
 
       const json: ProductsApiResponse = await response.json();
-      if (json && json.count && json.count > 0) {
+      if (json?.count && json.count > 0) {
         for (const relatedProduct of json.products) {
           const product = relatedProducts.find(
             p => p.eanCode === relatedProduct.code,

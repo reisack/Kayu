@@ -113,7 +113,7 @@ const ProductDetails: React.FC<Props> = ({
 
       const json: ProductApiResponse = await response.json();
       if (isMounted.current) {
-        if (json && json.status && json.status === 1) {
+        if (json?.status && json.status === 1) {
           setProduct(getSimplifiedProduct(json));
           setLoading(false);
         } else {

@@ -90,10 +90,10 @@ const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
   const onBarcodeRead = useCodeScanner({
     codeTypes: ['ean-13'],
     onCodeScanned: (codes: Code[]) => {
-      if (!productHasBeenScanned && codes && codes.length > 0) {
+      if (!productHasBeenScanned && codes?.length > 0) {
         // We only want the first one
         const code = codes[0];
-        if (code && code.value) {
+        if (code?.value) {
           setProductHasBeenScanned(true);
           setTorchMode('off');
           navigation.navigate('ProductScreen', {
