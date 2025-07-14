@@ -3,8 +3,8 @@ import Score from '@/classes/score';
 
 type ProductCategory = {
   mainCategory: string;
-  categories: string[]
-}
+  categories: string[];
+};
 
 export default class Product {
   eanCode: string;
@@ -33,7 +33,7 @@ export default class Product {
 
     this.category = {
       mainCategory: category?.mainCategory ?? '',
-      categories: category?.categories ?? []
+      categories: category?.categories ?? [],
     };
   }
 
@@ -42,7 +42,7 @@ export default class Product {
     frName: '',
     brands: '',
     imageUrl: '',
-    category: { mainCategory: '' ,categories: []},
+    category: { mainCategory: '', categories: [] },
     nutritionValues: new NutritionValues(),
     score: new Score(),
   };

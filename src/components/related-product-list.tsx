@@ -59,7 +59,10 @@ const RelatedProductList: React.FC<Props> = ({ product }) => {
 
   useEffect(() => {
     isMounted.current &&
-      getRelatedproducts(product.category.mainCategory, product.score.getTotal());
+      getRelatedproducts(
+        product.category.mainCategory,
+        product.score.getTotal(),
+      );
   }, [product, getRelatedproducts]);
 
   // Cleanup

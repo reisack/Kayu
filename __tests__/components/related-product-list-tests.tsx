@@ -45,7 +45,7 @@ const baseProduct: Product = {
   category: {
     mainCategory: 'snacks',
     categories: [],
-  }
+  },
 };
 
 // --- Mock RelatedProduct ---
