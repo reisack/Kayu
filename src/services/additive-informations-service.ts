@@ -28,6 +28,9 @@ export default class AdditiveInformationsService {
       const json: AdditiveInformationsApiResponse = await response.json();
       this.setSimplifiedObject(json);
     } catch (error) {
+      console.log(
+        `initAdditiveScoreInformations - Cannot fetch additive informations : ${error}`,
+      );
       return Promise.reject();
     }
   }

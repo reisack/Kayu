@@ -9,7 +9,6 @@ import {
   ToastAndroid,
 } from 'react-native';
 import ScoreCalculationService from '@/services/score-calculation-service';
-import consts from '@/consts';
 import NutritionValues from '@/classes/nutrition-values';
 import Product from '@/classes/product';
 import RelatedProductList from '@/components/related-product-list';
@@ -103,13 +102,13 @@ const ProductDetails: React.FC<Props> = ({
 
   const getProductByEanCode = useCallback(async (): Promise<void> => {
     try {
-      const productDetailsUrl = `${consts.openFoodFactAPIBaseUrl}api/v0/product/`;
+      const productDetailsUrl = `${Consts.openFoodFactAPIBaseUrl}api/v0/product/`;
       const paramFields =
         'product_name_fr,brands,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score,image_front_url,compared_to_category,categories_hierarchy';
 
       const response = await fetch(
         `${productDetailsUrl}${eanCode}.json?fields=${paramFields}`,
-        consts.httpHeaderGetRequest,
+        Consts.httpHeaderGetRequest,
       );
 
       const json: ProductApiResponse = await response.json();
@@ -122,7 +121,11 @@ const ProductDetails: React.FC<Props> = ({
         }
       }
     } catch (error) {
+      console.log(
+        `getProductByEanCode - Cannot find product with scanned code. Error : ${error}`,
+      );
       ToastAndroid.show(t('error.getProductByEanCode'), ToastAndroid.LONG);
+
       if (isMounted.current) {
         onNotFoundProduct();
       }

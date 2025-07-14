@@ -78,6 +78,9 @@ export default class RelatedProductsService {
       }
     } catch (error) {
       // We reset products list if API throws an error
+      console.log(
+        `getAllRelatedProductsWithNutritionInformations - Cannot fetch related products : ${error}`,
+      );
       relatedProducts.clear();
     }
 
@@ -166,6 +169,9 @@ export default class RelatedProductsService {
       }
     } catch (error) {
       // We reset products list if API throws an error
+      console.log(
+        `completeRelatedProductsWithAllInformations - Cannot fetch related products informations : ${error}`,
+      );
       relatedProducts.clear();
     }
   }
