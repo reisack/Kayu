@@ -1,4 +1,5 @@
 import React from 'react';
+import fetchMock from 'jest-fetch-mock';
 import * as ReactNative from 'react-native';
 import {render, waitFor} from '@testing-library/react-native';
 import ProductDetails from '@/components/product-details';
@@ -52,8 +53,8 @@ jest.mock('@/classes/product', () => ({
 jest.mock('@/classes/nutrition-values', () => jest.fn());
 
 // --- TEST DATA ---
-const MOCK_EAN = '12345';
-const MOCK_ON_NOT_FOUND = jest.fn();
+const eanCodeMock = '12345';
+const onNotFoundMock = jest.fn();
 
 const productApiMock = {
   status: 1,
@@ -84,17 +85,17 @@ describe('ProductDetails', () => {
       scale: 1,
     });
 
-    global.fetch = jest.fn();
-    MOCK_ON_NOT_FOUND.mockClear();
+    fetchMock.resetMocks();
+    onNotFoundMock.mockClear();
   });
 
   it('shows loader while fetching', () => {
     // fetch never resolves
     const {getByTestId} = render(
       <ProductDetails
-        eanCode={MOCK_EAN}
+        eanCode={eanCodeMock}
         isRelated={false}
-        onNotFoundProduct={MOCK_ON_NOT_FOUND}
+        onNotFoundProduct={onNotFoundMock}
       />,
     );
 
@@ -102,15 +103,15 @@ describe('ProductDetails', () => {
   });
 
   it('renders product info on success', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
-      json: async () => productApiMock,
-    });
+    fetchMock.mockResponseOnce(
+      JSON.stringify(productApiMock)
+    );
 
     const {getByText, getByTestId} = render(
       <ProductDetails
-        eanCode={MOCK_EAN}
+        eanCode={eanCodeMock}
         isRelated={false}
-        onNotFoundProduct={MOCK_ON_NOT_FOUND}
+        onNotFoundProduct={onNotFoundMock}
       />,
     );
 
@@ -125,33 +126,36 @@ describe('ProductDetails', () => {
   });
 
   it('calls onNotFoundProduct if status is not 1', async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({
-      json: async () => ({status: 0, product: null}),
-    });
+    fetchMock.mockResponseOnce(
+      JSON.stringify({ status: 0, product: null })
+    );
 
     render(
       <ProductDetails
-        eanCode={MOCK_EAN}
+        eanCode={eanCodeMock}
         isRelated={false}
-        onNotFoundProduct={MOCK_ON_NOT_FOUND}
+        onNotFoundProduct={onNotFoundMock}
       />,
     );
+
     await waitFor(() => {
-      expect(MOCK_ON_NOT_FOUND).toHaveBeenCalled();
+      expect(onNotFoundMock).toHaveBeenCalled();
     });
   });
 
   it('calls onNotFoundProduct on fetch error', async () => {
-    (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
+    fetchMock.mockRejectOnce(new Error('Network error'));
+    
     render(
       <ProductDetails
-        eanCode={MOCK_EAN}
+        eanCode={eanCodeMock}
         isRelated={false}
-        onNotFoundProduct={MOCK_ON_NOT_FOUND}
+        onNotFoundProduct={onNotFoundMock}
       />,
     );
+    
     await waitFor(() => {
-      expect(MOCK_ON_NOT_FOUND).toHaveBeenCalled();
+      expect(onNotFoundMock).toHaveBeenCalled();
     });
   });
 });
