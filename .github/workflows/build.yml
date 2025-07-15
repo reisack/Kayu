@@ -23,10 +23,7 @@ jobs:
         run: npm ci
 
       - name: Run Jest tests with coverage
-        run: npm test -- --coverage
-
-      - name: Show coverage report
-        run: cat coverage/lcov.info
+        run: npm run test:cov
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
