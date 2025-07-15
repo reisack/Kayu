@@ -51,7 +51,7 @@ describe('Additive informations service', () => {
   });
 
   it('should have no additives informations when API throw error', async () => {
-    fetchMock.mockResponseOnce(() => Promise.reject());
+    fetchMock.mockResponseOnce(() => Promise.reject(new Error("Mock error")));
 
     await expect(
       AdditiveInformationsService.initAdditiveScoreInformations(),

@@ -38,7 +38,7 @@ describe('Related products service', () => {
     fetchMock.mockResponseOnce(JSON.stringify(relatedProductsScoresMock));
 
     // Query for all informations about selected related products throws an error
-    fetchMock.mockResponseOnce(() => Promise.reject('error'));
+    fetchMock.mockResponseOnce(() => Promise.reject(new Error("Mock error")));
 
     // Math.Random() will always returns 0.1
     mockRandom([0.1]);
@@ -76,7 +76,7 @@ describe('Related products service', () => {
   });
 
   it('should have empty list when API throws an error', async () => {
-    fetchMock.mockResponse(() => Promise.reject('error'));
+    fetchMock.mockResponse(() => Promise.reject(new Error("Mock error")));
 
     const results = await relatedProductsService.getRelatedproducts(
       'vanilla-ice-cream-tubs',
