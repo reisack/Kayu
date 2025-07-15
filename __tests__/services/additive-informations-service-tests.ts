@@ -51,11 +51,15 @@ describe('Additive informations service', () => {
   });
 
   it('should have no additives informations when API throw error', async () => {
-    fetchMock.mockResponseOnce(() => Promise.reject(new Error("Mock error")));
+    fetchMock.mockResponseOnce(() => Promise.reject(new Error('Mock error')));
 
     await expect(
       AdditiveInformationsService.initAdditiveScoreInformations(),
-    ).rejects.toBeUndefined();
+    ).rejects.toStrictEqual(
+      new Error(
+        'initAdditiveScoreInformations - Cannot fetch additive informations : Error: Mock error',
+      ),
+    );
 
     const result = AdditiveInformationsService.getAdditiveScoreInformations();
 
