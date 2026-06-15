@@ -1,0 +1,5 @@
+interface:
+  display_name: "Kayu Agent Harness"
+  short_description: "Run Kayu specs through agent workflow"
+  model: 'GPT 5.4'
+  default_prompt: "Use $kayu-agent-harness to run the Kayu agent workflow from SPECIFICATIONS.md."
