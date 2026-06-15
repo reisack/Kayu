@@ -12,6 +12,7 @@ Before changing this repository, read:
 ## Working Rules
 
 - Treat this as a React Native TypeScript app with native Android and iOS scaffolding. Keep most application behavior in `src/`.
+- For specification-driven changes, use the project workflow in `.codex/workflows/planner-coder-tester.md`: planner creates `.codex/plans/IMPLEMENTATION_PLAN.md` from `SPECIFICATIONS.md`, coder implements it, tester adds automated tests, and planner performs final architecture and SOLID verification.
 - Follow the existing folder boundaries: screens in `src/pages`, reusable UI in `src/components`, domain data classes in `src/classes`, and API/scoring/i18n logic in `src/services`.
 - Prefer the existing `@/` import alias for application code.
 - Keep user-visible strings behind i18n keys in `assets/i18n/fr.json` when adding text.

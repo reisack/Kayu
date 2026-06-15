@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Kayu Coder'
+  short_description: 'Implement planned Kayu changes safely'
+  default_prompt: 'Use $kayu-coder to implement the approved markdown plan for this Kayu change.'

@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Kayu Planner'
+  short_description: 'Plan Kayu changes from SPECIFICATIONS.md'
+  default_prompt: 'Use $kayu-planner to turn SPECIFICATIONS.md into an architecture-aware implementation plan.'

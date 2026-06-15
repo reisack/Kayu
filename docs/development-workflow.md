@@ -122,6 +122,16 @@ The repository does not include a written contribution guide, but the scripts an
 6. Run `npm run test:cov` when validating CI/Sonar readiness.
 7. For Android behavior, use `npm run android`; for iOS behavior, use `npm run ios`.
 
+## Agent Workflow
+
+Specification-driven agent work uses the project-local Codex workflow in `.codex/workflows/planner-coder-tester.md`.
+
+1. Write the requested change in `SPECIFICATIONS.md`.
+2. Use `$kayu-planner` to create `.codex/plans/IMPLEMENTATION_PLAN.md` with architecture, SOLID, implementation, testing, and validation notes.
+3. Use `$kayu-coder` to implement the planned code and documentation changes.
+4. Use `$kayu-tester` to add focused Jest and React Native Testing Library coverage.
+5. Use `$kayu-planner` again for final architecture and SOLID verification.
+
 ## CI/CD Workflow
 
 The GitHub Actions workflow is `.github/workflows/build.yml`.

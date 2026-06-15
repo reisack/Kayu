@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Kayu Tester'
+  short_description: 'Write focused Kayu automated tests'
+  default_prompt: 'Use $kayu-tester to add focused Jest coverage for the implemented Kayu change.'
