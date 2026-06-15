@@ -9,6 +9,10 @@ description: Plan and verify Kayu repository changes from a root SPECIFICATIONS.
 
 Use this skill to convert `SPECIFICATIONS.md` into `.codex/plans/IMPLEMENTATION_PLAN.md`, then later verify the finished change against that plan, the Kayu architecture, and SOLID principles.
 
+## Required Model
+
+Run this custom agent with GPT 5.4.
+
 ## Planning Workflow
 
 1. Read `SPECIFICATIONS.md` from the project root.

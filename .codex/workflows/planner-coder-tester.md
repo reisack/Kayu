@@ -2,6 +2,8 @@
 
 Use this workflow when a change should move through explicit planning, implementation, automated testing, and final architectural verification.
 
+All custom agents in this workflow should run with GPT 5.4.
+
 ## Inputs
 
 - `SPECIFICATIONS.md`: the root feature or fix specification.

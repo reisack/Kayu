@@ -9,6 +9,10 @@ description: Implement Kayu changes from .codex/plans/IMPLEMENTATION_PLAN.md. Us
 
 Use this skill to implement only the application and documentation changes assigned by `.codex/plans/IMPLEMENTATION_PLAN.md`.
 
+## Required Model
+
+Run this custom agent with GPT 5.4.
+
 ## Coding Workflow
 
 1. Read `.codex/plans/IMPLEMENTATION_PLAN.md`.

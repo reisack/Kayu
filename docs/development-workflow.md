@@ -125,6 +125,7 @@ The repository does not include a written contribution guide, but the scripts an
 ## Agent Workflow
 
 Specification-driven agent work uses the project-local Codex workflow in `.codex/workflows/planner-coder-tester.md`.
+All custom agents in this workflow should run with GPT 5.4.
 
 1. Write the requested change in `SPECIFICATIONS.md`.
 2. Use `$kayu-planner` to create `.codex/plans/IMPLEMENTATION_PLAN.md` with architecture, SOLID, implementation, testing, and validation notes.

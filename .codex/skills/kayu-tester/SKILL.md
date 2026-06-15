@@ -9,6 +9,10 @@ description: Write and run focused automated tests for Kayu changes from .codex/
 
 Use this skill to add focused automated tests after the coder implements the markdown plan.
 
+## Required Model
+
+Run this custom agent with GPT 5.4.
+
 ## Testing Workflow
 
 1. Read `.codex/plans/IMPLEMENTATION_PLAN.md`.
