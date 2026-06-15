@@ -42,7 +42,7 @@ const NotFoundProduct: React.FC = () => {
       <Image
         testID="not-found-image"
         style={styles.notFoundImage}
-        source={require('../../assets/images/sad.png')}
+        source={require('assets/images/sad.png')}
       />
       <Text style={styles.message}>{t('notFoundProduct')}</Text>
     </View>

@@ -167,12 +167,12 @@ const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
                 <Image
                   testID="torch-on-image"
                   style={styles.iconButton}
-                  source={require('../../assets/images/torch_on.png')}
+                  source={require('assets/images/torch_on.png')}
                 />
               ) : (
                 <Image
                   style={styles.iconButton}
-                  source={require('../../assets/images/torch_off.png')}
+                  source={require('assets/images/torch_off.png')}
                 />
               )}
             </Pressable>

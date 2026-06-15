@@ -111,7 +111,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
             onPress={() => navigation.navigate('BarcodeScanner')}>
             <Image
               style={styles.imageBarcode}
-              source={require('../../assets/images/barcode.png')}
+              source={require('assets/images/barcode.png')}
             />
             <View style={styles.textImageBarcodeContainer}>
               <Text style={styles.textImageBarcode}>{t('scanBarcode')}</Text>

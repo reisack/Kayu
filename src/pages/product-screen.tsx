@@ -44,13 +44,13 @@ const ProductScreen: React.FC<Props> = ({ route, navigation }) => {
   const actions: IActionProps[] = [
     {
       text: t('home'),
-      icon: require('../../assets/images/home.png'),
+      icon: require('assets/images/home.png'),
       color: Consts.style.primaryColor,
       name: 'homeButton',
     },
     {
       text: t('scanAnotherBarcode'),
-      icon: require('../../assets/images/barcode.png'),
+      icon: require('assets/images/barcode.png'),
       color: Consts.style.primaryColor,
       name: 'barcodeButton',
     },
@@ -59,7 +59,7 @@ const ProductScreen: React.FC<Props> = ({ route, navigation }) => {
   const actionsRelatedProduct: IActionProps[] = [
     {
       text: t('backToScannedProduct'),
-      icon: require('../../assets/images/barcode.png'),
+      icon: require('assets/images/barcode.png'),
       color: Consts.style.primaryColor,
       name: 'backButton',
     },

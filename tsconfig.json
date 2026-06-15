@@ -4,7 +4,9 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#/*": ["./__tests__/*"],
+      "assets/*": ["./assets/*"]
     }
   }
 }

@@ -2,9 +2,9 @@ import { mockRandom, resetMockRandom } from 'jest-mock-random';
 import fetchMock from 'jest-fetch-mock';
 import RelatedProductsService from '@/services/related-products-service';
 
-import relatedProductsScoresMock from './mocks/related-products-scores-mock.json';
-import relatedProductsSelectedMock from './mocks/related-products-selected-mock.json';
-import relatedProductsScoresEmptyMock from './mocks/related-products-scores-empty-mock.json';
+import relatedProductsScoresMock from '#/services/mocks/related-products-scores-mock.json';
+import relatedProductsSelectedMock from '#/services/mocks/related-products-selected-mock.json';
+import relatedProductsScoresEmptyMock from '#/services/mocks/related-products-scores-empty-mock.json';
 
 describe('Related products service', () => {
   let relatedProductsService: RelatedProductsService;
