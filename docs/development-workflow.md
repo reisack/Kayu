@@ -4,10 +4,10 @@
 
 The repository is a React Native TypeScript project. `package.json` declares:
 
-- Node engine: `>=18`
-- React Native: `0.80.1`
-- React: `19.1.0`
-- TypeScript: `5.0.4`
+- Node engine: `>= 22.11.0`
+- React Native: `0.85.3`
+- React: `19.2.3`
+- TypeScript: `5.8.3`
 
 GitHub Actions currently runs CI with Node 22 and installs dependencies with `npm ci`.
 

@@ -2,10 +2,13 @@
   "extends": "@react-native/typescript-config",
   "compilerOptions": {
     "noImplicitAny": true,
+    "types": ["jest"],
     "paths": {
       "@/*": ["./src/*"],
       "#/*": ["./__tests__/*"],
       "assets/*": ["./assets/*"]
     }
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules", "**/Pods"]
 }

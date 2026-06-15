@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import BarcodeScanner from '@/pages/barcode-scanner';
 import fetchMock from 'jest-fetch-mock';
 import * as ReactNative from 'react-native';
@@ -63,6 +63,7 @@ const navigation: NavigationHandler<NavigationProductProps> = {
 beforeEach(() => {
   fetchMock.resetMocks();
   navigateMock.mockReset();
+  jest.useRealTimers();
 });
 
 describe('BarcodeScanner', () => {
@@ -92,7 +93,6 @@ describe('BarcodeScanner', () => {
 
     render(<BarcodeScanner navigation={navigation} />);
 
-    // Simulate code scan
     const code: VisionCamera.Code = { value: '1234567890123', type: 'ean-13' };
     const frame: VisionCamera.CodeScannerFrame = { height: 10, width: 10 };
     const onCodeScanned = useCodeScannerSpy.mock.calls[0][0].onCodeScanned;
@@ -105,10 +105,42 @@ describe('BarcodeScanner', () => {
     });
   });
 
+  it('ignores empty scans and only navigates once after the first valid scan', () => {
+    const useCodeScannerSpy = jest
+      .spyOn(VisionCamera, 'useCodeScanner')
+      .mockImplementation(codeScanner => codeScanner);
+
+    render(<BarcodeScanner navigation={navigation} />);
+
+    const frame: VisionCamera.CodeScannerFrame = { height: 10, width: 10 };
+    const getOnCodeScanned = () =>
+      useCodeScannerSpy.mock.calls[useCodeScannerSpy.mock.calls.length - 1][0]
+        .onCodeScanned;
+
+    act(() => {
+      getOnCodeScanned()([{ value: undefined, type: 'ean-13' }], frame);
+    });
+
+    expect(navigateMock).not.toHaveBeenCalled();
+
+    act(() => {
+      getOnCodeScanned()([{ value: '1234567890123', type: 'ean-13' }], frame);
+    });
+
+    expect(navigateMock).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      getOnCodeScanned()([{ value: '9999999999999', type: 'ean-13' }], frame);
+    });
+
+    expect(navigateMock).toHaveBeenCalledTimes(1);
+  });
+
   it('shows toast and navigates home if camera device not found', async () => {
     const showToastMock = jest
       .spyOn(ReactNative.ToastAndroid, 'show')
       .mockImplementation(jest.fn());
+    jest.useFakeTimers();
 
     // 1. First render: cameraDevice exists
     jest.spyOn(VisionCamera, 'useCameraDevice').mockReturnValue({
@@ -139,7 +171,32 @@ describe('BarcodeScanner', () => {
     jest.spyOn(VisionCamera, 'useCameraDevice').mockReturnValue(undefined);
     rerender(<BarcodeScanner navigation={navigation} />);
 
-    // 3. Now wait for effect to run
+    act(() => {
+      jest.advanceTimersByTime(500);
+    });
+
+    await waitFor(() => {
+      expect(showToastMock).toHaveBeenCalledWith('error.CannotFindCamera', 0);
+      expect(navigateMock).toHaveBeenCalledWith('Home');
+    });
+
+    showToastMock.mockReset();
+  });
+
+  it('shows toast and navigates home when no camera device is found on mount', async () => {
+    const showToastMock = jest
+      .spyOn(ReactNative.ToastAndroid, 'show')
+      .mockImplementation(jest.fn());
+    jest.useFakeTimers();
+
+    jest.spyOn(VisionCamera, 'useCameraDevice').mockReturnValue(undefined);
+
+    render(<BarcodeScanner navigation={navigation} />);
+
+    act(() => {
+      jest.advanceTimersByTime(500);
+    });
+
     await waitFor(() => {
       expect(showToastMock).toHaveBeenCalledWith('error.CannotFindCamera', 0);
       expect(navigateMock).toHaveBeenCalledWith('Home');

@@ -20,6 +20,8 @@ Before changing this repository, read:
 - When adding API behavior, mirror the existing OpenFoodFacts fetch pattern: request only needed fields, type the response shape, handle nullable fields, and cover success and failure paths with tests.
 - When fixing bugs, add or update the closest test under `__tests__/services`, `__tests__/components`, or `__tests__/pages`.
 - When refactoring, keep behavior covered by Jest tests and avoid changing native Android/iOS files unless the task requires it.
+- Never modify files inside `node_modules/`. Fix dependency issues by changing supported dependency versions, project configuration, or upstream source inputs that belong to this repository.
+- Never vendor third-party packages into this repository as a workaround. Do not add `vendor/` dependency copies or similar checked-in package mirrors.
 - Update documentation when the change affects architecture, commands, test strategy, CI, release scripts, or conventions described in `docs/`.
 
 ## Definition of Done

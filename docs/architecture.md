@@ -156,8 +156,8 @@ The service clears the related-products list when either OpenFoodFacts request f
 
 ## Architectural Constraints
 
-- The app targets React Native 0.80.1, React 19.1.0, and TypeScript.
-- The package requires Node `>=18`; CI currently uses Node 22.
+- The app targets React Native 0.85.3, React 19.2.3, and TypeScript 5.8.x.
+- The package requires Node `>= 22.11.0`; CI currently uses Node 22.
 - `tsconfig.json` enables `noImplicitAny`.
 - ESLint extends `@react-native` and treats `@typescript-eslint/no-explicit-any` as an error.
 - The app currently uses French i18n resources and OpenFoodFacts French endpoints.

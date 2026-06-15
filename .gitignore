@@ -76,3 +76,8 @@ yarn-error.log
 
 # Unit tests
 coverage/
+
+SPECIFICATIONS.md
+
+# Codex artifacts
+.codex/plans/*

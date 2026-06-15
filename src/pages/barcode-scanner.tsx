@@ -25,9 +25,10 @@ interface Props {
 }
 
 type torchMode = 'off' | 'on';
+const CAMERA_DEVICE_TIMEOUT_MS = 500;
 
 const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
-  const didMount = useRef(false);
+  const productHasBeenScannedRef = useRef(false);
   const cameraDevice = useCameraDevice('back');
   const cameraFormat = useCameraFormat(cameraDevice, [{ fps: 30 }]);
   const fps = cameraFormat?.maxFps ?? 30;
@@ -36,9 +37,6 @@ const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
   const { width, fontScale } = useWindowDimensions();
 
   const isFocused = useIsFocused();
-  const [productHasBeenScanned, setProductHasBeenScanned] =
-    useState<boolean>(false);
-
   const [torchMode, setTorchMode] = useState<torchMode>('off');
 
   const styles = StyleSheet.create({
@@ -90,11 +88,11 @@ const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
   const onBarcodeRead = useCodeScanner({
     codeTypes: ['ean-13'],
     onCodeScanned: (codes: Code[]) => {
-      if (!productHasBeenScanned && codes?.length > 0) {
+      if (!productHasBeenScannedRef.current && codes?.length > 0) {
         // We only want the first one
         const code = codes[0];
         if (code?.value) {
-          setProductHasBeenScanned(true);
+          productHasBeenScannedRef.current = true;
           setTorchMode('off');
           navigation.navigate('ProductScreen', {
             eanCode: code.value,
@@ -117,20 +115,21 @@ const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
   };
 
   useEffect(() => {
-    setProductHasBeenScanned(false);
+    productHasBeenScannedRef.current = false;
   }, [isFocused]);
 
   useEffect(() => {
-    if (!didMount.current) {
-      didMount.current = true;
-      return; // Don't run on first mount
+    if (cameraDevice || !isFocused) {
+      return;
     }
 
-    if (!cameraDevice) {
+    const timeoutId = setTimeout(() => {
       ToastAndroid.show(t('error.CannotFindCamera'), ToastAndroid.LONG);
       navigation.navigate('Home');
-    }
-  }, [cameraDevice, navigation, t]);
+    }, CAMERA_DEVICE_TIMEOUT_MS);
+
+    return () => clearTimeout(timeoutId);
+  }, [cameraDevice, isFocused, navigation, t]);
 
   if (!cameraDevice) {
     return null; // Handled with useEffect() for cameraDevice

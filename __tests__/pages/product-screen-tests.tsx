@@ -150,4 +150,22 @@ describe('ProductScreen', () => {
     fireEvent.press(getByTestId('fab-btn-backButton'));
     expect(goBackMock).toHaveBeenCalled();
   });
+
+  it('replaces default actions with the back action for related products', () => {
+    const routeWithOrigin = {
+      ...route,
+      params: {
+        ...route.params,
+        originProductEanCode: 'EAN0',
+      },
+    };
+
+    const { getByTestId, queryByTestId } = render(
+      <ProductScreen navigation={navigation} route={routeWithOrigin} />,
+    );
+
+    expect(getByTestId('fab-btn-backButton')).toBeTruthy();
+    expect(queryByTestId('fab-btn-homeButton')).toBeNull();
+    expect(queryByTestId('fab-btn-barcodeButton')).toBeNull();
+  });
 });
