@@ -1,11 +1,10 @@
 import React from 'react';
 import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
-import BarcodeScanner from '@/pages/barcode-scanner';
 import fetchMock from 'jest-fetch-mock';
 import * as ReactNative from 'react-native';
 import * as VisionCamera from 'react-native-vision-camera';
-
-// --- MOCKS ---
+import BarcodeScanner from '@/pages/barcode-scanner';
+import { NavigationHandler, NavigationProductProps } from '@/shared-types';
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -37,24 +36,68 @@ jest.mock('@react-navigation/native', () => ({
   useIsFocused: jest.fn().mockReturnValue(true),
 }));
 
+let cameraProps: Record<string, unknown> | undefined;
+
 jest.mock('react-native-vision-camera', () => {
-  const cameraDeviceMock = { id: 'mock-device' };
-  const cameraFormatMock = { maxFps: 60 };
+  const cameraDeviceMock = {
+    id: 'mock-device',
+    formats: [],
+    hardwareLevel: 'full',
+    hasFlash: true,
+    hasTorch: true,
+    physicalDevices: [],
+    position: 'back',
+    name: 'mock-camera',
+    minFocusDistance: 0,
+    isMultiCam: false,
+    minZoom: 0,
+    maxZoom: 0,
+    neutralZoom: 0,
+    minExposure: 0,
+    maxExposure: 0,
+    supportsLowLightBoost: false,
+    supportsRawCapture: false,
+    supportsFocus: false,
+    sensorOrientation: 'portrait',
+  };
+
   return {
+    Camera: ({
+      children,
+      ...props
+    }: {
+      children?: React.ReactNode;
+      [key: string]: unknown;
+    }) => {
+      cameraProps = props;
+      return <>{children}</>;
+    },
     useCameraDevice: jest.fn().mockReturnValue(cameraDeviceMock),
-    useCameraFormat: jest.fn().mockReturnValue(cameraFormatMock),
-    useCodeScanner: jest.fn(opts => opts.onCodeScanned),
-    Camera: ({ children }: { children?: React.ReactNode }) => <>{children}</>,
   };
 });
+
+jest.mock(
+  'react-native-vision-camera-barcode-scanner',
+  () => ({
+    useBarcodeScannerOutput: jest.fn(options => ({
+      options,
+      type: 'mock-barcode-output',
+    })),
+  }),
+  { virtual: true },
+);
 
 jest.mock('../../assets/images/torch_on.png', () => 1);
 jest.mock('../../assets/images/torch_off.png', () => 1);
 
+const barcodeScannerModule = jest.requireMock(
+  'react-native-vision-camera-barcode-scanner',
+) as {
+  useBarcodeScannerOutput: jest.Mock;
+};
+
 const navigateMock = jest.fn();
 
-// --- TEST NAVIGATION PROP TYPE ---
-import { NavigationHandler, NavigationProductProps } from '@/shared-types';
 const navigation: NavigationHandler<NavigationProductProps> = {
   navigate: navigateMock,
   push: jest.fn(),
@@ -63,40 +106,91 @@ const navigation: NavigationHandler<NavigationProductProps> = {
 beforeEach(() => {
   fetchMock.resetMocks();
   navigateMock.mockReset();
+  jest.clearAllMocks();
   jest.useRealTimers();
+  cameraProps = undefined;
+
+  const cameraDeviceMock = {
+    id: 'mock-device',
+    formats: [],
+    hardwareLevel: 'full',
+    hasFlash: true,
+    hasTorch: true,
+    physicalDevices: [],
+    position: 'back',
+    name: 'mock-camera',
+    minFocusDistance: 0,
+    isMultiCam: false,
+    minZoom: 0,
+    maxZoom: 0,
+    neutralZoom: 0,
+    minExposure: 0,
+    maxExposure: 0,
+    supportsLowLightBoost: false,
+    supportsRawCapture: false,
+    supportsFocus: false,
+    sensorOrientation: 'portrait',
+  };
+
+  jest.spyOn(VisionCamera, 'useCameraDevice').mockReturnValue(cameraDeviceMock);
+  barcodeScannerModule.useBarcodeScannerOutput.mockImplementation(options => ({
+    options,
+    type: 'mock-barcode-output',
+  }));
 });
 
 describe('BarcodeScanner', () => {
+  it('configures the barcode scanner output for ean-13 and passes it to the camera', () => {
+    render(<BarcodeScanner navigation={navigation} />);
+
+    expect(barcodeScannerModule.useBarcodeScannerOutput).toHaveBeenCalledWith(
+      expect.objectContaining({
+        barcodeFormats: ['ean-13'],
+        onBarcodeScanned: expect.any(Function),
+        onError: expect.any(Function),
+      }),
+    );
+    expect(cameraProps).toEqual(
+      expect.objectContaining({
+        outputs: [
+          expect.objectContaining({
+            type: 'mock-barcode-output',
+          }),
+        ],
+        torchMode: 'off',
+      }),
+    );
+  });
+
   it('renders scan message and toggles torch', () => {
     const { getByText, getByTestId } = render(
       <BarcodeScanner navigation={navigation} />,
     );
 
     expect(getByText('scanBarcodePlease')).toBeTruthy();
-
-    // Torch off initially, torch_on image present
     expect(getByTestId('torch-on-image')).toBeTruthy();
 
-    // Press to turn torch on
     fireEvent.press(getByTestId('torch-toggle-button'));
-    // Torch text "scanBarcodeLightOn" should appear now
     expect(getByText('scanBarcodeLightOn')).toBeTruthy();
-    // Press again to turn torch off (toggles state)
+
     fireEvent.press(getByTestId('torch-toggle-button'));
     expect(getByText('scanBarcodePlease')).toBeTruthy();
   });
 
   it('navigates with correct params on successful barcode scan', () => {
-    const useCodeScannerSpy = jest
-      .spyOn(VisionCamera, 'useCodeScanner')
-      .mockImplementation(codeScanner => codeScanner);
-
     render(<BarcodeScanner navigation={navigation} />);
 
-    const code: VisionCamera.Code = { value: '1234567890123', type: 'ean-13' };
-    const frame: VisionCamera.CodeScannerFrame = { height: 10, width: 10 };
-    const onCodeScanned = useCodeScannerSpy.mock.calls[0][0].onCodeScanned;
-    onCodeScanned([code], frame);
+    const onBarcodeScanned =
+      barcodeScannerModule.useBarcodeScannerOutput.mock.calls[0][0]
+        .onBarcodeScanned;
+
+    act(() => {
+      onBarcodeScanned([
+        {
+          rawValue: '1234567890123',
+        },
+      ]);
+    });
 
     expect(navigateMock).toHaveBeenCalledWith('ProductScreen', {
       eanCode: '1234567890123',
@@ -105,35 +199,58 @@ describe('BarcodeScanner', () => {
     });
   });
 
-  it('ignores empty scans and only navigates once after the first valid scan', () => {
-    const useCodeScannerSpy = jest
-      .spyOn(VisionCamera, 'useCodeScanner')
-      .mockImplementation(codeScanner => codeScanner);
-
+  it('uses the first valid barcode value and only navigates once', () => {
     render(<BarcodeScanner navigation={navigation} />);
 
-    const frame: VisionCamera.CodeScannerFrame = { height: 10, width: 10 };
-    const getOnCodeScanned = () =>
-      useCodeScannerSpy.mock.calls[useCodeScannerSpy.mock.calls.length - 1][0]
-        .onCodeScanned;
+    const onBarcodeScanned =
+      barcodeScannerModule.useBarcodeScannerOutput.mock.calls[0][0]
+        .onBarcodeScanned;
 
     act(() => {
-      getOnCodeScanned()([{ value: undefined, type: 'ean-13' }], frame);
+      onBarcodeScanned([
+        {
+          rawValue: undefined,
+        },
+        {
+          rawValue: '1234567890123',
+        },
+      ]);
+    });
+
+    expect(navigateMock).toHaveBeenCalledWith('ProductScreen', {
+      eanCode: '1234567890123',
+      isRelated: false,
+      originProductEanCode: null,
+    });
+    expect(navigateMock).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      onBarcodeScanned([
+        {
+          rawValue: '9999999999999',
+        },
+      ]);
+    });
+
+    expect(navigateMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('ignores scans when no barcode contains a value', () => {
+    render(<BarcodeScanner navigation={navigation} />);
+
+    const onBarcodeScanned =
+      barcodeScannerModule.useBarcodeScannerOutput.mock.calls[0][0]
+        .onBarcodeScanned;
+
+    act(() => {
+      onBarcodeScanned([
+        {
+          rawValue: undefined,
+        },
+      ]);
     });
 
     expect(navigateMock).not.toHaveBeenCalled();
-
-    act(() => {
-      getOnCodeScanned()([{ value: '1234567890123', type: 'ean-13' }], frame);
-    });
-
-    expect(navigateMock).toHaveBeenCalledTimes(1);
-
-    act(() => {
-      getOnCodeScanned()([{ value: '9999999999999', type: 'ean-13' }], frame);
-    });
-
-    expect(navigateMock).toHaveBeenCalledTimes(1);
   });
 
   it('shows toast and navigates home if camera device not found', async () => {
@@ -142,32 +259,8 @@ describe('BarcodeScanner', () => {
       .mockImplementation(jest.fn());
     jest.useFakeTimers();
 
-    // 1. First render: cameraDevice exists
-    jest.spyOn(VisionCamera, 'useCameraDevice').mockReturnValue({
-      id: 'mock-device',
-      formats: [],
-      hardwareLevel: 'full',
-      hasFlash: true,
-      hasTorch: true,
-      physicalDevices: [],
-      position: 'front',
-      name: '',
-      minFocusDistance: 0,
-      isMultiCam: false,
-      minZoom: 0,
-      maxZoom: 0,
-      neutralZoom: 0,
-      minExposure: 0,
-      maxExposure: 0,
-      supportsLowLightBoost: false,
-      supportsRawCapture: false,
-      supportsFocus: false,
-      sensorOrientation: 'portrait',
-    });
-
     const { rerender } = render(<BarcodeScanner navigation={navigation} />);
 
-    // 2. Update: cameraDevice becomes undefined
     jest.spyOn(VisionCamera, 'useCameraDevice').mockReturnValue(undefined);
     rerender(<BarcodeScanner navigation={navigation} />);
 
@@ -179,8 +272,6 @@ describe('BarcodeScanner', () => {
       expect(showToastMock).toHaveBeenCalledWith('error.CannotFindCamera', 0);
       expect(navigateMock).toHaveBeenCalledWith('Home');
     });
-
-    showToastMock.mockReset();
   });
 
   it('shows toast and navigates home when no camera device is found on mount', async () => {
@@ -201,7 +292,5 @@ describe('BarcodeScanner', () => {
       expect(showToastMock).toHaveBeenCalledWith('error.CannotFindCamera', 0);
       expect(navigateMock).toHaveBeenCalledWith('Home');
     });
-
-    showToastMock.mockReset();
   });
 });
