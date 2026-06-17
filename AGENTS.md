@@ -11,7 +11,6 @@ Before changing this repository, read:
 
 ## Working Rules
 
-- This app is only made for android, we don't care about iOS
 - Treat this as a React Native TypeScript app with native Android and iOS scaffolding. Keep most application behavior in `src/`.
 - For specification-driven changes, use the project workflow in `.codex/workflows/planner-coder-tester.md`: planner creates `.codex/plans/IMPLEMENTATION_PLAN.md` from `SPECIFICATIONS.md`, coder implements it, tester adds automated tests, and planner performs final architecture and SOLID verification.
 - Follow the existing folder boundaries: screens in `src/pages`, reusable UI in `src/components`, domain data classes in `src/classes`, and API/scoring/i18n logic in `src/services`.
@@ -22,7 +21,6 @@ Before changing this repository, read:
 - When fixing bugs, add or update the closest test under `__tests__/services`, `__tests__/components`, or `__tests__/pages`.
 - When refactoring, keep behavior covered by Jest tests and avoid changing native Android/iOS files unless the task requires it.
 - Never modify files inside `node_modules/`. Fix dependency issues by changing supported dependency versions, project configuration, or upstream source inputs that belong to this repository.
-- Do not add repository-side autolink, Gradle, or React Native CLI workaround shims just to patch over local `node_modules`, cache, generated build artifact, or environment issues. Prefer fixing the real dependency/version/integration problem, or report the external environment issue clearly instead of committing a workaround.
 - Never vendor third-party packages into this repository as a workaround. Do not add `vendor/` dependency copies or similar checked-in package mirrors.
 - Update documentation when the change affects architecture, commands, test strategy, CI, release scripts, or conventions described in `docs/`.
 

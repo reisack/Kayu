@@ -12,25 +12,32 @@ import { useIsFocused } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import Consts from '@/consts';
 import { NavigationHandler, NavigationProductProps } from '@/shared-types';
-import { Camera, useCameraDevice } from 'react-native-vision-camera';
-import type { TorchMode } from 'react-native-vision-camera';
-import { useBarcodeScannerOutput } from 'react-native-vision-camera-barcode-scanner';
+import {
+  Camera,
+  Code,
+  useCameraDevice,
+  useCameraFormat,
+  useCodeScanner,
+} from 'react-native-vision-camera';
 
 interface Props {
   navigation: NavigationHandler<NavigationProductProps>;
 }
 
+type torchMode = 'off' | 'on';
 const CAMERA_DEVICE_TIMEOUT_MS = 500;
 
 const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
   const productHasBeenScannedRef = useRef(false);
   const cameraDevice = useCameraDevice('back');
+  const cameraFormat = useCameraFormat(cameraDevice, [{ fps: 30 }]);
+  const fps = cameraFormat?.maxFps ?? 30;
 
   const { t } = useTranslation();
   const { width, fontScale } = useWindowDimensions();
 
   const isFocused = useIsFocused();
-  const [torchMode, setTorchMode] = useState<TorchMode>('off');
+  const [torchMode, setTorchMode] = useState<torchMode>('off');
 
   const styles = StyleSheet.create({
     container: {
@@ -78,28 +85,22 @@ const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
     },
   });
 
-  const barcodeScannerOutput = useBarcodeScannerOutput({
-    barcodeFormats: ['ean-13'],
-    onBarcodeScanned: barcodes => {
-      if (productHasBeenScannedRef.current || barcodes.length === 0) {
-        return;
+  const onBarcodeRead = useCodeScanner({
+    codeTypes: ['ean-13'],
+    onCodeScanned: (codes: Code[]) => {
+      if (!productHasBeenScannedRef.current && codes?.length > 0) {
+        // We only want the first one
+        const code = codes[0];
+        if (code?.value) {
+          productHasBeenScannedRef.current = true;
+          setTorchMode('off');
+          navigation.navigate('ProductScreen', {
+            eanCode: code.value,
+            isRelated: false,
+            originProductEanCode: null,
+          });
+        }
       }
-
-      const barcodeValue = barcodes.find(barcode => barcode.rawValue)?.rawValue;
-      if (!barcodeValue) {
-        return;
-      }
-
-      productHasBeenScannedRef.current = true;
-      setTorchMode('off');
-      navigation.navigate('ProductScreen', {
-        eanCode: barcodeValue,
-        isRelated: false,
-        originProductEanCode: null,
-      });
-    },
-    onError: error => {
-      console.log('useBarcodeScannerOutput', error);
     },
   });
 
@@ -136,11 +137,14 @@ const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
     return (
       <View style={styles.container}>
         <Camera
+          fps={fps}
+          format={cameraFormat}
           device={cameraDevice}
           isActive={true}
-          outputs={[barcodeScannerOutput]}
-          torchMode={torchMode}
+          audio={false}
+          torch={torchMode}
           style={styles.preview}
+          codeScanner={onBarcodeRead}
         />
         <View style={[styles.overlay, styles.topOverlay]}>
           <Text style={styles.scanScreenMessage}>{t('scanBarcodePlease')}</Text>
