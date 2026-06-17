@@ -72,6 +72,14 @@ def enableProguardInReleaseBuilds = true
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+repositories {
+    maven {
+        url("$rootDir/../node_modules/detox/Detox-android")
+    }
+    google()
+    mavenCentral()
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -84,6 +92,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2009
         versionName "1.0.8"
+        testBuildType System.getProperty('testBuildType', 'debug')
+        testInstrumentationRunner 'com.wix.detox.DetoxJUnitRunner'
     }
     signingConfigs {
         debug {
@@ -109,6 +119,7 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            proguardFile "${rootProject.projectDir}/../node_modules/detox/android/detox/proguard-rules-app.pro"
         }
     }
 }
@@ -122,4 +133,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    androidTestImplementation('com.wix:detox:20.51.4')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 }

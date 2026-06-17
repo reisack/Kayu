@@ -142,6 +142,8 @@ npm test
 npm run test:cov
 ```
 
+These commands currently target the Jest service and component suites under `__tests__/services` and `__tests__/components`. Detox end-to-end tests under `e2e/` are not part of the default Jest commands.
+
 `npm run lint` and `npm run prettier` are not test commands, but they are part of validation before running the Android scripts.
 
 ## Adding Tests

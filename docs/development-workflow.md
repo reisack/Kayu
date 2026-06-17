@@ -78,6 +78,8 @@ Run Jest:
 npm test
 ```
 
+This command runs the Jest service and component suites under `__tests__/services` and `__tests__/components`, and excludes Detox end-to-end tests under `e2e/`.
+
 Run Jest with coverage:
 
 ```bash

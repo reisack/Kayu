@@ -3,16 +3,16 @@
   "version": "1.0.8",
   "private": true,
   "scripts": {
-    "android": "prettier --write . && eslint . && jest && react-native run-android",
-    "android:release": "prettier --write . && eslint . && jest && react-native run-android --mode release",
+    "android": "npm run prettier && npm run lint && npm run test && react-native run-android",
+    "android:release": "npm run android -- --mode release",
     "clean:android": "cd android && gradlew clean && cd ../",
     "aab": "cd android && gradlew bundleRelease && cd ../",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest __tests__/*",
     "lint": "eslint .",
     "prettier": "prettier --write .",
-    "test:cov": "jest --coverage"
+    "test:cov": "npm run test -- --coverage"
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.85.3",
@@ -50,6 +50,7 @@
     "@types/react": "^19.2.0",
     "@types/react-test-renderer": "^19.1.0",
     "babel-plugin-module-resolver": "^5.0.2",
+    "detox": "^20.51.4",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
     "jest-fetch-mock": "^3.0.3",
