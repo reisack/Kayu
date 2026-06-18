@@ -1,20 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application>
+    <application
+        android:allowBackup="false"
+        android:usesCleartextTraffic="false">
         <activity
             android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
-            android:allowBackup="false"
-            android:usesCleartextTraffic="false"
             android:exported="true" />
         <activity
             android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity"
-            android:allowBackup="false"
-            android:usesCleartextTraffic="false"
             android:exported="true" />
         <activity
             android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity"
-            android:allowBackup="false"
-            android:usesCleartextTraffic="false"
             android:exported="true" />
     </application>
 </manifest>
