@@ -3,12 +3,18 @@
     <application>
         <activity
             android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
+            android:allowBackup="false"
+            android:usesCleartextTraffic="false"
             android:exported="true" />
         <activity
             android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity"
+            android:allowBackup="false"
+            android:usesCleartextTraffic="false"
             android:exported="true" />
         <activity
             android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity"
+            android:allowBackup="false"
+            android:usesCleartextTraffic="false"
             android:exported="true" />
     </application>
 </manifest>
