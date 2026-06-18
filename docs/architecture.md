@@ -8,7 +8,7 @@ The app is organized around a small set of repeated layers:
 
 - `src/pages`: navigation-level screens such as `home`, `barcode-scanner`, and `product-screen`.
 - `src/components`: reusable UI pieces for product details, score lists, related products, and not-found states.
-- `src/services`: API, scoring, score-label, and i18n initialization logic.
+- `src/services`: API, scoring, score-label, scanner camera, and i18n initialization logic.
 - `src/classes`: domain data objects such as `Product`, `NutritionValues`, `Score`, and `AdditiveInformation`.
 - `src/shared-types.ts`, `src/interfaces.ts`, `src/enums.ts`, and `src/extensions.ts`: shared TypeScript types and enums.
 - `assets/i18n/fr.json` and `assets/images`: localized text and image assets.
@@ -39,7 +39,7 @@ flowchart TD
 
 `index.js` initializes i18n and registers `App`. `App` initializes additive score information and defines a native stack with three screens: `Home`, `BarcodeScanner`, and `ProductScreen`.
 
-`Home` requests camera permission and navigates to `BarcodeScanner`. `BarcodeScanner` uses `react-native-vision-camera` to read EAN-13 codes and navigates to `ProductScreen` with `NavigationProductProps`. `ProductScreen` renders `ProductDetails` or `NotFoundProduct` and shows floating navigation actions.
+`Home` requests camera permission and navigates to `BarcodeScanner`. `BarcodeScanner` consumes a barcode scanner camera interface, navigates to `ProductScreen` with `NavigationProductProps` after an EAN-13 code is reported, and leaves concrete camera behavior to the scanner implementation. The production implementation uses `react-native-vision-camera`; Detox builds alias the interface to an e2e implementation that reports a fixed barcode. `ProductScreen` renders `ProductDetails` or `NotFoundProduct` and shows floating navigation actions.
 
 `ProductDetails` fetches product data by EAN code from OpenFoodFacts, maps the API response into `NutritionValues`, `Score`, and `Product`, then renders scores and related products. `RelatedProductList` calls `RelatedProductsService`, which fetches related products by category, computes their scores, keeps better scoring products, randomizes the shortlist, and fetches display information for the selected related products.
 
@@ -50,7 +50,7 @@ flowchart TD
 Pages are navigation entry points. They receive navigation props, coordinate screen-level state, and compose components.
 
 - `src/pages/home.tsx`: camera permission gate, scan button, and privacy link.
-- `src/pages/barcode-scanner.tsx`: camera device selection, barcode scanning, torch state, and navigation after scan.
+- `src/pages/barcode-scanner.tsx`: scanner screen UI, torch state, and navigation after scan.
 - `src/pages/product-screen.tsx`: product screen composition, not-found switching, and floating action navigation.
 
 ### Components
@@ -70,6 +70,7 @@ Services hold calculation, API, and translation initialization behavior.
 - `ProductScoreService`: maps score categories to i18n keys for labels, help text, and low/high expressions.
 - `RelatedProductsService`: owns OpenFoodFacts related-product search, ranking, randomization, and completion of display data.
 - `AdditiveInformationsService`: loads additive taxonomy data from OpenFoodFacts and stores simplified risk scores.
+- `barcode-scanner`: owns the scanner camera interface and production Vision Camera implementation.
 - `i18n-service`: initializes `i18next` with French resources.
 
 ### Domain Classes
@@ -147,6 +148,7 @@ The service clears the related-products list when either OpenFoodFacts request f
 
 - OpenFoodFacts French API: product lookup, product search, and additive taxonomy.
 - `react-native-vision-camera`: camera permission, device selection, barcode scanning, and torch control.
+- Detox scanner tests: `KAYU_E2E=true` aliases the scanner camera interface to `e2e/barcode-scanner-camera.tsx`, which emits a fixed barcode without touching real camera hardware.
 - `@react-navigation/native` and `@react-navigation/native-stack`: screen navigation.
 - `react-i18next` and `i18next`: French localization.
 - `react-native-floating-action`: product screen floating actions.

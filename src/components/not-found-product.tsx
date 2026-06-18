@@ -38,7 +38,7 @@ const NotFoundProduct: React.FC = () => {
   });
 
   return (
-    <View style={styles.container}>
+    <View testID="not-found-product" style={styles.container}>
       <Image
         testID="not-found-image"
         style={styles.notFoundImage}

@@ -121,7 +121,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
       )}
 
       <View style={styles.privacyContainer}>
-        <Pressable onPress={displayPrivacy}>
+        <Pressable testID="privacy-link" onPress={displayPrivacy}>
           <Text style={styles.privacyText}>{t('privacy')}</Text>
         </Pressable>
       </View>

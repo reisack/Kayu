@@ -80,7 +80,7 @@ const ProductScreen: React.FC<Props> = ({ route, navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View testID={`product-screen-${eanCode}`} style={styles.container}>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
           {productCouldBeFound ? (

@@ -144,6 +144,8 @@ npm run test:cov
 
 These commands currently target the Jest service and component suites under `__tests__/services` and `__tests__/components`. Detox end-to-end tests under `e2e/` are not part of the default Jest commands.
 
+Detox scanner-flow tests use the scanner camera interface rather than the real device camera. The default `npm run build:e2e` and `npm run e2e` scripts set `KAYU_E2E=true`, which makes Babel alias `@/services/barcode-scanner/barcode-scanner-camera` to `e2e/barcode-scanner-camera.tsx`. Change `E2E_BARCODE_SCANNER_CAMERA_MOCK.barcode` in that e2e file when a different hardcoded barcode is needed.
+
 `npm run lint` and `npm run prettier` are not test commands, but they are part of validation before running the Android scripts.
 
 ## Adding Tests

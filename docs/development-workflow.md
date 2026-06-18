@@ -88,6 +88,15 @@ npm run test:cov
 
 Coverage output is consumed by Sonar from `coverage/lcov.info`.
 
+Run Detox end-to-end tests:
+
+```bash
+npm run build:e2e
+npm run e2e
+```
+
+These e2e scripts set `KAYU_E2E=true` so the scanner camera interface is backed by the deterministic e2e scanner implementation instead of the real Vision Camera implementation.
+
 ## Lint and Format Commands
 
 Run ESLint:
