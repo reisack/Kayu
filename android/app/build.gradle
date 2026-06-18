@@ -120,11 +120,20 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             proguardFile "${rootProject.projectDir}/../node_modules/detox/android/detox/proguard-rules-app.pro"
+            testProguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            testProguardFile "${rootProject.projectDir}/../node_modules/detox/android/detox/proguard-rules-app.pro"
         }
     }
 }
 
 dependencies {
+    // Keep Kotlin runtime modules aligned across the release app and Detox's
+    // releaseAndroidTest APK. Detox 20.51.4 publishes kotlin-reflect 2.0.21,
+    // while this app builds with Kotlin 2.1.20; mixing those can crash at
+    // runtime with NoSuchMethodError on Kotlin Result internals after shrinking.
+    implementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom:${rootProject.ext.kotlinVersion}"))
+    androidTestImplementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom:${rootProject.ext.kotlinVersion}"))
+
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 

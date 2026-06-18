@@ -10,6 +10,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest __tests__/*",
+    "build:e2e": "detox build --configuration android.att.release",
+    "e2e": "detox test --configuration android.att.release",
     "lint": "eslint .",
     "prettier": "prettier --write .",
     "test:cov": "npm run test -- --coverage"

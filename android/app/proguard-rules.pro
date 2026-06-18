@@ -8,3 +8,14 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
+
+# Detox's releaseAndroidTest APK loads kotlin-reflect in the app process.
+# Keep Kotlin Result's synthetic ABI methods in the release app so reflection
+# code compiled in the test APK can still call them after app shrinking.
+-keepclassmembers class kotlin.Result {
+    <methods>;
+}
+
+# Required for minified Detox releaseAndroidTest builds when androidx.test.core
+# references the optional AndroidX futures adapter.
+-dontwarn androidx.concurrent.futures.SuspendToFutureAdapter
