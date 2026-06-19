@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
 const isE2E = process.env.KAYU_E2E === 'true';

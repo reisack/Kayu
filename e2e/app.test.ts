@@ -10,7 +10,7 @@ const launchApp = async (
     delete: true,
     permissions,
     launchArgs: {
-      detoxURLBlacklistRegex: '.*openfoodfacts\\.org.*',
+      detoxURLBlacklistRegex: String.raw`.*openfoodfacts\.org.*`,
     },
   });
 };
@@ -20,8 +20,8 @@ describe('Kayu', () => {
     it('should display scan and privacy actions when camera access is granted', async () => {
       await launchApp({ camera: 'YES' });
 
-      await expect(element(by.id('barcode-scanner-button'))).toBeVisible();
-      await expect(element(by.id('privacy-link'))).toBeVisible();
+      expect(element(by.id('barcode-scanner-button'))).toBeVisible();
+      expect(element(by.id('privacy-link'))).toBeVisible();
     });
   });
 
