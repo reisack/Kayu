@@ -146,7 +146,3 @@ dependencies {
     androidTestImplementation('com.wix:detox:20.51.4')
     implementation 'androidx.appcompat:appcompat:1.1.0'
 }
-
-dependencyLocking {
-    lockAllConfigurations()
-}

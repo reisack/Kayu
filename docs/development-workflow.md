@@ -70,6 +70,15 @@ The Android release build reads signing values from Gradle properties or environ
 - `KAYU_UPLOAD_KEY_ALIAS`
 - `KAYU_UPLOAD_KEY_PASSWORD`
 
+Write or refresh Android Gradle dependency lockfiles:
+
+```bash
+cd android
+gradlew resolveAndLockAll --write-locks
+```
+
+The custom `resolveAndLockAll` task resolves the Android root buildscript classpath and each resolvable project configuration so Gradle can emit `gradle.lockfile` files for the Android build.
+
 ## Test Commands
 
 Run Jest:

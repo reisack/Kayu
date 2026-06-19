@@ -1,4 +1,7 @@
 buildscript {
+    configurations.classpath {
+        resolutionStrategy.activateDependencyLocking()
+    }
     ext {
         buildToolsVersion = "36.0.0"
         minSdkVersion = 26
@@ -22,3 +25,26 @@ buildscript {
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+allprojects {
+    dependencyLocking {
+        lockAllConfigurations()
+    }
+}
+
+tasks.register("resolveAndLockAll") {
+    group = "help"
+    description = "Resolves all lockable Android project configurations so gradle.lockfile files can be written with --write-locks."
+
+    doLast {
+        allprojects.each { project ->
+            project.buildscript.configurations.findAll { it.canBeResolved }.each { configuration ->
+                configuration.incoming.resolutionResult.allComponents { }
+            }
+
+            project.configurations.findAll { it.canBeResolved }.each { configuration ->
+                configuration.incoming.resolutionResult.allComponents { }
+            }
+        }
+    }
+}

@@ -7,6 +7,7 @@
     "android:release": "npm run android -- --mode release",
     "clean:android": "cd android && gradlew clean && cd ../",
     "aab": "cd android && gradlew bundleRelease && cd ../",
+    "create:lockfile": "cd android && gradlew resolveAndLockAll --write-locks && cd ../",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest __tests__/*",
