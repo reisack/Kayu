@@ -53,7 +53,7 @@ describe('VisionCameraBarcodeScannerCamera', () => {
     } as never);
     jest
       .spyOn(VisionCamera, 'useCodeScanner')
-      .mockImplementation(options => options as never);
+      .mockImplementation(options => options);
   });
 
   it('should render the camera with the selected device, format and torch mode', () => {
