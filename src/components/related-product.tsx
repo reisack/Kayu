@@ -15,9 +15,14 @@ import { NavigationHandler, NavigationProductProps } from '@/shared-types';
 interface Props {
   product: Product;
   originProductEanCode: string;
+  index?: number;
 }
 
-const RelatedProduct: React.FC<Props> = ({ product, originProductEanCode }) => {
+const RelatedProduct: React.FC<Props> = ({
+  product,
+  originProductEanCode,
+  index,
+}) => {
   const navigation = useNavigation<NavigationHandler<NavigationProductProps>>();
   const { width, fontScale } = useWindowDimensions();
 
@@ -61,13 +66,24 @@ const RelatedProduct: React.FC<Props> = ({ product, originProductEanCode }) => {
     });
   };
 
+  const relatedProductButtonTestID =
+    index === undefined
+      ? 'related-product-button'
+      : `related-product-button-${index}`;
+  const relatedProductImageTestID =
+    index === undefined
+      ? 'related-product-image'
+      : `related-product-image-${index}`;
+
   return (
     <Pressable
-      testID="related-product-button"
+      testID={relatedProductButtonTestID}
       onPress={() => onRelatedProductPress()}>
-      <View style={styles.container}>
+      <View
+        testID={`related-product-${product.eanCode}`}
+        style={styles.container}>
         <Image
-          testID="related-product-image"
+          testID={relatedProductImageTestID}
           style={styles.productImage}
           source={{ uri: product.imageUrl }}
         />

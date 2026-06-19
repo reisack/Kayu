@@ -81,8 +81,13 @@ const ProductScreen: React.FC<Props> = ({ route, navigation }) => {
 
   return (
     <View testID={`product-screen-${eanCode}`} style={styles.container}>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
+      <ScrollView
+        testID="product-screen-scroll-view"
+        contentInsetAdjustmentBehavior="automatic">
+        <View
+          testID={
+            isRelated ? 'related-product-screen' : 'scanned-product-screen'
+          }>
           {productCouldBeFound ? (
             <ProductDetails
               eanCode={eanCode}

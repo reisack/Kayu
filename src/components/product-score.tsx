@@ -90,14 +90,22 @@ const ProductScore: React.FC<Props> = ({
       : nutritionValue;
   };
 
+  const getProductInfoTestId = (): string => {
+    return ProductInformationEnum[productInfo];
+  };
+
   return (
     <View>
       {score === null ? (
         <View />
       ) : (
-        <View style={styles.container}>
+        <View
+          testID={`product-score-${getProductInfoTestId()}`}
+          style={styles.container}>
           <View>
-            <Text style={styles.scoreText}>
+            <Text
+              testID={`product-score-label-${getProductInfoTestId()}`}
+              style={styles.scoreText}>
               {t(productScoreService.getNutritionLabel(productInfo))}
             </Text>
             <View style={styles.row}>
@@ -137,7 +145,9 @@ const ProductScore: React.FC<Props> = ({
             </View>
           </View>
           <View>
-            <Text style={styles.productName}>
+            <Text
+              testID={`product-score-expression-${getProductInfoTestId()}`}
+              style={styles.productName}>
               {t(productScoreService.getExpression(score, productInfo))}
             </Text>
           </View>

@@ -73,7 +73,7 @@ const RelatedProductList: React.FC<Props> = ({ product }) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View testID="related-products-list" style={styles.container}>
       <Text style={styles.scoresTitleText}>{t('RelatedProductsTitle')}</Text>
       {loading ? (
         <ActivityIndicator
@@ -82,10 +82,11 @@ const RelatedProductList: React.FC<Props> = ({ product }) => {
           color={Consts.style.primaryColor}
         />
       ) : (
-        relatedProducts.map((relatedProduct: Product) => {
+        relatedProducts.map((relatedProduct: Product, index: number) => {
           return (
             <RelatedProduct
               originProductEanCode={product.eanCode}
+              index={index}
               key={relatedProduct.eanCode}
               product={relatedProduct}
             />

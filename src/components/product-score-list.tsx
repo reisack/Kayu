@@ -45,7 +45,7 @@ const ProductScoreList: React.FC<Props> = ({ product }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View testID="product-score-list" style={styles.container}>
       <View style={styles.scoresTitle}>
         <Text style={styles.scoresTitleText}>{t('ScoreTitle')}</Text>
       </View>
