@@ -2,7 +2,6 @@ import { by, device, element, expect, waitFor } from 'detox';
 import { E2E_BARCODE_SCANNER_CAMERA_MOCK } from './barcode-scanner-camera';
 
 describe('Kayu', () => {
-
   const launchApp = async (
     permissions: Detox.DeviceLaunchAppConfig['permissions'],
   ) => {
@@ -29,8 +28,7 @@ describe('Kayu', () => {
   const waitForProductScreen = async (eanCode: string) => {
     await waitFor(element(by.id(`product-screen-${eanCode}`)))
       .toBeVisible()
-      .withTimeout(30000)
-      ;
+      .withTimeout(30000);
   };
 
   const waitForVisibleInProductScroll = async (
@@ -73,10 +71,16 @@ describe('Kayu', () => {
     it('should navigate from home to the product screen after a mocked scan', async () => {
       await launchApp({ camera: 'YES' });
 
-      await waitFor(element(by.id('barcode-scanner-button'))).toBeVisible().withTimeout(30000)
+      await waitFor(element(by.id('barcode-scanner-button')))
+        .toBeVisible()
+        .withTimeout(30000);
       await element(by.id('barcode-scanner-button')).tap();
 
-      await expect(element(by.id(`product-screen-${E2E_BARCODE_SCANNER_CAMERA_MOCK.barcode}`))).toBeVisible();
+      await expect(
+        element(
+          by.id(`product-screen-${E2E_BARCODE_SCANNER_CAMERA_MOCK.barcode}`),
+        ),
+      ).toBeVisible();
     });
   });
 
@@ -84,7 +88,9 @@ describe('Kayu', () => {
     beforeEach(async () => {
       await launchApp({ camera: 'YES' });
 
-      await waitFor(element(by.id('barcode-scanner-button'))).toBeVisible().withTimeout(30000)
+      await waitFor(element(by.id('barcode-scanner-button')))
+        .toBeVisible()
+        .withTimeout(30000);
       await element(by.id('barcode-scanner-button')).tap();
 
       await waitForProductScreen(E2E_BARCODE_SCANNER_CAMERA_MOCK.barcode);

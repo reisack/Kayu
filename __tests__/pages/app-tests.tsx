@@ -19,11 +19,8 @@ jest.mock('react-i18next', () => ({
 }));
 
 jest.mock('@react-navigation/native', () => ({
-  NavigationContainer: ({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) => mockNavigationContainer({ children }),
+  NavigationContainer: ({ children }: { children: React.ReactNode }) =>
+    mockNavigationContainer({ children }),
 }));
 
 jest.mock('@react-navigation/native-stack', () => ({

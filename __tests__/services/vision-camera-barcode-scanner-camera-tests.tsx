@@ -93,8 +93,8 @@ describe('VisionCameraBarcodeScannerCamera', () => {
   it('should notify the first scanned ean-13 barcode value', () => {
     renderCamera();
 
-    const onCodeScanned = (VisionCamera.useCodeScanner as jest.Mock).mock.calls[0][0]
-      .onCodeScanned as (codes: VisionCamera.Code[]) => void;
+    const onCodeScanned = (VisionCamera.useCodeScanner as jest.Mock).mock
+      .calls[0][0].onCodeScanned as (codes: VisionCamera.Code[]) => void;
 
     act(() => {
       onCodeScanned([
@@ -110,8 +110,8 @@ describe('VisionCameraBarcodeScannerCamera', () => {
   it('should ignore scans without a usable barcode value', () => {
     renderCamera();
 
-    const onCodeScanned = (VisionCamera.useCodeScanner as jest.Mock).mock.calls[0][0]
-      .onCodeScanned as (codes: VisionCamera.Code[]) => void;
+    const onCodeScanned = (VisionCamera.useCodeScanner as jest.Mock).mock
+      .calls[0][0].onCodeScanned as (codes: VisionCamera.Code[]) => void;
 
     act(() => {
       onCodeScanned([]);
