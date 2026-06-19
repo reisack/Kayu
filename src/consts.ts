@@ -20,7 +20,7 @@ export default class Consts {
   static readonly httpHeaderGetRequest: HttpHeaderRequest = {
     method: 'GET',
     headers: {
-      'User-Agent': 'Kayu - Android - Version 1.0',
+      'User-Agent': 'Kayu - Android - Version 1.0.8',
     },
   };
   static readonly style: IStyle = {

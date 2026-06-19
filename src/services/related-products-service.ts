@@ -13,10 +13,11 @@ type ProductsApiResponse = {
 };
 
 export default class RelatedProductsService {
+  private static readonly maxRetryAttempts = 2;
   private readonly searchProductsUrl = `${consts.openFoodFactAPIBaseUrl}api/v2/search`;
   private readonly scoreCalculationService: ScoreCalculationService;
 
-  constructor() {
+  constructor(private readonly retryDelayMs = 500) {
     this.scoreCalculationService = new ScoreCalculationService();
   }
 
@@ -45,11 +46,6 @@ export default class RelatedProductsService {
       relatedProducts = relatedProducts.slice(0, 5);
     }
 
-    await this.completeRelatedProductsWithAllInformations(
-      relatedProducts,
-      category,
-    );
-
     return relatedProducts;
   }
 
@@ -61,13 +57,9 @@ export default class RelatedProductsService {
 
     try {
       const fields =
-        'code,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score';
-
-      const response = await fetch(
-        `${this.searchProductsUrl}?categories_tags_en=${category}&fields=${fields}&page_size=100`,
-        consts.httpHeaderGetRequest,
-      );
-      const json: ProductsApiResponse = await response.json();
+        'code,product_name_fr,brands,image_front_url,saturated-fat_100g,sugars_100g,salt_100g,additives_tags,nova_group,ecoscore_score';
+      const url = `${this.searchProductsUrl}?categories_tags_en=${category}&fields=${fields}&page_size=100`;
+      const json = await this.fetchProductsWithRetry(url);
 
       if (json?.count && json.count > 0) {
         this.setRelatedProductsWithTotalScore(
@@ -112,6 +104,9 @@ export default class RelatedProductsService {
             relatedProduct.code,
             nutritionValues,
             relatedProductScore,
+            relatedProduct.product_name_fr,
+            relatedProduct.brands,
+            relatedProduct.image_front_url,
           ),
         );
       }
@@ -140,39 +135,42 @@ export default class RelatedProductsService {
     }
   }
 
-  private async completeRelatedProductsWithAllInformations(
-    relatedProducts: Product[],
-    category: string,
-  ): Promise<void> {
-    try {
-      const fields = 'code,product_name_fr,brands,image_front_url';
-      const eanCodes = relatedProducts.map(p => p.eanCode).join(',');
+  private async fetchProductsWithRetry(
+    url: string,
+  ): Promise<ProductsApiResponse> {
+    for (
+      let attempt = 0;
+      attempt <= RelatedProductsService.maxRetryAttempts;
+      attempt++
+    ) {
+      const response = await fetch(url, consts.httpHeaderGetRequest);
 
-      const response = await fetch(
-        `${this.searchProductsUrl}?categories_tags_en=${category}&fields=${fields}&code=${eanCodes}`,
-        consts.httpHeaderGetRequest,
-      );
-
-      const json: ProductsApiResponse = await response.json();
-      if (json?.count && json.count > 0) {
-        for (const relatedProduct of json.products) {
-          const product = relatedProducts.find(
-            p => p.eanCode === relatedProduct.code,
-          );
-
-          if (product) {
-            product.frName = relatedProduct.product_name_fr;
-            product.brands = relatedProduct.brands;
-            product.imageUrl = relatedProduct.image_front_url;
-          }
-        }
+      if (response.ok) {
+        return await response.json();
       }
-    } catch (error) {
-      // We reset products list if API throws an error
-      console.log(
-        `completeRelatedProductsWithAllInformations - Cannot fetch related products informations : ${error}`,
+
+      if (
+        this.shouldRetry(response.status) &&
+        attempt < RelatedProductsService.maxRetryAttempts
+      ) {
+        await this.waitBeforeRetry(attempt);
+        continue;
+      }
+
+      throw new Error(
+        `OpenFoodFacts search failed with status ${response.status}`,
       );
-      relatedProducts.clear();
     }
+
+    throw new Error('OpenFoodFacts search failed');
+  }
+
+  private shouldRetry(status: number): boolean {
+    return status === 429 || status === 503;
+  }
+
+  private async waitBeforeRetry(attempt: number): Promise<void> {
+    const retryDelayMs = this.retryDelayMs * 2 ** attempt;
+    await new Promise(resolve => setTimeout(resolve, retryDelayMs));
   }
 }

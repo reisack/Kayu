@@ -9,13 +9,27 @@ import relatedProductsScoresEmptyMock from '#/services/mocks/related-products-sc
 describe('Related products service', () => {
   let relatedProductsService: RelatedProductsService;
 
+  const getRelatedProductsSearchMock = () => ({
+    ...relatedProductsScoresMock,
+    products: relatedProductsScoresMock.products.map(product => ({
+      ...product,
+      ...relatedProductsSelectedMock.products.find(
+        selectedProduct => selectedProduct.code === product.code,
+      ),
+    })),
+  });
+
   beforeEach(() => {
-    relatedProductsService = new RelatedProductsService();
+    fetchMock.resetMocks();
+    relatedProductsService = new RelatedProductsService(0);
+  });
+
+  afterEach(() => {
+    resetMockRandom();
   });
 
   it('should have list when product total score is not the highest', async () => {
-    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsScoresMock));
-    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsSelectedMock));
+    fetchMock.mockResponseOnce(JSON.stringify(getRelatedProductsSearchMock()));
 
     // Math.Random() will always returns 0.1
     mockRandom([0.1]);
@@ -31,14 +45,18 @@ describe('Related products service', () => {
     expect(results[3].eanCode).toEqual('7613034528971');
     expect(results[4].eanCode).toEqual('8714100875933');
 
-    resetMockRandom();
+    expect(results[0].frName).toEqual(
+      'Cr\u00e8me glac\u00e9e \u00e0 la vanille de Madagascar',
+    );
+    expect(results[0].imageUrl).toEqual(
+      'https://images.openfoodfacts.org/images/products/325/622/111/6045/front_fr.40.400.jpg',
+    );
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
-  it('should have empty list when related products does not have all informations', async () => {
-    fetchMock.mockResponseOnce(JSON.stringify(relatedProductsScoresMock));
-
-    // Query for all informations about selected related products throws an error
-    fetchMock.mockResponseOnce(() => Promise.reject(new Error('Mock error')));
+  it('should retry when API is temporarily unavailable', async () => {
+    fetchMock.mockResponseOnce('Service unavailable', { status: 503 });
+    fetchMock.mockResponseOnce(JSON.stringify(getRelatedProductsSearchMock()));
 
     // Math.Random() will always returns 0.1
     mockRandom([0.1]);
@@ -48,9 +66,20 @@ describe('Related products service', () => {
       30,
     );
 
-    expect(results).toEqual([]);
+    expect(results).toHaveLength(5);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
 
-    resetMockRandom();
+  it('should have empty list after retrying rate limited responses', async () => {
+    fetchMock.mockResponse('Too many requests', { status: 429 });
+
+    const results = await relatedProductsService.getRelatedproducts(
+      'vanilla-ice-cream-tubs',
+      30,
+    );
+
+    expect(results).toEqual([]);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
   });
 
   it('should have empty list when product total score is the highest', async () => {
