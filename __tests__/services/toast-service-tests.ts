@@ -39,7 +39,7 @@ describe('Toast service', () => {
       value: 'ios',
     });
 
-    ToastService.show('toast.message', ToastAndroid.LONG);
+    ToastService.show('toast.message');
 
     expect(ToastAndroid.show).not.toHaveBeenCalled();
   });
