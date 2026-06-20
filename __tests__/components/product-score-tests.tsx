@@ -110,7 +110,7 @@ describe('ProductScore', () => {
     const alertSpy = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
 
     const { getByTestId } = render(<ProductScore {...baseProps} />);
-    const pressable = getByTestId('pressable-info-icon');
+    const pressable = getByTestId('pressable-info-icon-fat');
 
     fireEvent.press(pressable);
 

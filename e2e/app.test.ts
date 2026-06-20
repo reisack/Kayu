@@ -16,13 +16,31 @@ describe('Kayu', () => {
     });
   };
 
-  const productScoreTestIDs = [
-    'product-score-fat',
-    'product-score-salt',
-    'product-score-sugar',
-    'product-score-novaGroup',
-    'product-score-eco',
-    'product-score-additives',
+  const productScores = [
+    {
+      testID: 'fat',
+      preciseScoreText: '11g de gras pour 100g de produit',
+    },
+    {
+      testID: 'salt',
+      preciseScoreText: '0.13g de sel pour 100g de produit',
+    },
+    {
+      testID: 'sugar',
+      preciseScoreText: '24g de sucre pour 100g de produit',
+    },
+    {
+      testID: 'novaGroup',
+      preciseScoreText: 'Score NOVA : 4 (Transformation des aliments)',
+    },
+    {
+      testID: 'eco',
+      preciseScoreText: 'Eco score : 79 (Empreinte carbone)',
+    },
+    {
+      testID: 'additives',
+      preciseScoreText: '6 additifs',
+    },
   ];
 
   const waitForProductScreen = async (eanCode: string) => {
@@ -96,9 +114,20 @@ describe('Kayu', () => {
       await waitForProductScreen(E2E_BARCODE_SCANNER_CAMERA_MOCK.barcode);
     });
 
-    it('should display each product score for a scanned product', async () => {
-      for (const productScoreTestID of productScoreTestIDs) {
-        await waitForVisibleInProductScroll(productScoreTestID);
+    it('should display each scanned product score and show its precise details from the info icon', async () => {
+      await waitFor(element(by.id('product-screen-scroll-view')))
+        .toBeVisible()
+        .withTimeout(30000);
+      await element(by.id('product-screen-scroll-view')).scroll(250, 'down');
+
+      for (const productScore of productScores) {
+        await element(
+          by.id(`pressable-info-icon-${productScore.testID}`),
+        ).tap();
+        await expect(
+          element(by.text(productScore.preciseScoreText)),
+        ).toBeVisible();
+        await element(by.text('OK')).tap();
       }
     });
 

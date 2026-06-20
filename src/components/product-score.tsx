@@ -127,7 +127,7 @@ const ProductScore: React.FC<Props> = ({
               </View>
               <View>
                 <Pressable
-                  testID="pressable-info-icon"
+                  testID={`pressable-info-icon-${getProductInfoTestId()}`}
                   onPress={() =>
                     Alert.alert(
                       t('informations'),
