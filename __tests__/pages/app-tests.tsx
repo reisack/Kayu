@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react-native';
 import App from '../../src/App';
-import { ToastAndroid } from 'react-native';
 
 const mockScreen = jest.fn();
 const mockNavigator = jest.fn(({ children }: { children: React.ReactNode }) => (
@@ -11,6 +10,7 @@ const mockNavigationContainer = jest.fn(
   ({ children }: { children: React.ReactNode }) => <>{children}</>,
 );
 const mockInitAdditiveScoreInformations = jest.fn();
+const mockToastShow = jest.fn();
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -45,13 +45,20 @@ jest.mock('@/services/additive-informations-service', () => ({
   },
 }));
 
+jest.mock('@/services/toast-service', () => ({
+  __esModule: true,
+  default: {
+    show: (...args: unknown[]) => mockToastShow(...args),
+  },
+}));
+
 describe('App', () => {
   beforeEach(() => {
     mockScreen.mockClear();
     mockNavigator.mockClear();
     mockNavigationContainer.mockClear();
     mockInitAdditiveScoreInformations.mockReset();
-    jest.spyOn(ToastAndroid, 'show').mockImplementation(() => undefined);
+    mockToastShow.mockReset();
   });
 
   it('should register the application screens without headers', async () => {
@@ -92,7 +99,6 @@ describe('App', () => {
   });
 
   it('should not show a toast when additive initialization succeeds', async () => {
-    const toastSpy = jest.spyOn(ToastAndroid, 'show');
     mockInitAdditiveScoreInformations.mockResolvedValue(undefined);
 
     render(<App />);
@@ -101,11 +107,10 @@ describe('App', () => {
       expect(mockInitAdditiveScoreInformations).toHaveBeenCalledTimes(1);
     });
 
-    expect(toastSpy).not.toHaveBeenCalled();
+    expect(mockToastShow).not.toHaveBeenCalled();
   });
 
   it('should show a translated toast when additive initialization fails', async () => {
-    const toastSpy = jest.spyOn(ToastAndroid, 'show');
     mockInitAdditiveScoreInformations.mockRejectedValue(
       new Error('initialization failed'),
     );
@@ -113,9 +118,8 @@ describe('App', () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(toastSpy).toHaveBeenCalledWith(
+      expect(mockToastShow).toHaveBeenCalledWith(
         'error.initAdditiveScoreInformations',
-        ToastAndroid.LONG,
       );
     });
   });

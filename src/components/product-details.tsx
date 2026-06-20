@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
   StyleSheet,
   useWindowDimensions,
-  ToastAndroid,
 } from 'react-native';
 import ScoreCalculationService from '@/services/score-calculation-service';
 import NutritionValues from '@/classes/nutrition-values';
@@ -14,6 +13,7 @@ import Product from '@/classes/product';
 import RelatedProductList from '@/components/related-product-list';
 import ProductScoreList from '@/components/product-score-list';
 import Consts from '@/consts';
+import ToastService from '@/services/toast-service';
 import { useTranslation } from 'react-i18next';
 import { ProductApi } from '@/shared-types';
 import { Nullable } from '@/extensions';
@@ -126,7 +126,7 @@ const ProductDetails: React.FC<Props> = ({
       console.log(
         `getProductByEanCode - Cannot find product with scanned code. Error : ${error}`,
       );
-      ToastAndroid.show(t('error.getProductByEanCode'), ToastAndroid.LONG);
+      ToastService.show(t('error.getProductByEanCode'));
 
       if (isMounted.current) {
         onNotFoundProduct();

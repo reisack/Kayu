@@ -6,7 +6,7 @@ import Home from '@/pages/home';
 import BarcodeScanner from '@/pages/barcode-scanner';
 import ProductScreen from '@/pages/product-screen';
 import AdditiveInformationsService from '@/services/additive-informations-service';
-import { ToastAndroid } from 'react-native';
+import ToastService from '@/services/toast-service';
 import { useTranslation } from 'react-i18next';
 
 const Stack = createNativeStackNavigator();
@@ -16,10 +16,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     AdditiveInformationsService.initAdditiveScoreInformations().catch(() => {
-      ToastAndroid.show(
-        t('error.initAdditiveScoreInformations'),
-        ToastAndroid.LONG,
-      );
+      ToastService.show(t('error.initAdditiveScoreInformations'));
     });
   }, [t]);
 

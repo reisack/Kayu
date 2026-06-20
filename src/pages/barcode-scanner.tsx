@@ -6,7 +6,6 @@ import {
   Pressable,
   Image,
   useWindowDimensions,
-  ToastAndroid,
 } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +13,7 @@ import Consts from '@/consts';
 import { NavigationHandler, NavigationProductProps } from '@/shared-types';
 import BarcodeScannerCamera from '@/services/barcode-scanner/barcode-scanner-camera';
 import { TorchMode } from '@/services/barcode-scanner/barcode-scanner-camera-interface';
+import ToastService from '@/services/toast-service';
 
 interface Props {
   navigation: NavigationHandler<NavigationProductProps>;
@@ -109,7 +109,7 @@ const BarcodeScanner: React.FC<Props> = ({ navigation }) => {
 
   const onCameraUnavailable = useCallback(() => {
     if (isFocused) {
-      ToastAndroid.show(t('error.CannotFindCamera'), ToastAndroid.LONG);
+      ToastService.show(t('error.CannotFindCamera'));
       navigation.navigate('Home');
     }
   }, [isFocused, navigation, t]);

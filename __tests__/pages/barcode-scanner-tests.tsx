@@ -2,8 +2,9 @@ import React from 'react';
 import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import BarcodeScanner from '@/pages/barcode-scanner';
 import fetchMock from 'jest-fetch-mock';
-import * as ReactNative from 'react-native';
 import * as VisionCamera from 'react-native-vision-camera';
+
+const mockToastShow = jest.fn();
 
 // --- MOCKS ---
 
@@ -51,6 +52,13 @@ jest.mock('react-native-vision-camera', () => {
 jest.mock('../../assets/images/torch_on.png', () => 1);
 jest.mock('../../assets/images/torch_off.png', () => 1);
 
+jest.mock('@/services/toast-service', () => ({
+  __esModule: true,
+  default: {
+    show: (...args: unknown[]) => mockToastShow(...args),
+  },
+}));
+
 const navigateMock = jest.fn();
 
 // --- TEST NAVIGATION PROP TYPE ---
@@ -63,6 +71,7 @@ const navigation: NavigationHandler<NavigationProductProps> = {
 beforeEach(() => {
   fetchMock.resetMocks();
   navigateMock.mockReset();
+  mockToastShow.mockReset();
   jest.useRealTimers();
 });
 
@@ -136,9 +145,6 @@ describe('BarcodeScanner', () => {
   });
 
   it('shows toast and navigates home if camera device not found', async () => {
-    const showToastMock = jest
-      .spyOn(ReactNative.ToastAndroid, 'show')
-      .mockImplementation(jest.fn());
     jest.useFakeTimers();
 
     // 1. First render: cameraDevice exists
@@ -175,17 +181,12 @@ describe('BarcodeScanner', () => {
     });
 
     await waitFor(() => {
-      expect(showToastMock).toHaveBeenCalledWith('error.CannotFindCamera', 0);
+      expect(mockToastShow).toHaveBeenCalledWith('error.CannotFindCamera');
       expect(navigateMock).toHaveBeenCalledWith('Home');
     });
-
-    showToastMock.mockReset();
   });
 
   it('shows toast and navigates home when no camera device is found on mount', async () => {
-    const showToastMock = jest
-      .spyOn(ReactNative.ToastAndroid, 'show')
-      .mockImplementation(jest.fn());
     jest.useFakeTimers();
 
     jest.spyOn(VisionCamera, 'useCameraDevice').mockReturnValue(undefined);
@@ -197,10 +198,8 @@ describe('BarcodeScanner', () => {
     });
 
     await waitFor(() => {
-      expect(showToastMock).toHaveBeenCalledWith('error.CannotFindCamera', 0);
+      expect(mockToastShow).toHaveBeenCalledWith('error.CannotFindCamera');
       expect(navigateMock).toHaveBeenCalledWith('Home');
     });
-
-    showToastMock.mockReset();
   });
 });

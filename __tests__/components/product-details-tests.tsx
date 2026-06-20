@@ -4,6 +4,8 @@ import * as ReactNative from 'react-native';
 import { render, waitFor } from '@testing-library/react-native';
 import ProductDetails from '@/components/product-details';
 
+const mockToastShow = jest.fn();
+
 // --- MOCKS ---
 
 // Mock child components (so they don't crash render)
@@ -52,6 +54,13 @@ jest.mock('@/classes/product', () => ({
 }));
 jest.mock('@/classes/nutrition-values', () => jest.fn());
 
+jest.mock('@/services/toast-service', () => ({
+  __esModule: true,
+  default: {
+    show: (...args: unknown[]) => mockToastShow(...args),
+  },
+}));
+
 // --- TEST DATA ---
 const eanCodeMock = '12345';
 const onNotFoundMock = jest.fn();
@@ -77,7 +86,6 @@ const productApiMock = {
 
 describe('ProductDetails', () => {
   beforeEach(() => {
-    jest.spyOn(ReactNative.ToastAndroid, 'show').mockImplementation(() => {});
     jest.spyOn(ReactNative, 'useWindowDimensions').mockReturnValue({
       width: 400,
       height: 800,
@@ -87,6 +95,7 @@ describe('ProductDetails', () => {
 
     fetchMock.resetMocks();
     onNotFoundMock.mockClear();
+    mockToastShow.mockReset();
   });
 
   it('shows loader while fetching', () => {
@@ -153,5 +162,7 @@ describe('ProductDetails', () => {
     await waitFor(() => {
       expect(onNotFoundMock).toHaveBeenCalled();
     });
+
+    expect(mockToastShow).toHaveBeenCalledWith('error.getProductByEanCode');
   });
 });
