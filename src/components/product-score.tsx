@@ -69,7 +69,7 @@ const ProductScore: React.FC<Props> = ({
   });
 
   const getProgressBarScore = () => {
-    return score! / 100.0;
+    return score! / 100;
   };
 
   const getProgressBarColor = (

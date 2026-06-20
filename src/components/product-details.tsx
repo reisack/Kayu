@@ -168,12 +168,12 @@ const ProductDetails: React.FC<Props> = ({
             </View>
           </View>
           <ProductScoreList product={product} />
-          {!isRelated ? (
+          {isRelated ? (
+            <View />
+          ) : (
             <View>
               <RelatedProductList product={product} />
             </View>
-          ) : (
-            <View />
           )}
         </View>
       )}

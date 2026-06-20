@@ -2,7 +2,7 @@
 require('jest-fetch-mock').enableMocks();
 
 // mock console
-global.console = {
+globalThis.console = {
   ...console,
   log: () => {},
   debug: () => {},

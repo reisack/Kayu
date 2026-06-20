@@ -56,9 +56,7 @@ describe('Additive informations service', () => {
     await expect(
       AdditiveInformationsService.initAdditiveScoreInformations(),
     ).rejects.toStrictEqual(
-      new Error(
-        'initAdditiveScoreInformations - Cannot fetch additive informations : Error: Mock error',
-      ),
+      'initAdditiveScoreInformations - Cannot fetch additive informations : Error: Mock error',
     );
 
     const result = AdditiveInformationsService.getAdditiveScoreInformations();

@@ -89,21 +89,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {!hasPermission ? (
-        <View>
-          <Text style={styles.permissionText}>{t('permission.message')}</Text>
-          <Text style={styles.permissionComplementText}>
-            {t('permission.messageComplement')}
-          </Text>
-          <View style={styles.permissionButtonContainer}>
-            <Button
-              title={t('permission.validate')}
-              color={Consts.style.primaryColor}
-              onPress={requestPermission}
-            />
-          </View>
-        </View>
-      ) : (
+      {hasPermission ? (
         <View style={styles.buttonBarcode}>
           <Pressable
             testID="barcode-scanner-button"
@@ -118,8 +104,21 @@ const Home: React.FC<Props> = ({ navigation }) => {
             </View>
           </Pressable>
         </View>
+      ) : (
+        <View>
+          <Text style={styles.permissionText}>{t('permission.message')}</Text>
+          <Text style={styles.permissionComplementText}>
+            {t('permission.messageComplement')}
+          </Text>
+          <View style={styles.permissionButtonContainer}>
+            <Button
+              title={t('permission.validate')}
+              color={Consts.style.primaryColor}
+              onPress={requestPermission}
+            />
+          </View>
+        </View>
       )}
-
       <View style={styles.privacyContainer}>
         <Pressable testID="privacy-link" onPress={displayPrivacy}>
           <Text style={styles.privacyText}>{t('privacy')}</Text>

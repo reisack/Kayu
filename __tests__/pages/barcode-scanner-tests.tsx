@@ -114,8 +114,7 @@ describe('BarcodeScanner', () => {
 
     const frame: VisionCamera.CodeScannerFrame = { height: 10, width: 10 };
     const getOnCodeScanned = () =>
-      useCodeScannerSpy.mock.calls[useCodeScannerSpy.mock.calls.length - 1][0]
-        .onCodeScanned;
+      useCodeScannerSpy.mock.calls.at(-1)!![0].onCodeScanned;
 
     act(() => {
       getOnCodeScanned()([{ value: undefined, type: 'ean-13' }], frame);

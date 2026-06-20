@@ -30,7 +30,7 @@ export default class AdditiveInformationsService {
     } catch (error) {
       const errorMessage = `initAdditiveScoreInformations - Cannot fetch additive informations : ${error}`;
       console.log(errorMessage);
-      return Promise.reject(new Error(errorMessage));
+      throw errorMessage;
     }
   }
 
