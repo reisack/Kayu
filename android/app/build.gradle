@@ -90,8 +90,8 @@ android {
         applicationId "rek.kayu"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2009
-        versionName "1.0.8"
+        versionCode 2026
+        versionName "1.0.9"
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'com.wix.detox.DetoxJUnitRunner'
     }
